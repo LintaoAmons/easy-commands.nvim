@@ -1,5 +1,18 @@
 local M = {}
 
+function M.ReplacePattern(str, pattern, replacement)
+  return string.gsub(str, pattern, replacement)
+end
+
+function M.EndsWithSuffix(str, suffix)
+  local len = #suffix
+  return str:sub(-len) == suffix
+end
+
+M.getFiletype = function()
+  return vim.bo.ft
+end
+
 ---@param cmd string
 ---@return string|nil
 function M.Call_sys_cmd(cmd)
@@ -32,8 +45,8 @@ function M.Trim(s)
 end
 
 function M.ExitCurrentMode()
-    local esc = vim.api.nvim_replace_termcodes('<esc>', true, false, true)
-    vim.api.nvim_feedkeys(esc, 'x', false)
+  local esc = vim.api.nvim_replace_termcodes('<esc>', true, false, true)
+  vim.api.nvim_feedkeys(esc, 'x', false)
 end
 
 -- https://gitlab.com/jrop/dotfiles/-/blob/master/.config/nvim/lua/my/utils.lua#L13

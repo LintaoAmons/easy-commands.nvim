@@ -1,7 +1,7 @@
 local util = require("easy-commands.impl.util")
 local M = {}
 
-M.QuitNvim = 'qa!'
+M.QuitNvim = 'wqa'
 -- M.DiffWithClipboard",
 M.FormatCode = 'lua vim.lsp.buf.format { async = true }'
 M.NoHighlight = 'nohl'

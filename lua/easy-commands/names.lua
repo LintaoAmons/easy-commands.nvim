@@ -67,10 +67,6 @@ local commands = {
     "FindInWholeProject",
     "FzfLuaBuiltin",
   },
-  scratch = {
-    "Scratch",
-    "ScratchOpen",
-  },
   run = {
     "RunCurrentBuffer",
     "RunLiveToggle",
