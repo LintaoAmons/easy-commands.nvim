@@ -60,7 +60,21 @@ You can find all the commands it provided at https://github.com/LintaoAmons/easy
 
 will run selected text as terminal cmd and show the result in the next line, also copied the result in system clipboard
 
+<details open>
+<summary>Click to fold the preview</summary>
+  
 ![commands](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/58304424-d1c8-4ff5-99de-44c0449ec7ff)
+
+</details>
+
+### RunCurrentLineAndOutputWithPrePostFix
+
+<details open>
+<summary>Click to fold the preview</summary>
+
+  ![8d43911152321a95dd6f32e4dcc737f7394425489](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/8019a384-2161-44e6-bda8-2e85b79bbe93)
+
+</details>
 
 ## Keybindings
 
