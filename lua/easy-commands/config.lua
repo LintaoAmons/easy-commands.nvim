@@ -6,6 +6,9 @@ local default_config = {
   ["RunSelectedAndOutputWithPrePostFix"] = {
     prefix = "```bash",
     postfix = "```"
+  },
+  ["AskChatGPT"] = {
+    keyFilePath = vim.env.HOME .. "/chatGPTkey"
   }
 }
 

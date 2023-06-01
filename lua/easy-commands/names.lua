@@ -48,7 +48,7 @@ local commands = {
     "DecreaseSplitWidth",
 
     "Mark",
-    "MarkJump",
+    "MarkList",
     "MarkNext",
     "MarkPrev",
   },
@@ -91,10 +91,13 @@ local commands = {
   },
   nvim = {
     "SourceCurrentBuffer",
+  },
+  ai = {
+    "AskChatGPT"
   }
 }
 
-result = {}
+local result = {}
 for _, command_group in pairs(commands) do
   for _, command in ipairs(command_group) do
     table.insert(result, command)

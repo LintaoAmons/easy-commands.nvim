@@ -61,7 +61,7 @@ M.Mark = function()
   harpoonMark.add_file()
 end
 
-M.MarkJump = "Telescope harpoon marks"
+M.MarkList = "Telescope harpoon marks"
 
 M.MarkNext = function()
   -- TODO:

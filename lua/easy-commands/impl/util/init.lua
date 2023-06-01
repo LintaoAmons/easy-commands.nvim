@@ -1,5 +1,11 @@
 local M = {}
 
+---@filename string
+---@return string
+function M.ReadFileAsString(filename)
+  return table.concat(vim.fn.readfile(filename), '\n')
+end
+
 function M.ReplacePattern(str, pattern, replacement)
   return string.gsub(str, pattern, replacement)
 end
@@ -42,6 +48,22 @@ end
 
 function M.Trim(s)
   return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+---@content string
+function M.writeToFollowingLine(content)
+  
+end
+
+function M.EscapeQuotes(str)
+  -- Replace all double quotes with escaped double quotes
+  str = str:gsub('"', '\\"')
+  
+  -- Replace all single quotes with escaped single quotes
+  str = str:gsub("'", "\\'")
+  
+  -- Return the modified string
+  return str
 end
 
 function M.ExitCurrentMode()
