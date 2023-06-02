@@ -1,3 +1,6 @@
+-- HACK: This list contains all the commands this plugin want to have
+-- Some of them many not have Implementation yet
+-- Some may have third party dependencies
 local commands = {
   git = {
     "GitDiff",
@@ -29,6 +32,11 @@ local commands = {
     "ExplorerLocateCurrentFile",
   },
   navigation = {
+    "LspFinder",
+    "ToggleOutline",
+    "GoToDefinition",
+    "GoToTestFile",
+
     "OpenChangedFiles",
     "OpenRecentFiles",
     "LeapJump",
@@ -81,7 +89,6 @@ local commands = {
     "DiffWithClipboard",
     "FormatCode",
     "NoHighlight",
-    "ToggleOutline",
     "CloseWindowOrBuffer",
     "CopyBufAbsPath",
     "CopyBufAbsDirPath",

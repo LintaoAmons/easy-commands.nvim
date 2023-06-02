@@ -5,6 +5,10 @@ local leap = require("leap")
 M.OpenChangedFiles = "FzfLua git_status"
 M.OpenRecentFiles = 'FzfLua oldfiles'
 
+M.ToggleOutline = 'Lspsaga outline'
+M.LspFinder = 'Lspsaga lsp_finder'
+M.GoToDefinition = 'Lspsaga goto_definition'
+
 M.LeapJump = function()
   leap.leap {
     target_windows = vim.tbl_filter(
