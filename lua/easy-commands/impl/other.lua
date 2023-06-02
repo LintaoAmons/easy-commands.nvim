@@ -5,7 +5,7 @@ M.QuitNvim = 'wqa'
 -- M.DiffWithClipboard",
 M.FormatCode = 'lua vim.lsp.buf.format { async = true }'
 M.NoHighlight = 'nohl'
-M.ToggleOutline = 'AerialToggle'
+M.ToggleOutline = 'Lspsaga outline'
 
 function M.CloseWindowOrBuffer()
   local isOk, _ = pcall(vim.cmd, "close")
