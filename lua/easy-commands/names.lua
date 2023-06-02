@@ -93,7 +93,8 @@ local commands = {
     "SourceCurrentBuffer",
   },
   ai = {
-    "AskChatGPT"
+    "AskChatGPT",
+    "AskChatGPTWithSelection",
   }
 }
 
