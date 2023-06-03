@@ -8,7 +8,7 @@ Fuzzy search & Trigger
 
 ![fuzzyfinder and fire 1](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/445f217c-45e3-4b5c-9152-a65f69189780)
 
-So you don't need to bind every to as shortcut, but still easy to reach
+So you don't need to bind each commands to a shortcut, but still easy to reach and use
 
 <details>
 <summary>With Fzf-lua config, command will be triggered once you press enter</summary>
