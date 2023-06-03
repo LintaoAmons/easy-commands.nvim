@@ -1,4 +1,4 @@
-A collection of pre-defined commands which are readable and easy to search and use
+## A collection of pre-defined commands which are readable and easy to search and use
 
 ## Why this plugin?
 
@@ -73,6 +73,17 @@ will run selected text as terminal cmd and show the result in the next line, als
 <summary>Click to fold the preview</summary>
 
   ![8d43911152321a95dd6f32e4dcc737f7394425489](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/8019a384-2161-44e6-bda8-2e85b79bbe93)
+
+</details>
+
+  
+### ToCamelCase | ToConstantCase | ToKebabCase | ToSnakeCase
+> Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH  
+
+<details open>
+<summary>Click to fold the preview</summary>
+  
+![ConvertCase](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/7377b2e3-8d73-4eea-aef7-36aaea7b5a33)
 
 </details>
 
