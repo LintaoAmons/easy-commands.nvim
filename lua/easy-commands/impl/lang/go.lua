@@ -13,8 +13,7 @@ M.GoToTestFile = function()
   end
 
   if vim.fn.filereadable(jump_to_file) == 0 then
-    local create_cmd = "silent execute '!touch " .. jump_to_file .. "'"
-    vim.cmd(create_cmd)
+    require("easy-commands.impl.util.fs").createFile(jump_to_file)
   end
 
   vim.cmd("e " .. jump_to_file)
