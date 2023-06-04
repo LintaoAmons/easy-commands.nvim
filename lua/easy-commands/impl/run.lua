@@ -1,5 +1,6 @@
 local M = {}
 local util = require("easy-commands.impl.util")
+local editor = require("easy-commands.impl.util.editor")
 
 M.RunCurrentBuffer = '%SnipRun'
 M.RunLiveToggle = 'SnipLive'
@@ -23,7 +24,7 @@ end
 
 M.RunSelectedAndOutput = {
   callback = function()
-    local selectedText = util.Buf_vtext()
+    local selectedText = editor.getSelectedText2()
     local output = util.Call_sys_cmd(selectedText)
     util.CopyToSystemClipboard("\n" .. output)
     util.ExitCurrentMode()
@@ -43,7 +44,7 @@ M.RunSelectedAndReplace = {
 
 M.RunSelectedAndOutputWithPrePostFix = {
   callback = function()
-    local selectedText = util.Buf_vtext()
+    local selectedText = editor.getSelectedText2()
     local output = util.Call_sys_cmd(selectedText)
     local config = require("easy-commands.config").getConfig()
     local prefix = config.RunSelectedAndOutputWithPrePostFix.prefix

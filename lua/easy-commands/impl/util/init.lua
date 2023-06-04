@@ -71,20 +71,6 @@ function M.ExitCurrentMode()
   vim.api.nvim_feedkeys(esc, 'x', false)
 end
 
--- https://gitlab.com/jrop/dotfiles/-/blob/master/.config/nvim/lua/my/utils.lua#L13
----@return string
-function M.Buf_vtext()
-  local a_orig = vim.fn.getreg('a')
-  local mode = vim.fn.mode()
-  if mode ~= 'v' and mode ~= 'V' then
-    vim.cmd([[normal! gv]])
-  end
-  vim.cmd([[silent! normal! "aygv]])
-  local text = vim.fn.getreg('a')
-  vim.fn.setreg('a', a_orig)
-  return text
-end
-
 local function replace_selected_text_with_clipboard()
   vim.cmd([[normal! gv"_dP]])
 end
