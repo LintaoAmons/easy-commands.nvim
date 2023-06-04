@@ -72,7 +72,7 @@ local commands = {
     "FindFiles",
     "FindCommands",
     "FindKeymappins",
-    "FindInWholeProject",
+    "FindInWholeProject", -- TODO: If in visual mode, find with selected text
     "FzfLuaBuiltin",
   },
   run = {
