@@ -71,6 +71,7 @@ function M.ExitCurrentMode()
   vim.api.nvim_feedkeys(esc, 'x', false)
 end
 
+-- TODO: remove this
 local function replace_selected_text_with_clipboard()
   vim.cmd([[normal! gv"_dP]])
 end

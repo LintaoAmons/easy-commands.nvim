@@ -40,7 +40,7 @@ function Editor.getSelectedText()
   if cerow < csrow then csrow, cerow = cerow, csrow end
   if cecol < cscol then cscol, cecol = cecol, cscol end
   local lines = vim.fn.getline(csrow, cerow)
-  local n = tableUtil.tbl_length(lines)
+  local n = tableUtil.tableLength(lines)
   if n <= 0 then return "" end
   lines[n] = string.sub(lines[n], 1, cecol)
   lines[1] = string.sub(lines[1], cscol)
@@ -50,6 +50,10 @@ end
 function Editor.ExitCurrentMode()
   local esc = vim.api.nvim_replace_termcodes('<esc>', true, false, true)
   vim.api.nvim_feedkeys(esc, 'x', false)
+end
+
+function Editor.replaceSelectedTextWithClipboard()
+  vim.cmd([[normal! gvp]])
 end
 
 return Editor

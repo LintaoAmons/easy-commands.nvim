@@ -24,7 +24,8 @@ end
 
 M.RunSelectedAndOutput = {
   callback = function()
-    local selectedText = editor.getSelectedText2()
+    local selectedText = editor.getSelectedText()
+    print(selectedText)
     local output = util.Call_sys_cmd(selectedText)
     util.CopyToSystemClipboard("\n" .. output)
     util.ExitCurrentMode()
@@ -35,16 +36,17 @@ M.RunSelectedAndOutput = {
 
 M.RunSelectedAndReplace = {
   callback = function()
-    util.Perform_cmd_to_selected_text(function(it)
-      return it
-    end)
+    local selectedText = editor.getSelectedText()
+    local output = util.Call_sys_cmd(selectedText)
+    util.CopyToSystemClipboard(util.Trim(output))
+    editor.replaceSelectedTextWithClipboard()
   end,
   allow_visual_mode = true
 }
 
 M.RunSelectedAndOutputWithPrePostFix = {
   callback = function()
-    local selectedText = editor.getSelectedText2()
+    local selectedText = editor.getSelectedText()
     local output = util.Call_sys_cmd(selectedText)
     local config = require("easy-commands.config").getConfig()
     local prefix = config.RunSelectedAndOutputWithPrePostFix.prefix
