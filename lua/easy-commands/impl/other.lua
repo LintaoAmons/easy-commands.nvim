@@ -1,8 +1,34 @@
 local util = require("easy-commands.impl.util")
+local editor = require("easy-commands.impl.util.editor")
 local M = {}
 
 M.QuitNvim = 'wqa!'
--- M.DiffWithClipboard",
+
+-- https://github.com/sindrets/diffview.nvim/issues/215#issuecomment-1250070954
+M.DiffWithClipboard = {
+  callback = function()
+    local clipboard = vim.fn.getreg("*", 0, true) --[[@as string[] ]]
+    local selected = vim.fn.split(editor.getSelectedText(), "\n")
+
+    vim.cmd("tabnew")
+    local selected_bufnr = vim.api.nvim_get_current_buf()
+    local selectedName = vim.fn.tempname() .. "/selected"
+    vim.api.nvim_buf_set_name(0, selectedName)
+    vim.bo.buftype = "nofile"
+    vim.api.nvim_buf_set_lines(selected_bufnr, 0, -1, false, selected)
+
+    vim.cmd("enew")
+    local clipboard_bufnr = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_set_name(0, vim.fn.tempname() .. "/clipboard")
+    vim.bo.buftype = "nofile"
+    vim.api.nvim_buf_set_lines(clipboard_bufnr, 0, -1, false, clipboard)
+
+    vim.cmd("vertical diffsplit " .. vim.fn.fnameescape(selectedName))
+    vim.cmd("wincmd p")
+  end,
+  allow_visual_mode = true
+}
+
 M.FormatCode = 'lua vim.lsp.buf.format { async = true }'
 M.NoHighlight = 'nohl'
 

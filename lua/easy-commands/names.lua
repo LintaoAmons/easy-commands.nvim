@@ -59,6 +59,9 @@ local commands = {
     "MarkList",
     "MarkNext",
     "MarkPrev",
+
+    "FoldAll",
+    "UnFoldAll",
   },
   test = {
     "TestRunNearest",
@@ -95,6 +98,9 @@ local commands = {
     "CopyProjectDir",
     "CopyBufRelativePath",
     "CopyBufRelativeDirPath",
+  },
+  helper = {
+    "PrintSelected", -- TODO:
   },
   nvim = {
     "SourceCurrentBuffer",

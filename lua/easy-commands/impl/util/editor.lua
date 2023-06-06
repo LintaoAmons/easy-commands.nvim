@@ -53,7 +53,7 @@ function Editor.ExitCurrentMode()
 end
 
 function Editor.replaceSelectedTextWithClipboard()
-  vim.cmd([[normal! gvp]])
+  vim.cmd([[normal! gv"_dP]])
 end
 
 return Editor

@@ -7,7 +7,7 @@ M.OpenRecentFiles = 'FzfLua oldfiles'
 
 M.ToggleOutline = 'Lspsaga outline'
 M.LspFinder = 'Lspsaga lsp_finder'
-M.GoToDefinition = 'Lspsaga goto_definition'
+M.GoToDefinition = 'Lspsaga goto_type_definition'
 
 M.LeapJump = function()
   leap.leap {
@@ -75,5 +75,9 @@ M.MarkPrev = function()
   -- TODO:
   vim.notify("TODO")
 end
+
+M.FoldAll = "lua require('ufo').closeAllFolds()"
+
+M.UnFoldAll = "lua require('ufo').openAllFolds()"
 
 return M
