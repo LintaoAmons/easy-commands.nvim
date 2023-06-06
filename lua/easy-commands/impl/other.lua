@@ -19,12 +19,13 @@ M.DiffWithClipboard = {
 
     vim.cmd("enew")
     local clipboard_bufnr = vim.api.nvim_get_current_buf()
-    vim.api.nvim_buf_set_name(0, vim.fn.tempname() .. "/clipboard")
+    vim.api.nvim_buf_set_name(0, vim.fn.tempname() .. "/clipboard | selected")
     vim.bo.buftype = "nofile"
     vim.api.nvim_buf_set_lines(clipboard_bufnr, 0, -1, false, clipboard)
 
     vim.cmd("vertical diffsplit " .. vim.fn.fnameescape(selectedName))
     vim.cmd("wincmd p")
+    -- TODO: Close buffer automatically
   end,
   allow_visual_mode = true
 }
