@@ -1,5 +1,7 @@
 ## A collection of pre-defined commands which are readable and easy to search and use
 
+## There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
+
 ## Why this plugin?
 
 To have IDEA/VSCODE etc. like of command fuzzy search experience.
