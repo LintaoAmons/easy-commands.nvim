@@ -2,18 +2,8 @@
 local Editor = {}
 local tableUtil = require("easy-commands.impl.util.layer1.table")
 
--- https://gitlab.com/jrop/dotfiles/-/blob/master/.config/nvim/lua/my/utils.lua#L13
----@return string
-function Editor.getSelectedText2()
-  local a_orig = vim.fn.getreg('a')
-  local mode = vim.fn.mode()
-  if mode ~= 'v' and mode ~= 'V' then
-    vim.cmd([[normal! gv]])
-  end
-  vim.cmd([[silent! normal! "aygv]])
-  local text = vim.fn.getreg('a')
-  vim.fn.setreg('a', a_orig)
-  return text
+Editor.getFiletype = function()
+  return vim.bo.ft
 end
 
 -- Copy from https://github.com/ibhagwan/fzf-lua

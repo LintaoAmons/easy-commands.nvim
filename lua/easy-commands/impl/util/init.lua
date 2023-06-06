@@ -15,6 +15,7 @@ function M.EndsWithSuffix(str, suffix)
   return str:sub(-len) == suffix
 end
 
+-- TODO: deprecated function.
 M.getFiletype = function()
   return vim.bo.ft
 end
@@ -52,16 +53,16 @@ end
 
 ---@content string
 function M.writeToFollowingLine(content)
-  
+
 end
 
 function M.EscapeQuotes(str)
   -- Replace all double quotes with escaped double quotes
   str = str:gsub('"', '\\"')
-  
+
   -- Replace all single quotes with escaped single quotes
   str = str:gsub("'", "\\'")
-  
+
   -- Return the modified string
   return str
 end
