@@ -2,7 +2,7 @@ local util = require("easy-commands.impl.util")
 local editor = require("easy-commands.impl.util.editor")
 local M = {}
 
-M.QuitNvim = 'wqa!'
+M.QuitNvim = 'qa!'
 
 -- https://github.com/sindrets/diffview.nvim/issues/215#issuecomment-1250070954
 M.DiffWithClipboard = {
