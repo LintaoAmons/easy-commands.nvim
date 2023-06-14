@@ -29,6 +29,7 @@ function M.Call_sys_cmd(cmd)
   return result
 end
 
+
 ---@param content string
 function M.CopyToSystemClipboard(content)
   local copy_cmd = 'pbcopy'

@@ -42,6 +42,31 @@ function Editor.ExitCurrentMode()
   vim.api.nvim_feedkeys(esc, 'x', false)
 end
 
+-- Puts text at cursor, in any mode.
+--
+-- Compare |:put| and |p| which are always linewise.
+--
+-- Attributes: ~
+--     not allowed when |textlock| is active
+--
+-- Parameters: ~
+--   • {lines}   |readfile()|-style list of lines. |channel-lines|
+--   • {type}    Edit behavior: any |getregtype()| result, or:
+--               • "b" |blockwise-visual| mode (may include width, e.g. "b3")
+--               • "c" |charwise| mode
+--               • "l" |linewise| mode
+--               • "" guess by contents, see |setreg()|
+--   • {after}   If true insert after cursor (like |p|), or before (like
+--               |P|).
+--   • {follow}  If true place cursor at end of inserted text.
+--- @param lines string[]
+--- @param type string
+--- @param after boolean
+--- @param follow boolean
+function Editor.PutLines(lines, type, after, follow)
+  vim.api.nvim_put(lines, type, after, follow)
+end
+
 function Editor.replaceSelectedTextWithClipboard()
   vim.cmd([[normal! gv"_dP]])
 end
