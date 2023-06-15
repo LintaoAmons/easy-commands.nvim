@@ -86,6 +86,8 @@ local commands = {
     "RunSelectedAndOutput",
     "RunSelectedAndOutputWithPrePostFix",
     "RunSelectedAndReplace",
+
+    "QueryCsv"
   },
   other = {
     "QuitNvim",

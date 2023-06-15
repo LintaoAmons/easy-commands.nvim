@@ -10,7 +10,8 @@ M = vim.tbl_extend("error", M,
   require("easy-commands.impl.test"),
   require("easy-commands.impl.explorer"),
   require("easy-commands.impl.ai"),
-  require("easy-commands.impl.helper")
+  require("easy-commands.impl.helper"),
+  require("easy-commands.impl.nvim")
 )
 
 return M

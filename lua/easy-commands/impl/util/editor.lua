@@ -2,6 +2,10 @@
 local Editor = {}
 local tableUtil = require("easy-commands.impl.util.layer1.table")
 
+Editor.getCurrentLine = function()
+  return vim.api.nvim_get_current_line()
+end
+
 Editor.getFiletype = function()
   return vim.bo.ft
 end
