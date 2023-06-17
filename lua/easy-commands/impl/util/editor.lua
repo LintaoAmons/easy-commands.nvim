@@ -71,6 +71,19 @@ function Editor.PutLines(lines, type, after, follow)
   vim.api.nvim_put(lines, type, after, follow)
 end
 
+--- Get current buffer size
+---@return {width: number, height: number}
+function Editor.get_buf_size()
+  local cbuf = vim.api.nvim_get_current_buf()
+  local bufinfo = vim.tbl_filter(function(buf)
+    return buf.bufnr == cbuf
+  end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
+  if bufinfo == nil then
+    return { width = -1, height = -1 }
+  end
+  return { width = bufinfo.width, height = bufinfo.height }
+end
+
 function Editor.replaceSelectedTextWithClipboard()
   vim.cmd([[normal! gv"_dP]])
 end

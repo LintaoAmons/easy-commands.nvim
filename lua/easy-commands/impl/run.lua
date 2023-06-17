@@ -76,13 +76,29 @@ function GetFilename()
   return trimmedStr
 end
 
+M.RunCmd = function ()
+    -- TODO:
+    -- type: csvq
+    -- key: value
+
+    -- get metaInfo
+    -- get currentLine
+    -- get Type and do something base on type
+        -- FUNC currentLine --> cmdToExec
+    -- Get the output of cmd and put lins
+end
+
 M.QueryCsv = function()
+  -- new: /Users/lintao/Downloads/(RESTRICTED)_REGISTR_1686819230426.csv
+  -- old: filepath2
+  -- ========
+  -- TODO: support alias
+
   local filename = GetFilename()
   -- csvq 'select Index from `/private/tmp/xx.csv` limit 6'
   local sql = editor.getCurrentLine()
   local sql = util.ReplacePattern(sql, "from fj", "from `" .. filename .. "`")
   sql = util.ReplacePattern(sql, "from jf", "from `" .. filename .. "`")
-  vim.print(sql)
   local cmd = "csvq '" .. sql .. "'"
   local result = util.Call_sys_cmd(cmd) or ""
   -- TODO: refactor this
@@ -92,14 +108,8 @@ M.QueryCsv = function()
       table.remove(output_lines, i)
     end
   end
-  -- table.insert(output_lines, 0, "```")
-  -- table.insert(output_lines, "```")
-  vim.print(output_lines)
 
-  vim.api.nvim_put(output_lines, 'l', true, true)
-
-  -- editor.PutLines(output_lines, 'l', true, true)
-  -- editor.PutLines(output_lines, 'l', true, true)
+  editor.PutLines(output_lines, 'l', true, true)
 end
 
 return M

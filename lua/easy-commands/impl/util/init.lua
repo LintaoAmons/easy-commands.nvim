@@ -26,6 +26,7 @@ function M.Call_sys_cmd(cmd)
   local handle = io.popen(cmd)
   local result = handle:read("*a")
   handle:close()
+  -- TODO: get the error msg after failed to exec a command
   return result
 end
 
@@ -48,6 +49,7 @@ function M.CopyToSystemClipboard(content)
   vim.fn.system(copy_cmd, content)
 end
 
+-- TODO: Use string.lua Trim instead
 function M.Trim(s)
   return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
@@ -73,18 +75,6 @@ function M.ExitCurrentMode()
   vim.api.nvim_feedkeys(esc, 'x', false)
 end
 
--- TODO: remove this
-local function replace_selected_text_with_clipboard()
-  vim.cmd([[normal! gv"_dP]])
-end
-
--- cmdFunc could do some trick to the selectedText
-function M.Perform_cmd_to_selected_text(cmdFunc)
-  local selectedText = M.Buf_vtext()
-  local output = M.Call_sys_cmd(cmdFunc(selectedText))
-  M.CopyToSystemClipboard(M.Trim(output))
-  replace_selected_text_with_clipboard()
-end
 
 local function is_homedir(path)
   local home_dir = vim.loop.os_homedir()
