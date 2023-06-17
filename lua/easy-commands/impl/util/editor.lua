@@ -1,6 +1,6 @@
 -- Meta class
 local Editor = {}
-local tableUtil = require("easy-commands.impl.util.layer1.table")
+local tableUtil = require("easy-commands.impl.util.base.table")
 
 Editor.getCurrentLine = function()
   return vim.api.nvim_get_current_line()
@@ -34,7 +34,7 @@ function Editor.getSelectedText()
   if cerow < csrow then csrow, cerow = cerow, csrow end
   if cecol < cscol then cscol, cecol = cecol, cscol end
   local lines = vim.fn.getline(csrow, cerow)
-  local n = tableUtil.tableLength(lines)
+  local n = tableUtil.table_length(lines)
   if n <= 0 then return "" end
   lines[n] = string.sub(lines[n], 1, cecol)
   lines[1] = string.sub(lines[1], cscol)

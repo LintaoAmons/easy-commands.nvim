@@ -1,6 +1,7 @@
 local M = {}
 local util = require("easy-commands.impl.util")
 local editor = require("easy-commands.impl.util.editor")
+local strings= require("easy-commands.impl.util.base.strings")
 
 M.RunCurrentBuffer = '%SnipRun'
 M.RunLiveToggle = 'SnipLive'
@@ -18,7 +19,7 @@ M.RunCurrentLineAndOutputWithPrePostFix = function()
   local prefix = config.RunCurrentLineAndOutputWithPrePostFix.prefix
   local postfix = config.RunCurrentLineAndOutputWithPrePostFix.postfix
   local output = util.Call_sys_cmd(currentLine)
-  util.CopyToSystemClipboard("\n" .. prefix .. "\n" .. util.Trim(output) .. "\n" .. postfix)
+  util.CopyToSystemClipboard("\n" .. prefix .. "\n" .. strings.trim(output) .. "\n" .. postfix)
   vim.cmd("silent! normal! $p")
 end
 
@@ -38,7 +39,7 @@ M.RunSelectedAndReplace = {
   callback = function()
     local selectedText = editor.getSelectedText()
     local output = util.Call_sys_cmd(selectedText)
-    util.CopyToSystemClipboard(util.Trim(output))
+    util.CopyToSystemClipboard(strings.trim(output))
     editor.replaceSelectedTextWithClipboard()
   end,
   allow_visual_mode = true
@@ -51,7 +52,7 @@ M.RunSelectedAndOutputWithPrePostFix = {
     local config = require("easy-commands.config").getConfig()
     local prefix = config.RunSelectedAndOutputWithPrePostFix.prefix
     local postfix = config.RunSelectedAndOutputWithPrePostFix.postfix
-    util.CopyToSystemClipboard("\n" .. prefix .. "\n" .. util.Trim(output) .. "\n" .. postfix)
+    util.CopyToSystemClipboard("\n" .. prefix .. "\n" .. strings.trim(output) .. "\n" .. postfix)
     util.ExitCurrentMode()
     vim.cmd("silent! normal! $p")
   end,

@@ -30,7 +30,6 @@ function M.Call_sys_cmd(cmd)
   return result
 end
 
-
 ---@param content string
 function M.CopyToSystemClipboard(content)
   local copy_cmd = 'pbcopy'
@@ -49,16 +48,6 @@ function M.CopyToSystemClipboard(content)
   vim.fn.system(copy_cmd, content)
 end
 
--- TODO: Use string.lua Trim instead
-function M.Trim(s)
-  return (s:gsub("^%s*(.-)%s*$", "%1"))
-end
-
----@content string
-function M.writeToFollowingLine(content)
-
-end
-
 function M.EscapeQuotes(str)
   -- Replace all double quotes with escaped double quotes
   str = str:gsub('"', '\\"')
@@ -74,7 +63,6 @@ function M.ExitCurrentMode()
   local esc = vim.api.nvim_replace_termcodes('<esc>', true, false, true)
   vim.api.nvim_feedkeys(esc, 'x', false)
 end
-
 
 local function is_homedir(path)
   local home_dir = vim.loop.os_homedir()

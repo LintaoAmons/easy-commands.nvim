@@ -1,5 +1,5 @@
 local editor = require("easy-commands.impl.util.editor")
-local tableUtil = require("easy-commands.impl.util.layer1.table")
+local tableUtil = require("easy-commands.impl.util.base.table")
 local M = {}
 
 M.PrintSelected = function()
