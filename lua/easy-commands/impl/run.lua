@@ -81,6 +81,7 @@ M.QueryCsv = function()
   -- csvq 'select Index from `/private/tmp/xx.csv` limit 6'
   local sql = editor.getCurrentLine()
   local sql = util.ReplacePattern(sql, "from fj", "from `" .. filename .. "`")
+  sql = util.ReplacePattern(sql, "from jf", "from `" .. filename .. "`")
   vim.print(sql)
   local cmd = "csvq '" .. sql .. "'"
   local result = util.Call_sys_cmd(cmd) or ""
