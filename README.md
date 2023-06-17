@@ -74,11 +74,21 @@ will run selected text as terminal cmd and show the result in the next line, als
 <details open>
 <summary>Click to fold the preview</summary>
 
-  ![8d43911152321a95dd6f32e4dcc737f7394425489](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/8019a384-2161-44e6-bda8-2e85b79bbe93)
+![8d43911152321a95dd6f32e4dcc737f7394425489](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/8019a384-2161-44e6-bda8-2e85b79bbe93)
 
 </details>
 
-  
+### QueryCsv
+> Dependencies: [csvq](https://github.com/mithrandie/csvq) in $PATH  
+> [Video Explain](https://www.bilibili.com/video/BV1Qo4y1N76t/)
+
+<details open>
+<summary>Click to fold the preview</summary>
+
+![show](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/16da4ff8-1cff-40bd-a57f-ec857edba34f)
+
+</details>
+
 ### ToCamelCase | ToConstantCase | ToKebabCase | ToSnakeCase
 > Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH  
 
