@@ -2,7 +2,7 @@
 -- Some of them many not have Implementation yet
 -- Some may have third party dependencies
 local commands = {
-  git = {
+  git = { -- TODO: README
     "GitDiff",
     "GitStatus",
     "GitCommit",
@@ -98,7 +98,7 @@ local commands = {
     "FormatCode",
     "NoHighlight",
     "CloseWindowOrBuffer",
-    "CopyBufAbsPath",
+    "CopyBufAbsPath", -- TODO: README
     "CopyBufAbsDirPath",
     "CopyProjectDir",
     "CopyBufRelativePath",

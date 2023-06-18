@@ -31,7 +31,7 @@ M.ToNextCase      = function()
   if vim.g.easy_command_next_case == nil then
     vim.g.easy_command_next_case = "ToCamelCase"
   end
-  M[vim.g.easy_command_next_case]()
+  M[vim.g.easy_command_next_case].callback()
   local cases = { "ToCamelCase", "ToConstantCase", "ToKebabCase", "ToSnakeCase" }
   vim.g.easy_command_next_case = cases[tables.findIndex(cases, vim.g.easy_command_next_case) + 1]
 end
