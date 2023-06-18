@@ -6,4 +6,13 @@ M.table_length = function(T)
   return count
 end
 
+function M.findIndex(tbl, element)
+  for i = 1, #tbl do
+    if tbl[i] == element then
+      return i
+    end
+  end
+  return nil
+end
+
 return M

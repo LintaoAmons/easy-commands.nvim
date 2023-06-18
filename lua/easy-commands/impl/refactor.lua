@@ -1,6 +1,7 @@
 local util = require("easy-commands.impl.util")
 local editor = require("easy-commands.impl.util.editor")
 local strings = require("easy-commands.impl.util.base.strings")
+local tables = require("easy-commands.impl.util.base.table")
 
 -- Third party dependency
 local refactoring = require("refactoring")
@@ -24,6 +25,15 @@ end
 
 M.ExtractFunction = function()
   refactoring.refactor('Extract Function')
+end
+
+M.ToNextCase      = function()
+  if vim.g.easy_command_next_case == nil then
+    vim.g.easy_command_next_case = "ToCamelCase"
+  end
+  M[vim.g.easy_command_next_case]()
+  local cases = { "ToCamelCase", "ToConstantCase", "ToKebabCase", "ToSnakeCase" }
+  vim.g.easy_command_next_case = cases[tables.findIndex(cases, vim.g.easy_command_next_case) + 1]
 end
 
 M.ToCamelCase     = {

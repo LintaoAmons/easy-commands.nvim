@@ -25,6 +25,7 @@ local commands = {
     "ExtractVariable",
     "InlineVariable",
 
+    "ToNextCase",
     "ToCamelCase",
     "ToConstantCase",
     "ToKebabCase",
