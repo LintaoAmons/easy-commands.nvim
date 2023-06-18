@@ -16,8 +16,8 @@ local commands = {
     "GitPrevHunk",
     "GitResetHunk",
     "GitListBranches",
-    "BlameLine",
-    "ResetBuffer",
+    "GitBlameLine",
+    "GitResetBuffer",
     "GitLazygit",
   },
   refactor = {
