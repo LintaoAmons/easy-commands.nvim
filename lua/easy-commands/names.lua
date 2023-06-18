@@ -35,6 +35,7 @@ local commands = {
     "ExplorerLocateCurrentFile",
   },
   navigation = {
+    "SwitchProject",
     "LspFinder",
     "ToggleOutline",
     "GoToDefinition",

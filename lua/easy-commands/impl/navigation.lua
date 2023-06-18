@@ -2,6 +2,7 @@ local M = {}
 local harpoonMark = require("harpoon.mark")
 local leap = require("leap")
 
+M.SwitchProject = "Telescope projects"
 M.OpenChangedFiles = "FzfLua git_status"
 M.OpenRecentFiles = 'FzfLua oldfiles'
 
