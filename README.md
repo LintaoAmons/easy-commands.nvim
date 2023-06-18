@@ -57,6 +57,16 @@ for example by lazy.nvim
 
 You can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
 
+### AskChatGPT
+> Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH  
+
+<details open>
+<summary>Click to fold the preview</summary>
+  
+![AskChatGPT](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/7e7060d7-454f-4ef3-b1c0-80aedce5fdcd)
+
+</details>
+
 ### RunSelectedAndOutput
 > TODO: when call this command in normal mode, will run current line as cmd command and put the outcome in the next line
 
@@ -71,7 +81,7 @@ will run selected text as terminal cmd and show the result in the next line, als
 
 ### RunCurrentLineAndOutputWithPrePostFix
 
-<details open>
+<details>
 <summary>Click to fold the preview</summary>
 
 ![8d43911152321a95dd6f32e4dcc737f7394425489](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/8019a384-2161-44e6-bda8-2e85b79bbe93)
@@ -89,10 +99,22 @@ will run selected text as terminal cmd and show the result in the next line, als
 
 </details>
 
+### ToNextCase
+> Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH
+> 
+> Spare one keybinding to this command to switch between all kinds of naming style
+
+<details open>
+<summary>Click to fold the preview</summary>
+  
+![ToNextCase](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/45f2fac9-9e99-44e7-97f1-e4631fb863a0)
+
+</details>
+
 ### ToCamelCase | ToConstantCase | ToKebabCase | ToSnakeCase
 > Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH  
 
-<details open>
+<details>
 <summary>Click to fold the preview</summary>
   
 ![ConvertCase](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/7377b2e3-8d73-4eea-aef7-36aaea7b5a33)
