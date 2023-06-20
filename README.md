@@ -1,16 +1,18 @@
 ## A collection of pre-defined commands which are readable and easy to search and use
 
-## There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
 
 ## Why this plugin?
 
-To have IDEA/VSCODE etc. like of command fuzzy search experience.
+- Readable and Searchable commands
+- Best solution to achieve one specific command (tring to be)
+- Save your keymappings, but still easy to reach and use
 
-Fuzzy search & Trigger
-
+<details>
+<summary>Fuzzy search & Trigger</summary>
+  
 ![fuzzyfinder and fire 1](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/445f217c-45e3-4b5c-9152-a65f69189780)
 
-So you don't need to bind each commands to a shortcut, but still easy to reach and use
+</details>
 
 <details>
 <summary>With Fzf-lua config, command will be triggered once you press enter</summary>
@@ -37,8 +39,9 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 }
 ```
 
-### Tweak to fit your needs
-
+<details>
+<summary>Tweak to fit your needs</summary>
+  
 Because this plugin have many dependencies and some of them are not your choice
 
 You can actuall fork this repo(don't forget to star firstly), and add your own commands or have your own implementation.
@@ -52,6 +55,8 @@ for example by lazy.nvim
   event = 'VimEnter',
 }
 ```
+
+</details>
 
 ## Commands
 
@@ -126,3 +131,8 @@ will run selected text as terminal cmd and show the result in the next line, als
 This plugin didn't provide any default keybindings, you can just add keybindings in any way you like.
 
 Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/lvim/.config/lvim/lua/lintao/keymappings.lua
+
+## Contribution & TODOs
+> There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
+
+- [ ] Find way to add description and show description when user search command. (Telescope picker?)
