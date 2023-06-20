@@ -19,6 +19,7 @@ local commands = {
     "GitBlameLine",
     "GitResetBuffer",
     "GitLazygit",
+    "GitPeek", -- TODO:
   },
   refactor = {
     "ExtractFunction",
@@ -75,11 +76,13 @@ local commands = {
     "TestDebugNearest",
     "GoToTestFile",
   },
-  finder = {
+  finder = { -- HACK: include finder, search and replace
     "FindFiles",
     "FindCommands",
     "FindKeymappins",
-    "FindInWholeProject", -- TODO: If in visual mode, find with selected text
+    "FindInProject", -- TODO: If in visual mode, find with selected text
+    "SearchInProject",
+    "SearchOrReplace",
     "FzfLuaBuiltin",
   },
   run = {
