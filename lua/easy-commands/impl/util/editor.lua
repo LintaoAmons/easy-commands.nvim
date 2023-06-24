@@ -88,4 +88,14 @@ function Editor.replaceSelectedTextWithClipboard()
   vim.cmd([[normal! gv"_dP]])
 end
 
+-- TODO:
+-- function M.write_virtual_text(bufnr, ns, line, chunks, virt_text_pos)
+--   local vt_id = nil
+--   if ns == config.namespace_status and state.vt.status_id ~= 0 then
+--     vt_id = state.vt.status_id
+--   end
+--   return vim.api.nvim_buf_set_extmark(bufnr, ns, line, 0,
+--     { id = vt_id, virt_text = chunks, virt_text_pos = virt_text_pos or 'overlay' })
+-- end
+
 return Editor

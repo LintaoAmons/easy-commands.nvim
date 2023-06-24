@@ -109,7 +109,6 @@ M.QueryCsv = function()
       table.remove(output_lines, i)
     end
   end
-
   editor.PutLines(output_lines, 'l', true, true)
 end
 

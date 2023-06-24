@@ -1,5 +1,6 @@
 local M = {}
 
+
 ---@filename string
 ---@return string
 function M.ReadFileAsString(filename)

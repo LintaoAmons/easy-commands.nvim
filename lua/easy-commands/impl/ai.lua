@@ -5,7 +5,7 @@ local editor = require("easy-commands.impl.util.editor")
 
 M.AskChatGPT = function()
   local currentLine = util.ReplacePattern(vim.api.nvim_get_current_line(), "'", "")
-  local currentLine = util.ReplacePattern(currentLine, "-", "")
+  currentLine = util.ReplacePattern(currentLine, "-", "")
   local cmd = "toolbox askChatGPT '" .. currentLine .. "'"
   local output = util.Call_sys_cmd(cmd) or ""
   local output_lines = vim.split(output, "\n")

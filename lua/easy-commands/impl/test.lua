@@ -1,5 +1,4 @@
 local M = {}
-local util = require("easy-commands.impl.util")
 local langUtil = require("easy-commands.impl.util.lang")
 
 M.TestRunNearest = 'lua require("neotest").run.run()'

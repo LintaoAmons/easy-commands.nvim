@@ -24,7 +24,7 @@ M.ExtractVariable = function()
 end
 
 M.ExtractFunction = function()
-  refactoring.refactor('Extract Function')
+    refactoring.refactor('Extract Function')
 end
 
 M.ToNextCase      = function()

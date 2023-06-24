@@ -1,6 +1,25 @@
 local M = {}
-local harpoonMark = require("harpoon.mark")
-local leap = require("leap")
+
+M.ToggleLf = function()
+  local Terminal = require("toggleterm.terminal").Terminal
+  local lazygit = Terminal:new {
+    cmd = "lf",
+    hidden = true,
+    direction = "float",
+    float_opts = {
+      border = "none",
+      width = 100000,
+      height = 100000,
+    },
+    on_open = function(_)
+      vim.cmd "startinsert!"
+    end,
+    on_close = function(_)
+    end,
+    count = 99,
+  }
+  lazygit:toggle()
+end
 
 M.SwitchProject = "Telescope projects"
 M.OpenChangedFiles = "FzfLua git_status"
@@ -10,13 +29,12 @@ M.ToggleOutline = 'Lspsaga outline'
 M.LspFinder = 'Lspsaga lsp_finder'
 M.GoToDefinition = 'Lspsaga goto_type_definition'
 
-M.LeapJump = function()
-  leap.leap {
-    target_windows = vim.tbl_filter(
-      function(win) return vim.api.nvim_win_get_config(win).focusable end,
-      vim.api.nvim_tabpage_list_wins(0)
-    ),
-  }
+M.Flash = function()
+  require("flash").jump()
+end
+
+M.FlashTreesitter = function()
+  require("flash").treesitter()
 end
 
 M.MaximiseBuffer = function()
@@ -63,7 +81,7 @@ M.IncreaseSplitWidth = 'vertical resize +5'
 M.DecreaseSplitWidth = 'vertical resize -5'
 
 M.Mark = function()
-  harpoonMark.add_file()
+  require("harpoon.mark").add_file()
 end
 
 M.MarkList = "Telescope harpoon marks"

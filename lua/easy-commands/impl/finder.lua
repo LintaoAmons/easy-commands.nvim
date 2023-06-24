@@ -1,8 +1,8 @@
 local M = {}
 
-M.FindFiles = 'FzfLua files'
+M.FindFiles = 'Telescope find_files'
 M.FindCommands = 'FzfLua commands'
-M.FindKeymappins = 'FzfLua keymaps'
+M.FindKeymappins = 'Telescope keymaps'
 M.FindInProject = {
   callback = "FzfLua grep_project",
   allow_visual_mode = true,
