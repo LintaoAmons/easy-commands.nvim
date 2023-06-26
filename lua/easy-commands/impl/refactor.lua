@@ -4,7 +4,7 @@ local strings = require("easy-commands.impl.util.base.strings")
 local tables = require("easy-commands.impl.util.base.table")
 
 -- Third party dependency
-local refactoring = require("refactoring")
+
 local M = {}
 
 -- cmdFunc could do some trick to the selectedText
@@ -16,15 +16,15 @@ local function Perform_cmd_to_selected_text(cmdFunc)
 end
 
 M.InlineVariable  = function()
-  refactoring.refactor('Inline Variable')
+  require("refactoring").refactor('Inline Variable')
 end
 
 M.ExtractVariable = function()
-  refactoring.refactor('Extract Variable')
+  require("refactoring").refactor('Extract Variable')
 end
 
 M.ExtractFunction = function()
-    refactoring.refactor('Extract Function')
+  require("refactoring").refactor('Extract Function')
 end
 
 M.ToNextCase      = function()
