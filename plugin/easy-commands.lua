@@ -12,6 +12,18 @@ vim.g.loaded_easy_commands = 1
 local commands_name = require("easy-commands.names")
 local impl = require("easy-commands.impl")
 
+local function call_command_with_fail_hints(cmd)
+	local isOk, _ = pcall(vim.cmd, "Lspsaga rename")
+	if not isOk then
+		vim.notify(
+			"Failed to call command `Rename`\nCheck dependency `Lspsaga`",
+			vim.log.levels.ERROR,
+			{ title = "easy-commands.nvim" }
+		)
+	end
+end
+
+
 for _, command in pairs(commands_name) do
   local implementation = impl[command]
 

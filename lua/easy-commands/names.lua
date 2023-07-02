@@ -1,6 +1,12 @@
 -- HACK: This list contains all the commands this plugin want to have
 -- Some of them many not have Implementation yet
 -- Some may have third party dependencies
+--
+--- @class cmdImpl
+--- @field public cmd string|function
+--- @field public age number
+local MyClass = {}
+
 local commands = {
   git = { -- TODO: README
     "GitDiff",
@@ -25,6 +31,7 @@ local commands = {
     "ExtractFunction",
     "ExtractVariable",
     "InlineVariable",
+    "Rename",
 
     "ToNextCase",
     "ToCamelCase",
@@ -33,6 +40,7 @@ local commands = {
     "ToSnakeCase",
   },
   explorer = {
+    "ToggleExplorer",
     "ExplorerLocateCurrentFile",
   },
   navigation = {
@@ -108,6 +116,7 @@ local commands = {
     "CopyProjectDir",
     "CopyBufRelativePath",
     "CopyBufRelativeDirPath",
+    "DeleteCurrentFile",
   },
   helper = {
     "PrintSelected", -- TODO:

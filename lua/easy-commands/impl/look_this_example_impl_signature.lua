@@ -4,6 +4,7 @@ local M = {}
 -- The result table has the following structure:
 --   {
 --     callback = string|function,
+--     dependency = string
 --     allow_visual_mode = bool?,
 --   }
 --

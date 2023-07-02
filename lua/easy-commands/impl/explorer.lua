@@ -1,3 +1,5 @@
 local M = {}
-M.ExplorerLocateCurrentFile = "NvimTreeFocus"
+M.ExplorerLocateCurrentFile = "NvimTreeFindFile"
+
+M.ToggleExplorer = "ToggleExplorer"
 return M

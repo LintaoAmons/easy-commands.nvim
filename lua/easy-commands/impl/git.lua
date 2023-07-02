@@ -1,11 +1,11 @@
 local M = {}
 
 M.GitDiff = "DiffviewOpen"
-M.GitStatus = "FzfLua git_status"
+M.GitStatus = "Telescope git_status"
 M.GitStash = "!git stash"
 M.GitStashPop = "!git stash pop"
 M.GitPush = "!git push"
--- M.GitCommit = TODO: 
+-- M.GitCommit = TODO:
 M.GitListCommits = "DiffviewFileHistory"
 M.GitListCurrentFileCommits = "DiffviewFileHistory %"
 M.GitNextHunk = "lua require 'gitsigns'.next_hunk({navigation_message = false})"

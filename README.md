@@ -3,6 +3,8 @@
 
 ## Why this plugin?
 
+- Stability!
+    - Commands should be stable. Neovim and its community are evolving rapidly, so you may switch from `nvim-tree` to `neo-tree.nvim` at some point. However, both plugins perform the same function, with only the implementation differing.
 - Readable and Searchable commands
 - Best solution to achieve one specific command (tring to be)
 - Save your keymappings, but still easy to reach and use
@@ -135,8 +137,5 @@ Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/lvi
 ## Contribution & TODOs
 > There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
 
-<<<<<<< HEAD
-=======
 - [ ] Lazyload commands implementation only when user starts to triggered it 
->>>>>>> main-private
 - [ ] Find way to add description and show description when user search command. (Telescope picker?)

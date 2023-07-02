@@ -1,17 +1,17 @@
 -- Meta class
-local Editor = {}
+local M = {}
 local tableUtil = require("easy-commands.impl.util.base.table")
 
-Editor.getCurrentLine = function()
+M.getCurrentLine = function()
   return vim.api.nvim_get_current_line()
 end
 
-Editor.getFiletype = function()
+M.getFiletype = function()
   return vim.bo.ft
 end
 
 -- Copy from https://github.com/ibhagwan/fzf-lua
-function Editor.getSelectedText()
+function M.getSelectedText()
   -- this will exit visual mode
   -- use 'gv' to reselect the text
   local _, csrow, cscol, cerow, cecol
@@ -24,7 +24,7 @@ function Editor.getSelectedText()
       -- visual line doesn't provide columns
       cscol, cecol = 0, 999
     end
-    Editor.ExitCurrentMode()
+    M.ExitCurrentMode()
   else
     -- otherwise, use the last known visual position
     _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
@@ -41,7 +41,7 @@ function Editor.getSelectedText()
   return table.concat(lines, "\n")
 end
 
-function Editor.ExitCurrentMode()
+function M.ExitCurrentMode()
   local esc = vim.api.nvim_replace_termcodes('<esc>', true, false, true)
   vim.api.nvim_feedkeys(esc, 'x', false)
 end
@@ -67,13 +67,13 @@ end
 --- @param type string
 --- @param after boolean
 --- @param follow boolean
-function Editor.PutLines(lines, type, after, follow)
+function M.PutLines(lines, type, after, follow)
   vim.api.nvim_put(lines, type, after, follow)
 end
 
 --- Get current buffer size
 ---@return {width: number, height: number}
-function Editor.get_buf_size()
+function M.get_buf_size()
   local cbuf = vim.api.nvim_get_current_buf()
   local bufinfo = vim.tbl_filter(function(buf)
     return buf.bufnr == cbuf
@@ -84,7 +84,7 @@ function Editor.get_buf_size()
   return { width = bufinfo.width, height = bufinfo.height }
 end
 
-function Editor.replaceSelectedTextWithClipboard()
+function M.replaceSelectedTextWithClipboard()
   vim.cmd([[normal! gv"_dP]])
 end
 
@@ -98,4 +98,41 @@ end
 --     { id = vt_id, virt_text = chunks, virt_text_pos = virt_text_pos or 'overlay' })
 -- end
 
-return Editor
+--
+
+function M.get_buf_abs_path()
+  return vim.fn.expand('%:p')
+end
+
+function M.copy_buf_abs_dir_path()
+  return vim.fn.expand('%:p:h')
+end
+
+---@return string|nil
+function M.find_project_path()
+  for i = 1, 30, 1 do
+    local dir = vim.fn.expand("%:p" .. string.rep(":h", i))
+    print(dir)
+    if contains_marker_file(dir) then
+      return dir
+    end
+    if is_homedir(dir) then
+      return print("didn't found project_path")
+    end
+  end
+  return print("excide the max depth")
+end
+
+function M.get_buf_relative_path()
+  local buf_path = vim.fn.expand("%:p")
+  local project_path = M.find_project_path() or ""
+  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+end
+
+function M.get_buf_relative_dir_path()
+  local buf_path = vim.fn.expand("%:p:h")
+  local project_path = M.find_project_path() or ""
+  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+end
+
+return M

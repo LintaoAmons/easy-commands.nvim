@@ -68,4 +68,14 @@ function M.CopyBufRelativeDirPath()
   util.CopyToSystemClipboard(r)
 end
 
+function M.DeleteCurrentFile()
+  local filepath = editor.get_buf_abs_path()
+  local confirm = vim.fn.input("Delete file: " .. filepath .. "? (y/n): ")
+  local bufnr = vim.fn.bufnr('%')
+  vim.api.nvim_buf_delete(bufnr, { force = true })
+  if confirm == "y" then
+    os.remove(filepath)
+  end
+end
+
 return M
