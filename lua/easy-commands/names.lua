@@ -8,133 +8,136 @@
 local MyClass = {}
 
 local commands = {
-  git = { -- TODO: README
-    "GitDiff",
-    "GitStatus",
-    "GitCommit",
-    "GitStash",
-    "GitStashPop",
-    "GitPush",
-    "GitListCommits",
-    "GitListCurrentFileCommits",
-    "GitListCommitsOfSelectedLines",
-    "GitNextHunk",
-    "GitPrevHunk",
-    "GitResetHunk",
-    "GitListBranches",
-    "GitBlameLine",
-    "GitResetBuffer",
-    "GitLazygit",
-    "GitPeek", -- TODO:
-  },
-  refactor = {
-    "ExtractFunction",
-    "ExtractVariable",
-    "InlineVariable",
-    "Rename",
+	git = { -- TODO: README
+		"GitDiff",
+		"GitStatus",
+		"GitCommit",
+		"GitStash",
+		"GitStashPop",
+		"GitPush",
+		"GitListCommits",
+		"GitListCurrentFileCommits",
+		"GitListCommitsOfSelectedLines",
+		"GitNextHunk",
+		"GitPrevHunk",
+		"GitResetHunk",
+		"GitListBranches",
+		"GitBlameLine",
+		"GitResetBuffer",
+		"GitLazygit",
+		"GitPeek", -- TODO:
+	},
+	refactor = {
+		"ExtractFunction",
+		"ExtractVariable",
+		"InlineVariable",
+		"Rename",
 
-    "ToNextCase",
-    "ToCamelCase",
-    "ToConstantCase",
-    "ToKebabCase",
-    "ToSnakeCase",
-  },
-  explorer = {
-    "ToggleExplorer",
-    "ExplorerLocateCurrentFile",
-  },
-  navigation = {
-    "ToggleLf",
-    "SwitchProject",
-    "LspFinder",
-    "ToggleOutline",
-    "GoToDefinition",
-    "GoToTestFile",
+		"ToNextCase",
+		"ToCamelCase",
+		"ToConstantCase",
+		"ToKebabCase",
+		"ToSnakeCase",
+	},
+	explorer = {
+		"ToggleExplorer",
+		"ExplorerLocateCurrentFile",
+	},
+	navigation = {
+		"ToggleLf",
+		"SwitchProject",
+		"LspFinder",
+		"ToggleOutline",
+		"GoToDefinition",
+		"GoToTestFile",
 
-    "OpenChangedFiles",
-    "OpenRecentFiles",
-    "LeapJump",
-    "MaximiseBuffer",
+		"OpenChangedFiles",
+		"OpenRecentFiles",
+		"LeapJump",
+		"MaximiseBuffer",
 
-    "TabNext",
-    "TabPrev",
-    "TabClose",
-    "TabNew",
+		"TabNext",
+		"TabPrev",
+		"TabClose",
+		"TabNew",
 
-    "BufferNext",
-    "BufferPrev",
+		"BufferNext",
+		"BufferPrev",
 
-    "SplitVertically",
-    "MaximiseBufferAndCloseOthers",
-    "IncreaseSplitWidth",
-    "DecreaseSplitWidth",
+		"SplitVertically",
+		"MaximiseBufferAndCloseOthers",
+		"IncreaseSplitWidth",
+		"DecreaseSplitWidth",
 
-    "Mark",
-    "MarkList",
-    "MarkNext",
-    "MarkPrev",
+		"Mark",
+		"MarkList",
+		"MarkNext",
+		"MarkPrev",
 
-    "FoldAll",
-    "UnFoldAll",
-  },
-  test = {
-    "TestRunNearest",
-    "TestRunCurrentFile",
-    "TestRunLast",
-    "TestToggleOutputPanel",
-    "TestDebugNearest",
-    "GoToTestFile",
-  },
-  finder = { -- HACK: include finder, search and replace
-    "FindFiles",
-    "FindCommands",
-    "FindKeymappins",
-    "FindInProject", -- TODO: If in visual mode, find with selected text
-    "SearchInProject",
-    "SearchOrReplace",
-    "FzfLuaBuiltin",
-  },
-  run = {
-    "RunCurrentBuffer",
-    "RunLiveToggle",
-    "RunCurrentLineAndOutput",
-    "RunCurrentLineAndOutputWithPrePostFix",
-    "RunSelectedAndOutput",
-    "RunSelectedAndOutputWithPrePostFix",
-    "RunSelectedAndReplace",
+		"FoldAll",
+		"UnFoldAll",
+	},
+	test = {
+		"TestRunNearest",
+		"TestRunCurrentFile",
+		"TestRunLast",
+		"TestToggleOutputPanel",
+		"TestDebugNearest",
+		"GoToTestFile",
+	},
+	finder = { -- HACK: include finder, search and replace
+		"FindFiles",
+		"FindCommands",
+		"FindKeymappins",
+		"FindInProject", -- TODO: If in visual mode, find with selected text
+		"SearchInProject",
+		"SearchOrReplace",
+		"FzfLuaBuiltin",
+	},
+	run = {
+		"RunCurrentBuffer",
+		"RunLiveToggle",
+		"RunCurrentLineAndOutput",
+		"RunCurrentLineAndOutputWithPrePostFix",
+		"RunSelectedAndOutput",
+		"RunSelectedAndOutputWithPrePostFix",
+		"RunSelectedAndReplace",
 
-    "QueryCsv"
-  },
-  other = {
-    "QuitNvim",
-    "DiffWithClipboard",
-    "FormatCode",
-    "NoHighlight",
-    "CloseWindowOrBuffer",
-    "CopyBufAbsPath", -- TODO: README
-    "CopyBufAbsDirPath",
-    "CopyProjectDir",
-    "CopyBufRelativePath",
-    "CopyBufRelativeDirPath",
-    "DeleteCurrentFile",
-  },
-  helper = {
-    "PrintSelected", -- TODO:
-  },
-  nvim = {
-    "SourceCurrentBuffer",
-  },
-  ai = {
-    "AskChatGPT",
-    "AskChatGPTWithSelection",
-  }
+		"QueryCsv",
+	},
+	editor = {
+		"ShowLineDiagnostics",
+	},
+	other = {
+		"QuitNvim",
+		"DiffWithClipboard",
+		"FormatCode",
+		"NoHighlight",
+		"CloseWindowOrBuffer",
+		"CopyBufAbsPath", -- TODO: README
+		"CopyBufAbsDirPath",
+		"CopyProjectDir",
+		"CopyBufRelativePath",
+		"CopyBufRelativeDirPath",
+		"DeleteCurrentFile",
+	},
+	helper = {
+		"PrintSelected", -- TODO:
+	},
+	nvim = {
+		"SourceCurrentBuffer",
+	},
+	ai = {
+		"AskChatGPT",
+		"AskChatGPTWithSelection",
+	},
 }
 
 local result = {}
 for _, command_group in pairs(commands) do
-  for _, command in ipairs(command_group) do
-    table.insert(result, command)
-  end
+	for _, command in ipairs(command_group) do
+		table.insert(result, command)
+	end
 end
 
 return result
