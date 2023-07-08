@@ -9,7 +9,7 @@
 - Best solution to achieve one specific command (tring to be)
 - Save your keymappings, but still easy to reach and use
 
-<details>
+<details open>
 <summary>Fuzzy search & Trigger</summary>
   
 ![fuzzyfinder and fire 1](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/445f217c-45e3-4b5c-9152-a65f69189780)
