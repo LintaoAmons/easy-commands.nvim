@@ -11,6 +11,7 @@ local default_config = {
 	["AskChatGPT"] = {
 		keyFilePath = vim.env.HOME .. "/chatGPTkey",
 	},
+	myCommands = { ["EasyCommand"] = 'lua vim.print("easy command user command")' },
 }
 
 local Config = {}
@@ -51,6 +52,10 @@ Config.setup = function(user_config)
 	for _, command in pairs(inuse_commands) do
 		local implementation = impl[command]
 		registerUserCommand(implementation, command)
+	end
+
+	for name, commandImpl in pairs(Config.getConfig().myCommands) do
+		registerUserCommand(commandImpl, name)
 	end
 end
 
