@@ -3,47 +3,53 @@ local M = {}
 local tableUtil = require("easy-commands.impl.util.base.table")
 
 M.getCurrentLine = function()
-  return vim.api.nvim_get_current_line()
+	return vim.api.nvim_get_current_line()
 end
 
 M.getFiletype = function()
-  return vim.bo.ft
+	return vim.bo.ft
 end
 
 -- Copy from https://github.com/ibhagwan/fzf-lua
 function M.getSelectedText()
-  -- this will exit visual mode
-  -- use 'gv' to reselect the text
-  local _, csrow, cscol, cerow, cecol
-  local mode = vim.fn.mode()
-  if mode == "v" or mode == "V" or mode == "" then
-    -- if we are in visual mode use the live position
-    _, csrow, cscol, _ = unpack(vim.fn.getpos("."))
-    _, cerow, cecol, _ = unpack(vim.fn.getpos("v"))
-    if mode == "V" then
-      -- visual line doesn't provide columns
-      cscol, cecol = 0, 999
-    end
-    M.ExitCurrentMode()
-  else
-    -- otherwise, use the last known visual position
-    _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
-    _, cerow, cecol, _ = unpack(vim.fn.getpos("'>"))
-  end
-  -- swap vars if needed
-  if cerow < csrow then csrow, cerow = cerow, csrow end
-  if cecol < cscol then cscol, cecol = cecol, cscol end
-  local lines = vim.fn.getline(csrow, cerow)
-  local n = tableUtil.table_length(lines)
-  if n <= 0 then return "" end
-  lines[n] = string.sub(lines[n], 1, cecol)
-  lines[1] = string.sub(lines[1], cscol)
-  return table.concat(lines, "\n")
+	-- this will exit visual mode
+	-- use 'gv' to reselect the text
+	local _, csrow, cscol, cerow, cecol
+	local mode = vim.fn.mode()
+	if mode == "v" or mode == "V" or mode == "" then
+		-- if we are in visual mode use the live position
+		_, csrow, cscol, _ = unpack(vim.fn.getpos("."))
+		_, cerow, cecol, _ = unpack(vim.fn.getpos("v"))
+		if mode == "V" then
+			-- visual line doesn't provide columns
+			cscol, cecol = 0, 999
+		end
+		M.ExitCurrentMode()
+	else
+		-- otherwise, use the last known visual position
+		_, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
+		_, cerow, cecol, _ = unpack(vim.fn.getpos("'>"))
+	end
+	-- swap vars if needed
+	if cerow < csrow then
+		csrow, cerow = cerow, csrow
+	end
+	if cecol < cscol then
+		cscol, cecol = cecol, cscol
+	end
+	local lines = vim.fn.getline(csrow, cerow)
+	local n = tableUtil.table_length(lines)
+	if n <= 0 then
+		return ""
+	end
+	lines[n] = string.sub(lines[n], 1, cecol)
+	lines[1] = string.sub(lines[1], cscol)
+	return table.concat(lines, "\n")
 end
 
 function M.ExitCurrentMode()
-  local esc = vim.api.nvim_replace_termcodes('<esc>', true, false, true)
-  vim.api.nvim_feedkeys(esc, 'x', false)
+	local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+	vim.api.nvim_feedkeys(esc, "x", false)
 end
 
 -- Puts text at cursor, in any mode.
@@ -68,24 +74,24 @@ end
 --- @param after boolean
 --- @param follow boolean
 function M.PutLines(lines, type, after, follow)
-  vim.api.nvim_put(lines, type, after, follow)
+	vim.api.nvim_put(lines, type, after, follow)
 end
 
 --- Get current buffer size
 ---@return {width: number, height: number}
 function M.get_buf_size()
-  local cbuf = vim.api.nvim_get_current_buf()
-  local bufinfo = vim.tbl_filter(function(buf)
-    return buf.bufnr == cbuf
-  end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
-  if bufinfo == nil then
-    return { width = -1, height = -1 }
-  end
-  return { width = bufinfo.width, height = bufinfo.height }
+	local cbuf = vim.api.nvim_get_current_buf()
+	local bufinfo = vim.tbl_filter(function(buf)
+		return buf.bufnr == cbuf
+	end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
+	if bufinfo == nil then
+		return { width = -1, height = -1 }
+	end
+	return { width = bufinfo.width, height = bufinfo.height }
 end
 
 function M.replaceSelectedTextWithClipboard()
-  vim.cmd([[normal! gv"_dP]])
+	vim.cmd([[normal! gv"_dP]])
 end
 
 -- TODO:
@@ -98,41 +104,39 @@ end
 --     { id = vt_id, virt_text = chunks, virt_text_pos = virt_text_pos or 'overlay' })
 -- end
 
---
-
 function M.get_buf_abs_path()
-  return vim.fn.expand('%:p')
+	return vim.fn.expand("%:p")
 end
 
 function M.copy_buf_abs_dir_path()
-  return vim.fn.expand('%:p:h')
+	return vim.fn.expand("%:p:h")
 end
 
 ---@return string|nil
 function M.find_project_path()
-  for i = 1, 30, 1 do
-    local dir = vim.fn.expand("%:p" .. string.rep(":h", i))
-    print(dir)
-    if contains_marker_file(dir) then
-      return dir
-    end
-    if is_homedir(dir) then
-      return print("didn't found project_path")
-    end
-  end
-  return print("excide the max depth")
+	for i = 1, 30, 1 do
+		local dir = vim.fn.expand("%:p" .. string.rep(":h", i))
+		print(dir)
+		if contains_marker_file(dir) then
+			return dir
+		end
+		if is_homedir(dir) then
+			return print("didn't found project_path")
+		end
+	end
+	return print("excide the max depth")
 end
 
 function M.get_buf_relative_path()
-  local buf_path = vim.fn.expand("%:p")
-  local project_path = M.find_project_path() or ""
-  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+	local buf_path = vim.fn.expand("%:p")
+	local project_path = M.find_project_path() or ""
+	return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
 end
 
 function M.get_buf_relative_dir_path()
-  local buf_path = vim.fn.expand("%:p:h")
-  local project_path = M.find_project_path() or ""
-  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+	local buf_path = vim.fn.expand("%:p:h")
+	local project_path = M.find_project_path() or ""
+	return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
 end
 
 return M

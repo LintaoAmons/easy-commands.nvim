@@ -119,6 +119,8 @@ local commands = {
 		"CopyProjectDir",
 		"CopyBufRelativePath",
 		"CopyBufRelativeDirPath",
+		"CopyFilename",
+		"SortLines",
 		"DeleteCurrentFile",
 	},
 	helper = {
