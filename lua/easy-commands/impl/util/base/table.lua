@@ -15,4 +15,16 @@ function M.findIndex(tbl, element)
   return nil
 end
 
+---@param element any
+---@param table any
+---@return boolean
+function M.isElementInTable(element, table)
+    for _, value in ipairs(table) do
+        if value == element then
+            return true
+        end
+    end
+    return false
+end
+
 return M

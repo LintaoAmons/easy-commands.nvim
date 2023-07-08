@@ -1,4 +1,5 @@
 local default_config = {
+  disabledCommands = {},
   ["RunCurrentLineAndOutputWithPrePostFix"] = {
     prefix = "```bash",
     postfix = "```"
