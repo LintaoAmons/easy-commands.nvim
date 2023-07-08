@@ -60,6 +60,20 @@ for example by lazy.nvim
 
 </details>
 
+### Config
+
+```
+require("easy-commands").Setup({
+  disabledCommands = { "CopyFilename", "FormatCode" }, -- You can disable the commands you don't want
+  ["RunSelectedAndOutputWithPrePostFix"] = { -- Each Command may have defferent config options, check out the commands to find more options.
+    prefix = "```lua",
+    postfix = "```",
+  },
+})
+```
+
+here you can check my config with lazyvim: https://github.com/LintaoAmons/CoolStuffes/blob/main/lazyvim/.config/nvim/lua/plugins/easy-commands.lua
+
 ## Commands
 
 You can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
