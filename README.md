@@ -41,30 +41,15 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 }
 ```
 
-<details>
-<summary>Tweak to fit your needs</summary>
-  
-Because this plugin have many dependencies and some of them are not your choice
-
-You can actuall fork this repo(don't forget to star firstly), and add your own commands or have your own implementation.
-
-It's welcome to PR back your nice commands
-
-for example by lazy.nvim
-```lua
-{
-  dir = "path/to/the/local/fork"
-  event = 'VimEnter',
-}
-```
-
-</details>
-
 ### Config
 
-```
+```lua
 require("easy-commands").Setup({
   disabledCommands = { "CopyFilename", "FormatCode" }, -- You can disable the commands you don't want
+  myCommands = {
+    ["MyCommand"] = "lua vim.print('easy command user command')", -- You can add your own commands, commands can be string | function | table
+    ["EasyCommand"] = "lua vim.print('Over write easy-command builtin command')", -- You can overwrite the current implementation
+  },
   ["RunSelectedAndOutputWithPrePostFix"] = { -- Each Command may have defferent config options, check out the commands to find more options.
     prefix = "```lua",
     postfix = "```",
