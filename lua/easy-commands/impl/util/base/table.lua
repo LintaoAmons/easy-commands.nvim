@@ -27,4 +27,21 @@ function M.isElementInTable(element, table)
     return false
 end
 
+---comment
+---@param array1 table
+---@param array2 table
+---@return table
+function M.getDifferenceSet(array1, array2)
+    local differenceSet = {}
+
+    for _, value in ipairs(array1) do
+        if not M.isElementInTable(value, array2) then
+            table.insert(differenceSet, value)
+        end
+    end
+
+    return differenceSet
+end
+
 return M
+
