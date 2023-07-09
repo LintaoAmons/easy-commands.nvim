@@ -51,28 +51,24 @@ function M.CopyBufAbsDirPath()
 	util.CopyToSystemClipboard(buffer_dir_path)
 end
 
----@return string
 function M.CopyProjectDir()
-	util.CopyToSystemClipboard(util.FindProjectPath())
+	local project_path = editor.find_project_path()
+	if project_path then
+		util.CopyToSystemClipboard(project_path)
+	end
 end
 
 function M.CopyBufRelativePath()
-	local buf_path = vim.fn.expand("%:p")
-	local project_path = util.FindProjectPath() or ""
-	local r = string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
-	util.CopyToSystemClipboard(r)
+  local buf_relative_path = editor.get_buf_relative_path()
+	util.CopyToSystemClipboard(buf_relative_path)
 end
 
 function M.CopyBufRelativeDirPath()
-	local buf_path = vim.fn.expand("%:p:h")
-	local project_path = util.FindProjectPath() or ""
-	local r = string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
-	util.CopyToSystemClipboard(r)
+	util.CopyToSystemClipboard(editor.get_buf_relative_dir_path())
 end
 
 function M.CopyFilename()
-	local buffer_name = vim.fn.expand("%:t")
-	util.CopyToSystemClipboard(buffer_name)
+	util.CopyToSystemClipboard(editor.get_buf_filename())
 end
 
 function M.DeleteCurrentFile()

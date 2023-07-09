@@ -47,6 +47,74 @@ function M.getSelectedText()
 	return table.concat(lines, "\n")
 end
 
+--- Get current buffer size
+---@return {width: number, height: number}
+function M.get_buf_size()
+	local cbuf = vim.api.nvim_get_current_buf()
+	local bufinfo = vim.tbl_filter(function(buf)
+		return buf.bufnr == cbuf
+	end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
+	if bufinfo == nil then
+		return { width = -1, height = -1 }
+	end
+	return { width = bufinfo.width, height = bufinfo.height }
+end
+
+function M.get_buf_filename()
+	return vim.fn.expand("%:t")
+end
+
+function M.get_buf_abs_path()
+	return vim.fn.expand("%:p")
+end
+
+---@return string
+function M.get_buf_abs_dir_path()
+	return vim.fn.expand("%:p:h")
+end
+
+function M.get_buf_relative_path()
+	local buf_path = M.get_buf_abs_path()
+	local project_path = M.find_project_path() or ""
+	return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+end
+
+function M.get_buf_relative_dir_path()
+	local buf_path = M.get_buf_abs_path()
+	local project_path = M.find_project_path() or ""
+	return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+end
+
+local function is_homedir(path)
+  local home_dir = vim.loop.os_homedir()
+  return path == home_dir
+end
+
+local function contains_marker_file(path)
+  local marker_files = { ".git", ".gitignore" } -- list of marker files
+  for _, file in ipairs(marker_files) do
+    local full_path = path .. "/" .. file
+    if vim.fn.filereadable(full_path) == 1 or vim.fn.isdirectory(full_path) == 1 then
+      return true
+    end
+  end
+  return false
+end
+
+---@return string|nil
+function M.find_project_path()
+	for i = 1, 30, 1 do
+		local dir = vim.fn.expand("%:p" .. string.rep(":h", i))
+		if contains_marker_file(dir) then
+			return dir
+		end
+		if is_homedir(dir) then
+			return print("didn't found project_path")
+		end
+	end
+	return print("excide the max depth")
+end
+
 function M.ExitCurrentMode()
 	local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
 	vim.api.nvim_feedkeys(esc, "x", false)
@@ -77,18 +145,6 @@ function M.PutLines(lines, type, after, follow)
 	vim.api.nvim_put(lines, type, after, follow)
 end
 
---- Get current buffer size
----@return {width: number, height: number}
-function M.get_buf_size()
-	local cbuf = vim.api.nvim_get_current_buf()
-	local bufinfo = vim.tbl_filter(function(buf)
-		return buf.bufnr == cbuf
-	end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
-	if bufinfo == nil then
-		return { width = -1, height = -1 }
-	end
-	return { width = bufinfo.width, height = bufinfo.height }
-end
 
 function M.replaceSelectedTextWithClipboard()
 	vim.cmd([[normal! gv"_dP]])
@@ -103,40 +159,5 @@ end
 --   return vim.api.nvim_buf_set_extmark(bufnr, ns, line, 0,
 --     { id = vt_id, virt_text = chunks, virt_text_pos = virt_text_pos or 'overlay' })
 -- end
-
-function M.get_buf_abs_path()
-	return vim.fn.expand("%:p")
-end
-
-function M.copy_buf_abs_dir_path()
-	return vim.fn.expand("%:p:h")
-end
-
----@return string|nil
-function M.find_project_path()
-	for i = 1, 30, 1 do
-		local dir = vim.fn.expand("%:p" .. string.rep(":h", i))
-		print(dir)
-		if contains_marker_file(dir) then
-			return dir
-		end
-		if is_homedir(dir) then
-			return print("didn't found project_path")
-		end
-	end
-	return print("excide the max depth")
-end
-
-function M.get_buf_relative_path()
-	local buf_path = vim.fn.expand("%:p")
-	local project_path = M.find_project_path() or ""
-	return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
-end
-
-function M.get_buf_relative_dir_path()
-	local buf_path = vim.fn.expand("%:p:h")
-	local project_path = M.find_project_path() or ""
-	return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
-end
 
 return M

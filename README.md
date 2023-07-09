@@ -49,6 +49,12 @@ require("easy-commands").Setup({
   myCommands = {
     ["MyCommand"] = "lua vim.print('easy command user command')", -- You can add your own commands, commands can be string | function | table
     ["EasyCommand"] = "lua vim.print('Over write easy-command builtin command')", -- You can overwrite the current implementation
+    ["CopyCdCommand"] = function()
+      local editor = require("easy-commands.impl.util.editor") -- You can use the utils provided by the plugin to build your own command
+      local cmd = "cd " .. editor.get_buf_abs_dir_path()
+      vim.print(cmd)
+      require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
+    end,
   },
   ["RunSelectedAndOutputWithPrePostFix"] = { -- Each Command may have defferent config options, check out the commands to find more options.
     prefix = "```lua",
