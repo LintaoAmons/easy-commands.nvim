@@ -4,10 +4,15 @@
 ## Why this plugin?
 
 - Stability!
-    - Commands should be stable. Neovim and its community are evolving rapidly, so you may switch from `nvim-tree` to `neo-tree.nvim` at some point. However, both plugins perform the same function, with only the implementation differing.
+  - Commands acting like an interface layer can remain stable for your own workflow.
+    - Neovim and its community are evolving rapidly, you may use different plugin to achieve to same goal in your workflow
+    - However, switch plugins and rebind the keymappings can be time-consuming and cumbersome
+    - Therefore, as long as your workflow remains the same, you can map abstract commands to your keys and care less about the actual implementation.
 - Readable and Searchable commands
-- Best solution to achieve one specific command (tring to be)
-- Save your keymappings, but still easy to reach and use
+- Best solution to achieve one specific command (tring to be).
+  - Sometimes it may be difficult for newcomers to find a nice plugin to perform an action, but you can search for commands and look into the underlying implementation to get an idea of what plugin you can use.
+- Save your key mappings, but still make them easy to reach and use.
+  - Not every command is frequently used. You don't need to map everything to a key binding, but you can still search for and trigger it when you need it once in a while.
 
 <details open>
 <summary>Fuzzy search & Trigger</summary>
