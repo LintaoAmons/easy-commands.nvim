@@ -107,6 +107,8 @@ local commands = {
 	},
 	editor = {
 		"ShowLineDiagnostics",
+    "CommentLine", -- TODO:
+    "CommentSelectedLines", -- TODO: 
 	},
 	other = {
 		"QuitNvim",
