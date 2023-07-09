@@ -136,5 +136,6 @@ Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/lvi
 ## Contribution & TODOs
 > There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
 
-- [ ] Lazyload commands implementation only when user starts to triggered it 
+- [ ] Add types to commands and config
+- [ ] ADd Dependencies warning when call command failed
 - [ ] Find way to add description and show description when user search command. (Telescope picker?)
