@@ -51,7 +51,7 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 ```lua
 require("easy-commands").Setup({
   disabledCommands = { "CopyFilename", "FormatCode" }, -- You can disable the commands you don't want
-  myCommands = {
+  myCommands = { -- It always welcome to send me back your good commands and usecases
     ["MyCommand"] = "lua vim.print('easy command user command')", -- You can add your own commands, commands can be string | function | table
     ["EasyCommand"] = "lua vim.print('Over write easy-command builtin command')", -- You can overwrite the current implementation
     ["CopyCdCommand"] = function()
