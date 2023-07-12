@@ -7,7 +7,7 @@ M.GitStashPop = "!git stash pop"
 M.GitPush = "!git push"
 -- M.GitCommit = TODO:
 M.GitListCommits = "DiffviewFileHistory"
-M.GitListCurrentFileCommits = "DiffviewFileHistory %"
+M.GitListCommitsOfCurrentFile = "DiffviewFileHistory %"
 M.GitNextHunk = "lua require 'gitsigns'.next_hunk({navigation_message = false})"
 M.GitPrevHunk = "lua require 'gitsigns'.prev_hunk({navigation_message = false})"
 M.GitResetHunk = "lua require 'gitsigns'.reset_hunk()"

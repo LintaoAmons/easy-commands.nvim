@@ -16,7 +16,7 @@ local commands = {
 		"GitStashPop",
 		"GitPush",
 		"GitListCommits",
-		"GitListCurrentFileCommits",
+		"GitListCommitsOfCurrentFile",
 		"GitListCommitsOfSelectedLines",
 		"GitNextHunk",
 		"GitPrevHunk",
