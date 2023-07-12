@@ -1,7 +1,7 @@
 local M = {}
 
 M.FindFiles = "Telescope find_files"
-M.FindCommands = "FzfLua commands"
+M.FindCommands = "Telescope commands"
 M.FindKeymappins = "Telescope keymaps"
 M.FindInProject = {
 	callback = "Telescope live_grep",
