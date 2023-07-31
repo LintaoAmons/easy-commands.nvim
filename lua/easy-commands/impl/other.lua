@@ -59,7 +59,7 @@ function M.CopyProjectDir()
 end
 
 function M.CopyBufRelativePath()
-  local buf_relative_path = editor.get_buf_relative_path()
+	local buf_relative_path = editor.get_buf_relative_path()
 	util.CopyToSystemClipboard(buf_relative_path)
 end
 
@@ -67,8 +67,19 @@ function M.CopyBufRelativeDirPath()
 	util.CopyToSystemClipboard(editor.get_buf_relative_dir_path())
 end
 
+function M.CopyCdCommand()
+	local cmd = "cd " .. editor.get_buf_abs_dir_path()
+	vim.print(cmd)
+	require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
+end
+
 function M.CopyFilename()
 	util.CopyToSystemClipboard(editor.get_buf_filename())
+end
+
+function M.CopyCurrentLine()
+	local line = vim.fn.getline(".")
+	vim.fn.setreg("+", line, "c")
 end
 
 function M.DeleteCurrentFile()

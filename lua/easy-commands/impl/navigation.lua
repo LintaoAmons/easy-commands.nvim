@@ -23,6 +23,7 @@ end
 M.SwitchProject = "Telescope projects"
 M.OpenChangedFiles = "Telescope git_status"
 M.OpenRecentFiles = "lua require('telescope').extensions.recent_files.pick()"
+M.OpenRecentFilesInAllPlaces = "lua require('telescope').extensions.recent_files.pick({only_cwd = false})"
 
 M.ToggleOutline = "Lspsaga outline"
 M.LspFinder = "Lspsaga finder"
@@ -97,5 +98,9 @@ end
 M.FoldAll = "lua require('ufo').closeAllFolds()"
 
 M.UnFoldAll = "lua require('ufo').openAllFolds()"
+
+M.PeekDefinition = "Lspsaga peek_definition"
+M.PeekTypeDefinition = "Lspsaga peek_type_definition"
+M.PeekGitChange = "Gitsigns preview_hunk"
 
 return M

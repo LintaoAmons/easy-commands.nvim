@@ -53,6 +53,7 @@ local commands = {
 
 		"OpenChangedFiles",
 		"OpenRecentFiles",
+    "OpenRecentFilesInAllPlaces",
 		"LeapJump",
 		"MaximiseBuffer",
 
@@ -76,6 +77,10 @@ local commands = {
 
 		"FoldAll",
 		"UnFoldAll",
+
+    "PeekDefinition",
+    "PeekTypeDefinition",
+    "PeekGitChange",
 	},
 	test = {
 		"TestRunNearest",
@@ -109,6 +114,9 @@ local commands = {
 		"ShowLineDiagnostics",
     "CommentLine", -- TODO:
     "CommentSelectedLines", -- TODO: 
+
+    "Wrap",
+    "UnWrap",
 	},
 	other = {
 		"QuitNvim",
@@ -122,6 +130,8 @@ local commands = {
 		"CopyBufRelativePath",
 		"CopyBufRelativeDirPath",
 		"CopyFilename",
+    "CopyCdCommand",
+    "CopyCurrentLine",
 		"SortLines",
 		"DeleteCurrentFile",
 	},
