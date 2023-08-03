@@ -9,6 +9,7 @@ local MyClass = {}
 
 local commands = {
 	git = { -- TODO: README
+    "Git",
 		"GitDiff",
 		"GitStatus",
 		"GitCommit",
@@ -66,6 +67,7 @@ local commands = {
 		"BufferPrev",
 
 		"SplitVertically",
+		"Split",
 		"MaximiseBufferAndCloseOthers",
 		"IncreaseSplitWidth",
 		"DecreaseSplitWidth",

@@ -1,6 +1,5 @@
 ## A collection of pre-defined commands which are readable and easy to search and use
 
-
 ## Why this plugin?
 
 - Stability!
@@ -48,25 +47,42 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 
 ### Config
 
-```lua
+````lua
 require("easy-commands").Setup({
-  disabledCommands = { "CopyFilename", "FormatCode" }, -- You can disable the commands you don't want
-  myCommands = { -- It always welcome to send me back your good commands and usecases
-    ["MyCommand"] = "lua vim.print('easy command user command')", -- You can add your own commands, commands can be string | function | table
-    ["EasyCommand"] = "lua vim.print('Over write easy-command builtin command')", -- You can overwrite the current implementation
-    ["CopyCdCommand"] = function()
-      local editor = require("easy-commands.impl.util.editor") -- You can use the utils provided by the plugin to build your own command
-      local cmd = "cd " .. editor.get_buf_abs_dir_path()
-      vim.print(cmd)
-      require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
-    end,
-  },
-  ["RunSelectedAndOutputWithPrePostFix"] = { -- Each Command may have defferent config options, check out the commands to find more options.
-    prefix = "```lua",
-    postfix = "```",
-  },
+	disabledCommands = { "CopyFilename", "FormatCode" }, -- You can disable the commands you don't want
+
+	-- It always welcome to send me back your good commands and usecases
+  ---@type EasyCommand.Command[]
+	myCommands = {
+		-- You can add your own commands
+		{
+			name = "MyCommand",
+			callback = 'lua vim.print("easy command user command")',
+		},
+		-- You can overwrite the current implementation
+		{
+			name = "EasyCommand",
+			callback = 'lua vim.print("Overwrite easy-command builtin command")',
+		},
+		-- You can use the utils provided by the plugin to build your own command
+		{
+			name = "CopyCdCommand",
+			callback = function()
+				local editor = require("easy-commands.impl.util.editor")
+				local cmd = "cd " .. editor.get_buf_abs_dir_path()
+				vim.print(cmd)
+				require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
+			end,
+		},
+	},
+
+	-- Each Command may have defferent config options, check out the commands to find more options.
+	["RunSelectedAndOutputWithPrePostFix"] = {
+		prefix = "```lua",
+		postfix = "```",
+	},
 })
-```
+````
 
 here you can check my config with lazyvim: https://github.com/LintaoAmons/CoolStuffes/blob/main/lazyvim/.config/nvim/lua/plugins/easy-commands.lua
 
@@ -75,7 +91,8 @@ here you can check my config with lazyvim: https://github.com/LintaoAmons/CoolSt
 You can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
 
 ### AskChatGPT
-> Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH  
+
+> Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH
 
 <details open>
 <summary>Click to fold the preview</summary>
@@ -85,6 +102,7 @@ You can find all the commands it provided at https://github.com/LintaoAmons/easy
 </details>
 
 ### RunSelectedAndOutput
+
 > TODO: when call this command in normal mode, will run current line as cmd command and put the outcome in the next line
 
 will run selected text as terminal cmd and show the result in the next line, also copied the result in system clipboard
@@ -106,6 +124,7 @@ will run selected text as terminal cmd and show the result in the next line, als
 </details>
 
 ### QueryCsv
+
 > Dependencies: [csvq](https://github.com/mithrandie/csvq) in $PATH  
 > [Video Explain](https://www.bilibili.com/video/BV1Qo4y1N76t/)
 
@@ -117,8 +136,9 @@ will run selected text as terminal cmd and show the result in the next line, als
 </details>
 
 ### ToNextCase
+
 > Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH
-> 
+>
 > Spare one keybinding to this command to switch between all kinds of naming style
 
 <details open>
@@ -129,7 +149,8 @@ will run selected text as terminal cmd and show the result in the next line, als
 </details>
 
 ### ToCamelCase | ToConstantCase | ToKebabCase | ToSnakeCase
-> Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH  
+
+> Dependencies: [ltoolbox](https://github.com/LintaoAmons/ltoolbox) in $PATH
 
 <details>
 <summary>Click to fold the preview</summary>
@@ -145,6 +166,7 @@ This plugin didn't provide any default keybindings, you can just add keybindings
 Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/lvim/.config/lvim/lua/lintao/keymappings.lua
 
 ## Contribution & TODOs
+
 > There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
 
 - [ ] Add types to commands and config

@@ -1,7 +1,9 @@
-local M = {}
-
-M.SourceCurrentBuffer = function ()
-  vim.cmd("source %")
-end
+---@type EasyCommand.Command[]
+local M = {
+	{
+		name = "SourceCurrentBuffer",
+		callback = "source %",
+	},
+}
 
 return M

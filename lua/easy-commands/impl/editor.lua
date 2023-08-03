@@ -1,7 +1,20 @@
-local M = {}
+---@type EasyCommand.Command[]
+local M = {
+	{
+		name = "ShowLineDiagnostics",
+		callback = "Lspsaga show_line_diagnostics",
+		dependencies = { "https://github.com/nvimdev/lspsaga.nvim" },
+	},
 
-M.ShowLineDiagnostics = "Lspsaga show_line_diagnostics"
-M.Wrap = "set wrap"
-M.UnWrap = "set unwrap"
+	{
+		name = "Wrap",
+		callback = "set wrap",
+	},
+
+	{
+		name = "UnWrap",
+		callback = "set unwrap",
+	},
+}
 
 return M

@@ -1,13 +1,41 @@
-local M = {}
 local langUtil = require("easy-commands.impl.util.lang")
+---@type EasyCommand.Command[]
+local M = {
+	{
+		name = "TestRunNearest",
+		callback = 'lua require("neotest").run.run()',
+		dependencies = { "https://github.com/nvim-neotest/neotest" },
+	},
 
-M.TestRunNearest = 'lua require("neotest").run.run()'
-M.TestRunCurrentFile = 'lua require("neotest").run.run(vim.fn.expand("%"))'
-M.TestRunLast = 'lua require("neotest").run.run_last()'
-M.TestToggleOutputPanel = 'lua require("neotest").output_panel.toggle()'
-M.TestDebugNearest = 'lua require("dap-go").debug_test()'
-M.GoToTestFile = function()
-  langUtil.CallLanguageSpecificFunc("GoToTestFile")
-end
+	{
+		name = "TestRunCurrentFile",
+		callback = 'lua require("neotest").run.run(vim.fn.expand("%"))',
+		dependencies = { "https://github.com/nvim-neotest/neotest" },
+	},
+
+	{
+		name = "TestRunLast",
+		callback = 'lua require("neotest").run.run_last()',
+		dependencies = { "https://github.com/nvim-neotest/neotest" },
+	},
+
+	{
+		name = "TestToggleOutputPanel",
+		callback = 'lua require("neotest").output_panel.toggle()',
+		dependencies = { "https://github.com/nvim-neotest/neotest" },
+	},
+
+	-- {
+	-- 	name = "TestDebugNearest",
+	-- 	callback = 'lua require("dap-go").debug_test()',
+	-- },
+	--
+	{
+		name = "GoToTestFile",
+		callback = function()
+			langUtil.CallLanguageSpecificFunc("GoToTestFile")
+		end,
+	},
+}
 
 return M
