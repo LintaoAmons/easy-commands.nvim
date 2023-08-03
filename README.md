@@ -2,6 +2,13 @@
 
 ## Why this plugin?
 
+Make neovim easier to new commer~
+
+![image](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/a067ad14-3665-49a9-91fe-3fc06d20794b)
+
+<details>
+<summary>READ MORE REASON</summary>
+  
 - Stability!
   - Commands acting like an interface layer can remain stable for your own workflow.
     - Neovim and its community are evolving rapidly, you may use different plugin to achieve to same goal in your workflow
@@ -12,6 +19,8 @@
   - Sometimes it may be difficult for newcomers to find a nice plugin to perform an action, but you can search for commands and look into the underlying implementation to get an idea of what plugin you can use.
 - Save your key mappings, but still make them easy to reach and use.
   - Not every command is frequently used. You don't need to map everything to a key binding, but you can still search for and trigger it when you need it once in a while.
+
+</details>
 
 ## Install & Config
 
