@@ -34,6 +34,7 @@ local M = {
 				editor.splitAndWrite(content, { vertical = true })
 			end)
 		end,
+		description = "Inspect the commands that provided by easy-commands plugin",
 	},
 }
 
