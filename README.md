@@ -2,7 +2,7 @@
 
 ## Why this plugin?
 
-Make neovim easier to new commer~ 
+Make neovim easier to new commer~
 
 Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obsidian`'s `Open Commands`.
 
@@ -101,7 +101,7 @@ Or you can find all the commands it provided at https://github.com/LintaoAmons/e
 
 This plugin didn't provide any default keybindings, you can just add keybindings in any way you like.
 
-Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/lvim/.config/lvim/lua/lintao/keymappings.lua
+Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/lazyvim/.config/nvim/lua/config/keymaps.lua
 
 ## Contribution & TODOs
 
