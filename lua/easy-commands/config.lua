@@ -36,6 +36,7 @@ local function formErrorMsg(cmd)
 			msg = msg .. "    - " .. d .. "\n"
 		end
 	end
+  msg = msg .. "Run: InspectCommand <CommandName> to find the path of implemented and investgate more"
 	if cmd.errorInfo then
 		msg = msg + "Here more info you can check: \n" .. "    " .. "cmd.errorInfo"
 	end
