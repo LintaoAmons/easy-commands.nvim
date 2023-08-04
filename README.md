@@ -50,8 +50,8 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
   "LintaoAmons/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
-    require("easy-commands").Setup({
-      disabledCommands = { "CopyFilename", "FormatCode" }, -- You can disable the commands you don't want
+    require("easy-commands").setup({
+      disabledCommands = { "CopyFilename" }, -- You can disable the commands you don't want
 
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
