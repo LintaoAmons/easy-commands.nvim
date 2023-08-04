@@ -60,11 +60,13 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
         {
           name = "MyCommand",
           callback = 'lua vim.print("easy command user command")',
+          description = "A demo command definition",
         },
         -- You can overwrite the current implementation
         {
           name = "EasyCommand",
           callback = 'lua vim.print("Overwrite easy-command builtin command")',
+          description = "The default implementation is overwrited",
         },
         -- You can use the utils provided by the plugin to build your own command
         {
@@ -75,6 +77,7 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
             vim.print(cmd)
             require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
           end,
+          description = "Copy the buffer abs path to system clipboard",
         },
       },
 
@@ -83,7 +86,7 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
         prefix = "```lua",
         postfix = "```",
       },
- sdf   })
+    })
   end,
 }
 ```
