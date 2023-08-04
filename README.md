@@ -45,7 +45,7 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 
 - Detailed config
 
-```lua
+````lua
 {
   "LintaoAmons/easy-commands.nvim",
   event = "VeryLazy",
@@ -89,7 +89,7 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
     })
   end,
 }
-```
+````
 
 ## Commands
 
@@ -107,6 +107,8 @@ Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/laz
 
 > There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
 
+- [ ] Record command execution times, let user find out the most uesd command so they can think about have a keybinding of those.
+- [ ] Command execution log, allow user to find out the command history and copy from the stdout and stderr
 - [x] Add types to commands and config
 - [x] ADd Dependencies warning when call command failed
 - [ ] Find way to add description and show description when user search command. (Telescope picker?)
