@@ -2,7 +2,14 @@
 
 ## Why this plugin?
 
-Make neovim easier to new commer~
+Make neovim easier to new commer~ 
+
+Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obsidian`'s `Open Commands`.
+
+<p align="left">
+<img src="https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/527c0f7b-9c5c-483b-9bed-11c9efdfea6c" width="49%">
+<img src="https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/fcdb8643-3193-48b6-83f2-77016a4ed278" width="49%">
+</p>
 
 ![image](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/a067ad14-3665-49a9-91fe-3fc06d20794b)
 
