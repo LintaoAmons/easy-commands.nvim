@@ -84,11 +84,19 @@ local function registerUserCommand(implementation, commandName)
 	-- TODO: check dependencies and show alart or show dependency when user call command failed
 	if implementation.allow_visual_mode then
 		-- https://github.com/ray-x/go.nvim/blob/711b3b84cf59d3c43a9d1b02fdf12152b397e7b1/lua/go/commands.lua#LL443C7-L443C20
-		vim.api.nvim_create_user_command(commandName, safeCallWithErrMsg(implementation), { range = true })
+		vim.api.nvim_create_user_command(
+			commandName,
+			safeCallWithErrMsg(implementation),
+			{ range = true, desc = implementation.description }
+		)
 		return
 	end
 
-	vim.api.nvim_create_user_command(commandName, safeCallWithErrMsg(implementation), {})
+	vim.api.nvim_create_user_command(
+		commandName,
+		safeCallWithErrMsg(implementation),
+		{ desc = implementation.description }
+	)
 end
 
 local function registerUserCustomCommand()

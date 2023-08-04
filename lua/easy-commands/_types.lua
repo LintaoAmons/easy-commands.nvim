@@ -4,6 +4,7 @@ local M = {}
 ---@class EasyCommand.Command
 ---@field name string
 ---@field callback string | fun():nil
+---@field description string?
 ---@field dependencies? string[]
 ---@field allow_visual_mode? boolean
 ---@field errorInfo? string
