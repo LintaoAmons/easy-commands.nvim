@@ -27,7 +27,20 @@ local M = {
 		name = "GitPush",
 		callback = "!git push",
 	},
-	-- M.GitCommit = TODO:
+	{
+		name = "GitCommit",
+		callback = function()
+			vim.ui.input({ prompt = "Commit msg: " }, function(msg)
+				local sys = require("easy-commands.impl.util.base.sys")
+				local stdout, _, stderr = sys.run_os_cmd({ "git", "commit", "-m", msg }, ".")
+				if stderr then
+					vim.print(stderr) -- TODO: move log in config module to util module and use it here
+				else
+					vim.print(stdout)
+				end
+			end)
+		end,
+	},
 	{
 		name = "GitListCommits",
 		callback = "DiffviewFileHistory",
