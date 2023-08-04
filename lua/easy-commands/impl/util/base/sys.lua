@@ -1,10 +1,16 @@
 local M = {}
 local Job = require("plenary.job")
 
+---comment
+---@param cmd string[]
+---@param cwd string
+---@return table
+---@return unknown
+---@return table
 M.run_os_cmd = function(cmd, cwd)
     if type(cmd) ~= "table" then
         print('cmd has to be a table')
-        return {}
+        return {}, nil, {}
     end
     local command = table.remove(cmd, 1)
     local stderr = {}

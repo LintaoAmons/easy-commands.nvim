@@ -1,6 +1,3 @@
----@type EasyCommand.Command[]
-local M = {}
-
 ---@param cmdsList EasyCommand.Command[][]
 ---@return EasyCommand.Command[]
 local function combineCmds(cmdsList)

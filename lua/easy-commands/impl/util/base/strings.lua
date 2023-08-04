@@ -22,4 +22,16 @@ function M.EndsWithSuffix(str, suffix)
   return str:sub(-len) == suffix
 end
 
+---@param i string
+---@return string[]
+function M.splitIntoLines(i)
+  local lines = {}
+  for line in i:gmatch("([^\n]*)\n?") do
+    if line ~= "" then
+      table.insert(lines, line)
+    end
+  end
+  return lines
+end
+
 return M

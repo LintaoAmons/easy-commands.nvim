@@ -4,7 +4,7 @@
 
 local commands = {
 	git = { -- TODO: README
-    "Git",
+		"Git",
 		"GitDiff",
 		"GitStatus",
 		"GitCommit",
@@ -49,7 +49,7 @@ local commands = {
 
 		"OpenChangedFiles",
 		"OpenRecentFiles",
-    "OpenRecentFilesInAllPlaces",
+		"OpenRecentFilesInAllPlaces",
 		"LeapJump",
 		"MaximiseBuffer",
 
@@ -75,9 +75,9 @@ local commands = {
 		"FoldAll",
 		"UnFoldAll",
 
-    "PeekDefinition",
-    "PeekTypeDefinition",
-    "PeekGitChange",
+		"PeekDefinition",
+		"PeekTypeDefinition",
+		"PeekGitChange",
 	},
 	test = {
 		"TestRunNearest",
@@ -109,11 +109,12 @@ local commands = {
 	},
 	editor = {
 		"ShowLineDiagnostics",
-    "CommentLine", -- TODO:
-    "CommentSelectedLines", -- TODO: 
+		"CommentLine", -- TODO:
+		"CommentSelectedLines", -- TODO:
+		"InspectCommand",
 
-    "Wrap",
-    "UnWrap",
+		"Wrap",
+		"UnWrap",
 	},
 	other = {
 		"QuitNvim",
@@ -127,8 +128,8 @@ local commands = {
 		"CopyBufRelativePath",
 		"CopyBufRelativeDirPath",
 		"CopyFilename",
-    "CopyCdCommand",
-    "CopyCurrentLine",
+		"CopyCdCommand",
+		"CopyCurrentLine",
 		"SortLines",
 		"DeleteCurrentFile",
 	},
