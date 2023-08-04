@@ -1,11 +1,6 @@
 -- HACK: This list contains all the commands this plugin want to have
 -- Some of them many not have Implementation yet
 -- Some may have third party dependencies
---
---- @class cmdImpl
---- @field public cmd string|function
---- @field public age number
-local MyClass = {}
 
 local commands = {
 	git = { -- TODO: README

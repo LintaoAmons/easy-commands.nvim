@@ -33,10 +33,21 @@ Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obs
 
 using your favorate plugin manager, for example [lazy.nvim](https://github.com/folke/lazy.nvim)
 
+- Simple config
+
 ```lua
 {
-  -- "LintaoAmons/easy-commands.nvim",
-  dir = vim.loop.os_homedir() .. "/Documents/oatnil/beta/easy-commands.nvim",
+  "LintaoAmons/easy-commands.nvim",
+  event = "VeryLazy",
+  opts = {},
+}
+```
+
+- Detailed config
+
+```lua
+{
+  "LintaoAmons/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
     require("easy-commands").Setup({

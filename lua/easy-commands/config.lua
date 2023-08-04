@@ -116,8 +116,9 @@ local function registerUserCommands(commandNames)
 	end
 end
 
+---@param user_config? table
 Config.setup = function(user_config)
-	Config.config = vim.tbl_deep_extend("force", default_config, user_config)
+	Config.config = vim.tbl_deep_extend("force", default_config, user_config or {})
 
 	local commands_name = require("easy-commands.names")
 	local inuse_commands = require("easy-commands.impl.util.base.table").getDifferenceSet(
