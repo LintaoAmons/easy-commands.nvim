@@ -91,6 +91,8 @@ Run `InspectCommand` to check all the commands that provided by easy-commands, a
 
 Or you can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
 
+- [CommandUsecases](./CommandUsecase.md)
+
 ## Keybindings
 
 This plugin didn't provide any default keybindings, you can just add keybindings in any way you like.
