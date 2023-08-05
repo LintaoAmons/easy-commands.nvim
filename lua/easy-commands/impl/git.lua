@@ -40,6 +40,7 @@ local M = {
 				end
 			end)
 		end,
+    description = "Commit current staged changes with commit msg"
 	},
 	{
 		name = "GitListCommits",

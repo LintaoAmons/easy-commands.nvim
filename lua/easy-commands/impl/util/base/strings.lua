@@ -34,4 +34,53 @@ function M.splitIntoLines(i)
   return lines
 end
 
+---@param stringList string[]
+---@param delimiter string
+---@return string
+function M.join(stringList, delimiter)
+    local str = ''
+    for i, s in ipairs(stringList) do
+        str = str .. s
+        if i ~= #stringList then
+            str = str .. delimiter
+        end
+    end
+    return str
+end
+
+---@param cmd string
+---@return string[]
+function M.splitCmdString(cmd)
+    local t = {}
+    local inQuotes = false
+    local currentQuoteChar = nil
+    local currentWord = ""
+
+    for i = 1, #cmd do
+        local c = cmd:sub(i,i)
+        if c == " " and not inQuotes then
+            if #currentWord > 0 then
+                table.insert(t, currentWord)
+                currentWord = ""
+            end
+        elseif c == "'" or c == '"' then
+            if inQuotes and currentQuoteChar == c then
+                inQuotes = false
+                currentQuoteChar = nil
+            elseif not inQuotes then
+                inQuotes = true
+                currentQuoteChar = c
+            else
+                currentWord = currentWord .. c
+            end
+        else
+            currentWord = currentWord .. c
+        end
+    end
+    if #currentWord > 0 then
+        table.insert(t, currentWord)
+    end
+    return t
+end
+
 return M

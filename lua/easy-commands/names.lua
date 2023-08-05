@@ -40,7 +40,7 @@ local commands = {
 		"ExplorerLocateCurrentFile",
 	},
 	navigation = {
-		"ToggleLf",
+		-- "ToggleLf",
 		"SwitchProject",
 		"LspFinder",
 		"ToggleOutline",
@@ -99,13 +99,13 @@ local commands = {
 	run = {
 		"RunCurrentBuffer",
 		"RunLiveToggle",
-		"RunCurrentLineAndOutput",
-		"RunCurrentLineAndOutputWithPrePostFix",
-		"RunSelectedAndOutput",
-		"RunSelectedAndOutputWithPrePostFix",
-		"RunSelectedAndReplace",
+		"RunShellCurrentLine",
+		-- "RunCurrentLineAndOutputWithPrePostFix",
+		-- "RunSelectedAndOutput",
+		-- "RunSelectedAndOutputWithPrePostFix",
+		-- "RunSelectedAndReplace",
 
-		"QueryCsv",
+		-- "QueryCsv",
 	},
 	editor = {
 		"ShowLineDiagnostics",

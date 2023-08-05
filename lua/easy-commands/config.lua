@@ -36,7 +36,8 @@ local function formErrorMsg(cmd)
 			msg = msg .. "    - " .. d .. "\n"
 		end
 	end
-  msg = msg .. "Run: InspectCommand <CommandName> to find the path of implemented and investgate more"
+	msg = msg .. "Run: InspectCommand " .. cmd.name .. " to find the path of implemented and investgate more\n"
+	msg = msg .. "Or raise a issue in https://github.com/LintaoAmons/easy-commands.nvim/issues"
 	if cmd.errorInfo then
 		msg = msg + "Here more info you can check: \n" .. "    " .. "cmd.errorInfo"
 	end

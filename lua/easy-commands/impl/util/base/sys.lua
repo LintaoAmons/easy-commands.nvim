@@ -1,7 +1,6 @@
 local M = {}
 local Job = require("plenary.job")
 
----comment
 ---@param cmd string[]
 ---@param cwd string
 ---@return table

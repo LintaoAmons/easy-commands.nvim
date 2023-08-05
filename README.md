@@ -80,12 +80,6 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
           description = "Copy the buffer abs path to system clipboard",
         },
       },
-
-      -- Each Command may have defferent config options, check out the commands to find more options.
-      ["RunSelectedAndOutputWithPrePostFix"] = {
-        prefix = "```lua",
-        postfix = "```",
-      },
     })
   end,
 }

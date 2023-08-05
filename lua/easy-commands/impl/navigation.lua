@@ -66,6 +66,7 @@ local M = {
       -- Switch back to the original buffer in the new tab
       vim.api.nvim_set_current_buf(current_bufnr)
     end,
+    description = "maxise current buffer by open it in a new tab"
   },
 
   {

@@ -17,6 +17,7 @@ end
 
 ---@param cmd string
 ---@return string|nil
+---@deprecated use run_os_cmd in util.base.sys module
 function M.Call_sys_cmd(cmd)
 	local handle = io.popen(cmd)
 	local result = handle:read("*a")

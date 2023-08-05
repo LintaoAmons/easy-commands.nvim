@@ -10,9 +10,8 @@ local function combineCmds(cmdsList)
 	return m
 end
 
--- require("easy-commands.impl.explorer"),
-
 return combineCmds({
+	require("easy-commands.impl.explorer"),
 	require("easy-commands.impl.run"),
 	require("easy-commands.impl.test"),
 	require("easy-commands.impl.test"),
