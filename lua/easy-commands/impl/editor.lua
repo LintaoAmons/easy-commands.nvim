@@ -27,6 +27,9 @@ local M = {
 			vim.ui.select(names, {
 				prompt = "Command Name: ",
 			}, function(cmdName)
+				if not cmdName or cmdName == "" then
+					return
+				end
 				local editor = require("easy-commands.impl.util.editor")
 				local string = require("easy-commands.impl.util.base.strings")
 				local result = vim.api.nvim_exec2("verb command " .. cmdName, { output = true })
