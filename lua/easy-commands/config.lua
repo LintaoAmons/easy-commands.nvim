@@ -16,6 +16,12 @@ local default_config = {
 		name = "EasyCommand",
 		callback = 'lua vim.print("easy command user command")',
 	} },
+	aliases = {
+		{
+			from = "GitListCommits",
+			to = "GitLog",
+		},
+	},
 }
 
 local Config = {}
@@ -126,6 +132,13 @@ local function registerUserCommands(commandNames)
 	end
 end
 
+---@param aliases {from: "string", to: "string"}[]
+local function registerAliases(aliases)
+	for _, alias in ipairs(aliases) do
+		vim.api.nvim_create_user_command(alias.to, alias.from, {})
+	end
+end
+
 ---@param user_config? table
 Config.setup = function(user_config)
 	Config.config = vim.tbl_deep_extend("force", default_config, user_config or {})
@@ -136,10 +149,11 @@ Config.setup = function(user_config)
 		Config.getConfig().disabledCommands
 	)
 
-	-- registerUserCommands(inuse_commands)
 	registerUserCommands(inuse_commands)
 
 	registerUserCustomCommand()
+
+	registerAliases(Config.config.aliases)
 end
 
 Config.getConfig = function()
