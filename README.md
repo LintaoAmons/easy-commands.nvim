@@ -44,14 +44,25 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 ```
 
 - Detailed config
+  - disabledCommands: You can disable the commands you don't want
+  - aliases: You can have a alias to a specific command
+  - myCommands: @type EasyCommand.Command[]
+    - You can add your own commands
+    - You can overwrite the current implementation
+    - You can use the utils provided by the plugin to build your own command
+    - Welcome to share your awesome commands back to the plugin
 
-````lua
+```lua
 {
   "LintaoAmons/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
     require("easy-commands").setup({
       disabledCommands = { "CopyFilename" }, -- You can disable the commands you don't want
+
+      aliases = { -- You can have a alias to a specific command
+        { from = "GitListCommits", to = "GitLog"},
+      },
 
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
@@ -83,7 +94,7 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
     })
   end,
 }
-````
+```
 
 ## Commands
 

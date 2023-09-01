@@ -4,13 +4,6 @@ local default_config = {
 		prefix = "```bash",
 		postfix = "```",
 	},
-	["RunSelectedAndOutputWithPrePostFix"] = {
-		prefix = "```bash",
-		postfix = "```",
-	},
-	["AskChatGPT"] = {
-		keyFilePath = vim.env.HOME .. "/chatGPTkey",
-	},
 	---@type EasyCommand.Command[]
 	myCommands = { {
 		name = "EasyCommand",
@@ -21,6 +14,10 @@ local default_config = {
 			from = "GitListCommits",
 			to = "GitLog",
 		},
+	},
+	-- TODO: commandSpecificConfig
+	commandSpecificConfig = {
+		["CommandName"] = {},
 	},
 }
 
