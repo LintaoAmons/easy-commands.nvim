@@ -21,7 +21,6 @@ local commands = {
 		"GitBlameLine",
 		"GitResetBuffer",
 		"GitLazygit",
-		"GitPeek", -- TODO:
 	},
 	refactor = {
 		"ExtractFunction",
@@ -38,6 +37,8 @@ local commands = {
 	explorer = {
 		"ToggleExplorer",
 		"ExplorerLocateCurrentFile",
+		"OpenInFinder",
+		"OpenBySystemDefaultApp",
 	},
 	navigation = {
 		-- "ToggleLf",
@@ -112,6 +113,7 @@ local commands = {
 		"CommentLine", -- TODO:
 		"CommentSelectedLines", -- TODO:
 		"InspectCommand",
+    "CodeAction",
 
 		"Wrap",
 		"UnWrap",
@@ -138,10 +140,10 @@ local commands = {
 	},
 	nvim = {
 		"SourceCurrentBuffer",
-    "CheckKeymapDefinitions",
+		"CheckKeymapDefinitions",
 	},
 	ai = {
-		"AskChatGPT",
+		"AskGpt",
 		"AskChatGPTWithSelection",
 	},
 }

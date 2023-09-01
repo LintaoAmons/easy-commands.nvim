@@ -11,6 +11,7 @@ local function combineCmds(cmdsList)
 end
 
 return combineCmds({
+	require("easy-commands.impl.ai"),
 	require("easy-commands.impl.explorer"),
 	require("easy-commands.impl.run"),
 	require("easy-commands.impl.test"),

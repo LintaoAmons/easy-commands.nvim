@@ -4,8 +4,8 @@ local M = {
 		name = "ShowLineDiagnostics",
 		callback = "Lspsaga show_line_diagnostics",
 		dependencies = { "https://github.com/nvimdev/lspsaga.nvim" },
+		description = "Show diagnoestics of current line",
 	},
-
 	{
 		name = "Wrap",
 		callback = "set wrap",
@@ -38,6 +38,12 @@ local M = {
 			end)
 		end,
 		description = "Inspect the commands that provided by easy-commands plugin",
+	},
+	{
+		name = "CodeActions",
+		callback = "Lspsaga code_action",
+		dependencies = { "https://github.com/nvimdev/lspsaga.nvim" },
+		description = "Show available code actions",
 	},
 }
 
