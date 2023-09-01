@@ -41,8 +41,6 @@ local commands = {
 		"OpenBySystemDefaultApp",
 	},
 	navigation = {
-		-- "ToggleLf",
-		"SwitchProject",
 		"LspFinder",
 		"ToggleOutline",
 		"GoToDefinition",
