@@ -138,6 +138,7 @@ local commands = {
 	},
 	nvim = {
 		"SourceCurrentBuffer",
+    "CheckKeymapDefinitions",
 	},
 	ai = {
 		"AskChatGPT",
