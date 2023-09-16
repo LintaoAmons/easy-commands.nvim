@@ -110,7 +110,6 @@ local commands = {
 		"ShowLineDiagnostics",
 		"CommentLine", -- TODO:
 		"CommentSelectedLines", -- TODO:
-		"InspectCommand",
     "CodeAction",
 
 		"Wrap",
@@ -139,6 +138,7 @@ local commands = {
 	nvim = {
 		"SourceCurrentBuffer",
 		"CheckKeymapDefinitions",
+		"InspectCommand",
 	},
 	ai = {
 		"AskGpt",

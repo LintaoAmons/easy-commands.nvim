@@ -149,10 +149,11 @@ function M.replaceSelectedTextWithClipboard()
 	vim.cmd([[normal! gv"_dP]])
 end
 
+--- Create a new horizontal splitted buffer 
+--- and write the content into the buffer
 ---@param content string[]
 ---@param opts {vertical: boolean}
 function M.splitAndWrite(content, opts)
-	-- Create a new horizontal split
 	if opts.vertical then
 		vim.cmd("vnew")
 	else
