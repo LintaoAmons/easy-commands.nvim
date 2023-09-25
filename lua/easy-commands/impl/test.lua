@@ -36,6 +36,13 @@ local M = {
 			langUtil.CallLanguageSpecificFunc("GoToTestFile")
 		end,
 	},
+	{
+		name = "TestPlugin",
+		callback = function()
+			local col, row = unpack(require("easy-commands.impl.util.editor").selections.getCursorPosition())
+			print(col, row)
+		end,
+	},
 }
 
 return M

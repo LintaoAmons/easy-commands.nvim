@@ -15,7 +15,6 @@ local M = {
 		name = "UnWrap",
 		callback = "set unwrap",
 	},
-	
 	{
 		name = "CodeActions",
 		callback = "Lspsaga code_action",

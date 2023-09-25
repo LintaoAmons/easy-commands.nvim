@@ -85,6 +85,7 @@ local commands = {
 		"TestToggleOutputPanel",
 		"TestDebugNearest",
 		"GoToTestFile",
+		"TestPlugin",
 	},
 	finder = { -- HACK: include finder, search and replace
 		"FindFiles",
@@ -99,6 +100,7 @@ local commands = {
 		"RunCurrentBuffer",
 		"RunLiveToggle",
 		"RunShellCurrentLine",
+		"JqQuery",
 		-- "RunCurrentLineAndOutputWithPrePostFix",
 		-- "RunSelectedAndOutput",
 		-- "RunSelectedAndOutputWithPrePostFix",
@@ -110,7 +112,7 @@ local commands = {
 		"ShowLineDiagnostics",
 		"CommentLine", -- TODO:
 		"CommentSelectedLines", -- TODO:
-    "CodeAction",
+		"CodeAction",
 
 		"Wrap",
 		"UnWrap",
