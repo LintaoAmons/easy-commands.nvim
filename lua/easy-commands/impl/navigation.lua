@@ -41,13 +41,19 @@ local M = {
 	{
 		name = "OpenRecentFiles",
 		callback = "lua require('telescope').extensions.recent_files.pick()",
-		dependencies = { "https://github.com/smartpde/telescope-recent-files" },
+		dependencies = {
+			"https://github.com/nvim-telescope/telescope.nvim",
+			"https://github.com/smartpde/telescope-recent-files",
+		},
 	},
 
 	{
 		name = "OpenRecentFilesInAllPlaces",
 		callback = "lua require('telescope').extensions.recent_files.pick({only_cwd = false})",
-		dependencies = { "https://github.com/smartpde/telescope-recent-files" },
+		dependencies = {
+			"https://github.com/nvim-telescope/telescope.nvim",
+			"https://github.com/smartpde/telescope-recent-files",
+		},
 	},
 
 	{

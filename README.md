@@ -2,8 +2,6 @@
 
 ## Why this plugin?
 
-Make neovim easier to new commer~
-
 Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obsidian`'s `Open Commands`.
 
 <p align="left">
@@ -113,6 +111,7 @@ Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/laz
 ## Contribution & TODOs
 
 > There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
+> You can also share your usecase and make some GIFs and contribute to the doc
 
 - [x] Command alias
 - [ ] Record command execution times, let user find out the most uesd command so they can think about have a keybinding of those.
