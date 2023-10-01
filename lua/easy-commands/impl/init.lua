@@ -24,4 +24,5 @@ return combineCmds({
 	require("easy-commands.impl.navigation"),
 	require("easy-commands.impl.finder"),
 	require("easy-commands.impl.other"),
+  require("easy-commands.impl.debug")
 })

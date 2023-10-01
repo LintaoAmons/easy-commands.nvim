@@ -22,6 +22,9 @@ local commands = {
 		"GitResetBuffer",
 		"GitLazygit",
 	},
+	debug = {
+		"ToggleDebugUI",
+	},
 	refactor = {
 		"ExtractFunction",
 		"ExtractVariable",
