@@ -44,6 +44,7 @@ local commands = {
 		"LspFinder",
 		"ToggleOutline",
 		"GoToDefinition",
+		"GoToDefinitionInSplit",
 		"GoToTestFile",
 
 		"OpenChangedFiles",
@@ -113,6 +114,7 @@ local commands = {
 		"CommentLine", -- TODO:
 		"CommentSelectedLines", -- TODO:
 		"CodeAction",
+    "ToggleAutoSave",
 
 		"Wrap",
 		"UnWrap",
