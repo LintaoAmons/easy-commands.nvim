@@ -1,8 +1,10 @@
 ---@class Editor
 ---@field selections Selections
+---@field tab Tab
 ---@field window Window
 local M = {
 	selections = {},
+	tab = {},
 	window = {},
 }
 
@@ -13,6 +15,10 @@ local M = {
 ---@field getVisualSelectionStartPosition fun(): Position
 ---@field getVisualSelectionEndPosition fun(): Position
 local Selections = {}
+
+---@class Tab
+---@field countWindows fun(): number
+local Tab = {}
 
 ---@alias SplitMode "virtical"  | "horizontal"
 
@@ -39,6 +45,20 @@ end
 Selections.getVisualSelectionEndPosition = function()
 	local _, row, col, _ = unpack(vim.fn.getpos("'>"))
 	return { row, col }
+end
+
+-- =====================================================
+M.tab = Tab
+
+Tab.countWindows = function()
+	-- Get the current tabpage ID
+	local tabpage_id = vim.api.nvim_get_current_tabpage()
+
+	-- Get the list of window handles for all windows in the current tabpage
+	local windows = vim.api.nvim_tabpage_list_wins(tabpage_id)
+
+	-- Return the count of windows
+	return #windows
 end
 
 -- =====================================================

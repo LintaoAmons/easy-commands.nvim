@@ -44,7 +44,7 @@ local commands = {
 		"LspFinder",
 		"ToggleOutline",
 		"GoToDefinition",
-		"GoToDefinitionModeSwitch",
+		"GoToDefinitionSmart",
 		"GoToDefinitionInSplit",
 		"GoToTestFile",
 

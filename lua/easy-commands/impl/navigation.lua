@@ -1,3 +1,11 @@
+local function goToDefinitionInSplit()
+	local buffer = require("easy-commands.impl.util.editor").window
+	buffer.maximiseWindow()
+	buffer.splitWindow("virtical")
+	vim.api.nvim_command("Lspsaga goto_definition")
+	-- vim.api.nvim_command("zz") TODO: how to write "zz" by lua function
+end
+
 ---@type EasyCommand.Command[]
 local M = {
 	-- {
@@ -7,24 +15,18 @@ local M = {
 	-- },
 	{
 		name = "GoToDefinitionInSplit",
-		callback = function()
-			local buffer = require("easy-commands.impl.util.editor").buffer
-			buffer.maximiseBuffer()
-			buffer.splitBuffer("virtical")
-			vim.api.nvim_command("Lspsaga goto_definition")
-		end,
+		callback = goToDefinitionInSplit,
 		description = "enhances code navigation and exploration in Neovim by focusing on a specific symbol and opening its definition in a right split.",
 	},
 	{
-		name = "GoToDefinitionModeSwitch",
+		name = "GoToDefinitionSmart",
 		callback = function()
-			local flag = vim.g.easy_command_go_to_def or "current_buf"
-			if flag == "current_buf" then
-				vim.g.easy_command_go_to_def = "split"
-			elseif "split" then
-				vim.g.easy_command_go_to_def = "current_buf"
+			local windowCount = require("easy-commands.impl.util.editor").tab.countWindows()
+
+			if windowCount == 1 then
+				vim.api.nvim_command("GoToDefinition")
 			else
-				vim.g.easy_command_go_to_def = "split"
+				goToDefinitionInSplit()
 			end
 		end,
 		description = "Switch the GoToDefinition commands' behaviour (in current buf | in split)",
