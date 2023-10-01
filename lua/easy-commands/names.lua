@@ -24,6 +24,11 @@ local commands = {
 	},
 	debug = {
 		"ToggleDebugUI",
+		"DebugStartOrContinue",
+		"DebugToggleBreakpoint",
+		"DebugStepOver",
+		"DebugStepInto",
+		"DebugStop",
 	},
 	refactor = {
 		"ExtractFunction",
