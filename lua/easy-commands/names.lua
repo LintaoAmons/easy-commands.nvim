@@ -53,6 +53,7 @@ local commands = {
 		"ToggleOutline",
 		"GoToDefinition",
 		"GoToDefinitionSmart",
+		"GoToDefinitionModeSwitch",
 		"GoToDefinitionInSplit",
 		"GoToTestFile",
 

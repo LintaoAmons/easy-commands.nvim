@@ -21,15 +21,31 @@ local M = {
 	{
 		name = "GoToDefinitionSmart",
 		callback = function()
-			local windowCount = require("easy-commands.impl.util.editor").tab.countWindows()
+			local mode = vim.g.easy_command_dt_mode or "current_window"
+			if mode == "current_window" then
+				local windowCount = require("easy-commands.impl.util.editor").tab.countWindows()
 
-			if windowCount == 1 then
-				vim.api.nvim_command("GoToDefinition")
+				if windowCount == 1 then
+					vim.api.nvim_command("GoToDefinition")
+				else
+					goToDefinitionInSplit()
+				end
 			else
-				goToDefinitionInSplit()
+				vim.api.nvim_command("GoToDefinition")
 			end
 		end,
 		description = "Switch the GoToDefinition commands' behaviour (in current buf | in split)",
+	},
+	{
+		name = "GoToDefinitionModeSwitch",
+		callback = function()
+			local mode = vim.g.easy_command_dt_mode or "current_window"
+			if mode == "current_window" then
+				vim.g.easy_command_dt_mode = "split"
+			else
+				vim.g.easy_command_dt_mode = "current_window"
+			end
+		end,
 	},
 
 	{
