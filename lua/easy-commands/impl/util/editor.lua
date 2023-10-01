@@ -1,9 +1,9 @@
 ---@class Editor
 ---@field selections Selections
----@field buffer Buffer
+---@field window Window
 local M = {
 	selections = {},
-	buffer = {},
+	window = {},
 }
 
 ---@alias Position {row: number, col: number}
@@ -16,10 +16,10 @@ local Selections = {}
 
 ---@alias SplitMode "virtical"  | "horizontal"
 
----@class Buffer
----@field maximiseBuffer function
----@field splitBuffer fun(splitMode: SplitMode): nil
-local Buffer = {}
+---@class Window
+---@field maximiseWindow function
+---@field splitWindow fun(splitMode: SplitMode): nil
+local Window = {}
 -- =====================================================
 
 M.selections = Selections
@@ -42,13 +42,13 @@ Selections.getVisualSelectionEndPosition = function()
 end
 
 -- =====================================================
-M.buffer = Buffer
+M.window = Window
 
-Buffer.maximiseBuffer = function()
+Window.maximiseWindow = function()
 	vim.api.nvim_exec2("wincmd o", { output = false })
 end
 
-Buffer.splitBuffer = function(splitMode)
+Window.splitWindow = function(splitMode)
 	if splitMode == "virtical" then
 		vim.api.nvim_exec2("wincmd v", { output = false })
 	elseif splitMode == "horizontal" then

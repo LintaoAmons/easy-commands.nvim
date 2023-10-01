@@ -15,6 +15,20 @@ local M = {
 		end,
 		description = "enhances code navigation and exploration in Neovim by focusing on a specific symbol and opening its definition in a right split.",
 	},
+	{
+		name = "GoToDefinitionModeSwitch",
+		callback = function()
+			local flag = vim.g.easy_command_go_to_def or "current_buf"
+			if flag == "current_buf" then
+				vim.g.easy_command_go_to_def = "split"
+			elseif "split" then
+				vim.g.easy_command_go_to_def = "current_buf"
+			else
+				vim.g.easy_command_go_to_def = "split"
+			end
+		end,
+		description = "Switch the GoToDefinition commands' behaviour (in current buf | in split)",
+	},
 
 	{
 		name = "OpenChangedFiles",
