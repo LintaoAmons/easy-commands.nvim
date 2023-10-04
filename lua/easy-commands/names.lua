@@ -29,6 +29,7 @@ local commands = {
 		"DebugStepOver",
 		"DebugStepInto",
 		"DebugStop",
+		"DebugWidget",
 	},
 	refactor = {
 		"ExtractFunction",

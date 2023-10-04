@@ -17,7 +17,6 @@ local M = {
 	{
 		name = "DebugToggleBreakpoint",
 		callback = function()
-			vim.print("inside here")
 			require("dap").toggle_breakpoint()
 		end,
 	},
