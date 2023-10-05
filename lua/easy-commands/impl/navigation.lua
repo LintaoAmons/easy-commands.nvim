@@ -73,6 +73,17 @@ local M = {
 	},
 
 	{
+		name = "FindFileInDir",
+		callback = "Telescope dir find_files",
+		description = "find files in directory",
+	},
+	{
+		name = "GrepInDir",
+		callback = "Telescope dir live_grep",
+		description = "find content in directory",
+	},
+
+	{
 		name = "ToggleOutline",
 		callback = "Lspsaga outline",
 		dependencies = { "https://github.com/nvimdev/lspsaga.nvim" },

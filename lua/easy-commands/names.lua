@@ -30,6 +30,8 @@ local commands = {
 		"DebugStepInto",
 		"DebugStop",
 		"DebugWidget",
+		"DebugLastTest",
+		"DebugTest",
 	},
 	refactor = {
 		"ExtractFunction",
@@ -61,7 +63,9 @@ local commands = {
 		"OpenChangedFiles",
 		"OpenRecentFiles",
 		"OpenRecentFilesInAllPlaces",
-		"LeapJump",
+    "FindFileInDir",
+    "GrepInDir",
+
 		"MaximiseBuffer",
 
 		"TabNext",
