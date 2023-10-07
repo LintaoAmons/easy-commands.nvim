@@ -1,4 +1,4 @@
-## A collection of pre-defined commands which are readable and easy to search and use
+## A collection of intuitive, easily searchable,and ready-to-use commands.
 
 ## Why this plugin?
 
