@@ -116,6 +116,7 @@ local commands = {
 		"RunCurrentBuffer",
 		"RunLiveToggle",
 		"RunShellCurrentLine",
+    "TriggerLastRun", -- TODO: trigger last run or debug command.
 		"JqQuery",
 		-- "RunCurrentLineAndOutputWithPrePostFix",
 		-- "RunSelectedAndOutput",
