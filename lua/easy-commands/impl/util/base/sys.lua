@@ -37,5 +37,41 @@ function M.CopyToSystemClipboard(content)
   vim.fn.system(copy_cmd, content)
 end
 
+---@class runOpts
+---@field header string
+
+---run command in a job and print the output to the buffer
+---@param cmd string commands to run
+---@param buf_nr number buffer number
+---@param opts runOpts options
+---@return number returns the job id
+M.run = function(cmd, buf_nr, opts)
+  -- print the prompt header
+  local header = {}
+  if opts and opts.header then
+    header = vim.split(opts.header, "\n")
+    table.insert(header, "----------------------------------------")
+    vim.api.nvim_buf_set_lines(buf_nr, 0, -1, false, header)
+  end
+
+  vim.api.nvim_buf_set_lines(buf_nr, 0, -1, false, header)
+
+  local line = vim.tbl_count(header) + 1
+  local words = {}
+
+  -- start the async job
+  return vim.fn.jobstart(cmd, {
+    on_stdout = function(_, data, _)
+      for i, token in ipairs(data) do
+        if i > 1 then -- if returned data array has more than one element, a line break occured.
+          line = line + 1
+          words = {}
+        end
+        table.insert(words, token)
+        vim.api.nvim_buf_set_lines(buf_nr, line, line + 1, false, { table.concat(words, "") })
+      end
+    end,
+  })
+end
 
 return M
