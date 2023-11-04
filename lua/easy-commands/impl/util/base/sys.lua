@@ -1,4 +1,5 @@
-local M = {}
+---@class Sys
+local Sys = {}
 local Job = require("plenary.job")
 
 ---@param cmd string[]
@@ -6,21 +7,26 @@ local Job = require("plenary.job")
 ---@return table
 ---@return unknown
 ---@return table
-M.run_os_cmd = function(cmd, cwd)
-    if type(cmd) ~= "table" then
-        print('cmd has to be a table')
-        return {}, nil, {}
+Sys.run_os_cmd = function(cmd, cwd)
+  if type(cmd) ~= "table" then
+    print('cmd has to be a table')
+    return {}, nil, {}
+  end
+  local command = table.remove(cmd, 1)
+  local stderr = {}
+  local stdout, ret = Job:new({
+    command = command,
+    args = cmd,
+    cwd = cwd,
+    on_stderr = function(_, data)
+      table.insert(stderr, data)
     end
-    local command = table.remove(cmd, 1)
-    local stderr = {}
-    local stdout, ret = Job:new({ command = command, args = cmd, cwd = cwd, on_stderr = function(_, data)
-        table.insert(stderr, data)
-    end }):sync()
-    return stdout, ret, stderr
+  }):sync()
+  return stdout, ret, stderr
 end
 
 ---@param content string
-function M.CopyToSystemClipboard(content)
+Sys.CopyToSystemClipboard = function(content)
   local copy_cmd = 'pbcopy'
   -- Copy the absolute path to the clipboard
   if vim.fn.has('mac') or vim.fn.has('macunix') then
@@ -45,7 +51,7 @@ end
 ---@param buf_nr number buffer number
 ---@param opts runOpts options
 ---@return number returns the job id
-M.run = function(cmd, buf_nr, opts)
+Sys.run = function(cmd, buf_nr, opts)
   -- print the prompt header
   local header = {}
   if opts and opts.header then
@@ -74,4 +80,4 @@ M.run = function(cmd, buf_nr, opts)
   })
 end
 
-return M
+return Sys
