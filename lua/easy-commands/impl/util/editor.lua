@@ -1,56 +1,49 @@
----@class Editor
----@field selections Selections
----@field tab Tab
----@field window Window
-local M = {
-	selections = {},
-	tab = {},
-	window = {},
-}
-
----@alias Position {row: number, col: number}
-
----@class Selections
----@field getCursorPosition fun(): Position
----@field getVisualSelectionStartPosition fun(): Position
----@field getVisualSelectionEndPosition fun(): Position
-local Selections = {}
-
----@class Tab
----@field countWindows fun(): number
-local Tab = {}
-
----@alias SplitMode "virtical"  | "horizontal"
-
----@class Window
----@field maximiseWindow function
----@field splitWindow fun(splitMode: SplitMode): nil
-local Window = {}
--- =====================================================
-
-M.selections = Selections
-
-Selections.getCursorPosition = function()
+local getCursorPosition = function()
 	local _, row, col, _ = unpack(vim.fn.getpos("."))
 	return { row, col }
 end
 
 ---@return {row: number, col: number}
-Selections.getVisualSelectionStartPosition = function()
+local getVisualSelectionStartPosition = function()
 	local _, row, col, _ = unpack(vim.fn.getpos("'<"))
 	return { row, col }
 end
 
 ---@return {row: number, col: number}
-Selections.getVisualSelectionEndPosition = function()
+local getVisualSelectionEndPosition = function()
 	local _, row, col, _ = unpack(vim.fn.getpos("'>"))
 	return { row, col }
 end
 
--- =====================================================
-M.tab = Tab
+local ESC_FEEDKEY = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+--- @return string
+local get_visual_lines = function(bufnr)
+	vim.api.nvim_feedkeys(ESC_FEEDKEY, "n", true)
+	vim.api.nvim_feedkeys("gv", "x", false)
+	vim.api.nvim_feedkeys(ESC_FEEDKEY, "n", true)
 
-Tab.countWindows = function()
+	local start_row, start_col = unpack(vim.api.nvim_buf_get_mark(bufnr, "<"))
+	local end_row, end_col = unpack(vim.api.nvim_buf_get_mark(bufnr, ">"))
+	local lines = vim.api.nvim_buf_get_lines(bufnr, start_row - 1, end_row, false)
+
+	if start_row == 0 then
+		lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+		start_row = 1
+		start_col = 0
+		end_row = #lines
+		end_col = #lines[#lines]
+	end
+
+	start_col = start_col + 1
+	end_col = math.min(end_col, #lines[#lines] - 1) + 1
+
+	lines[#lines] = lines[#lines]:sub(1, end_col)
+	lines[1] = lines[1]:sub(start_col)
+
+	return table.concat(lines, "\n")
+end
+
+local countWindows = function()
 	-- Get the current tabpage ID
 	local tabpage_id = vim.api.nvim_get_current_tabpage()
 
@@ -61,14 +54,11 @@ Tab.countWindows = function()
 	return #windows
 end
 
--- =====================================================
-M.window = Window
-
-Window.maximiseWindow = function()
+local maximiseWindow = function()
 	vim.api.nvim_exec2("wincmd o", { output = false })
 end
 
-Window.splitWindow = function(splitMode)
+local splitWindow = function(splitMode)
 	if splitMode == "virtical" then
 		vim.api.nvim_exec2("wincmd v", { output = false })
 	elseif splitMode == "horizontal" then
@@ -77,6 +67,43 @@ Window.splitWindow = function(splitMode)
 		vim.print("Not supported mode")
 	end
 end
+
+---@alias Position {row: number, col: number}
+
+---@class Selections
+---@field getCursorPosition fun(): Position
+---@field getVisualSelectionStartPosition fun(): Position
+---@field getVisualSelectionEndPosition fun(): Position
+---@field getVisualLines fun(): string
+
+---@class Tab
+---@field countWindows fun(): number
+
+---@alias SplitMode "virtical"  | "horizontal"
+
+---@class Window
+---@field maximiseWindow function
+---@field splitWindow fun(splitMode: SplitMode): nil
+
+---@class Editor
+---@field selections Selections
+---@field tab Tab
+---@field window Window
+local M = {
+	selections = {
+    getCursorPosition = getCursorPosition,
+    getVisualSelectionStartPosition = getVisualSelectionStartPosition,
+    getVisualSelectionEndPosition = getVisualSelectionEndPosition,
+    getVisualLines = get_visual_lines,
+  },
+	tab = {
+    countWindows = countWindows,
+  },
+	window = {
+    maximiseWindow = maximiseWindow,
+    splitWindow = splitWindow,
+  },
+}
 
 local tableUtil = require("easy-commands.impl.util.base.table")
 
