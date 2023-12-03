@@ -122,10 +122,11 @@ local M = {
 			local opts = {
 				style = "minimal",
 				relative = "editor",
-				width = win_width,
-				height = win_height,
-				row = 0,
-				col = 0,
+				height = win_height - 6,
+				width = win_width - 10,
+				row = 2,
+				col = 3,
+				border = "rounded",
 			}
 
 			-- Create the floating window with the current buffer
