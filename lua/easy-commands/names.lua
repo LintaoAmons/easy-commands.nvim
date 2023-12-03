@@ -60,6 +60,7 @@ local commands = {
 		"GoToDefinitionModeSwitch",
 		"GoToDefinitionInSplit",
 		"GoToTestFile",
+    "GoToFunctionName",
 
 		"OpenChangedFiles",
 		"OpenRecentFiles",
@@ -115,11 +116,16 @@ local commands = {
 		"FzfLuaBuiltin",
 	},
 	run = {
+    "Hurl",
+    "HurlSelected",
 		"RunCurrentBuffer",
 		"RunLiveToggle",
 		"RunShellCurrentLine",
     "TriggerLastRun", -- TODO: trigger last run or debug command.
 		"JqQuery",
+    "DistinctLines",
+    "TrimLine",
+    "",
 		-- "RunCurrentLineAndOutputWithPrePostFix",
 		-- "RunSelectedAndOutput",
 		-- "RunSelectedAndOutputWithPrePostFix",
@@ -163,7 +169,7 @@ local commands = {
 		"InspectCommand",
 	},
 	ai = {
-		"AskGpt",
+		"AskGpt4",
 		"AskChatGPTWithSelection",
 	},
 }
