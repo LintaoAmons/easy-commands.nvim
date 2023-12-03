@@ -67,7 +67,7 @@ local commands = {
     "FindFileInDir",
     "GrepInDir",
 
-		"MaximiseBuffer",
+		"MaximiseWindow",
 
 		"TabNext",
 		"TabPrev",
