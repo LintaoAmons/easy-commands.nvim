@@ -10,6 +10,7 @@ local commands = {
 		"GitCommit",
 		"GitStash",
 		"GitStashPop",
+    "GitStashHistory",
 		"GitPush",
 		"GitListCommits",
 		"GitListCommitsOfCurrentFile",
@@ -110,6 +111,7 @@ local commands = {
 		"FindInProject", -- TODO: If in visual mode, find with selected text
 		"SearchInProject",
 		"SearchOrReplace",
+    "SearchOrReplaceInCurrentFile",
 		"FzfLuaBuiltin",
 	},
 	run = {
