@@ -101,7 +101,6 @@ local commands = {
 		"TestRunCurrentFile",
 		"TestRunLast",
 		"TestToggleOutputPanel",
-		"TestDebugNearest",
 		"GoToTestFile",
 		"TestPlugin",
 	},

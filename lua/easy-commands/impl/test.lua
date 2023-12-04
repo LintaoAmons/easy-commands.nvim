@@ -25,11 +25,6 @@ local M = {
 		dependencies = { "https://github.com/nvim-neotest/neotest" },
 	},
 
-	-- {
-	-- 	name = "TestDebugNearest",
-	-- 	callback = 'lua require("dap-go").debug_test()',
-	-- },
-	--
 	{
 		name = "GoToTestFile",
 		callback = function()
