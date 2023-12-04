@@ -1,5 +1,9 @@
 ## A collection of intuitive, easily searchable,and ready-to-use commands.
 
+- Don't need to bind everything to a shortcut, just search the command if you need
+- Same command, same behaivour for deffirent language but the implementation details are hinding from the end user
+- Your can still easily find the actual implementation by search the command names in this repo
+
 ## Why this plugin?
 
 Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obsidian`'s `Open Commands`.
