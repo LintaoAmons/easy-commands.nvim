@@ -124,7 +124,7 @@ local commands = {
 		"JqQuery",
     "DistinctLines",
     "TrimLine",
-    "",
+    "CsvPrettify",
 		-- "RunCurrentLineAndOutputWithPrePostFix",
 		-- "RunSelectedAndOutput",
 		-- "RunSelectedAndOutputWithPrePostFix",
@@ -160,7 +160,8 @@ local commands = {
 		"DeleteCurrentFile",
 	},
 	helper = {
-		"PrintSelected", -- TODO:
+		"PrintSelected", -- TODO: use https://github.com/andrewferrier/debugprint.nvim
+    "MarkdownCodeBlock",
 	},
 	nvim = {
 		"SourceCurrentBuffer",

@@ -7,8 +7,49 @@ local function write_to_temp_file(content)
   return tempfile
 end
 
+local function processCSV(lines)
+  -- Determine the maximum width of each column
+  local colWidths = {}
+  for _, line in ipairs(lines) do
+    local col = 1
+    for value in line:gmatch("[^,]+") do
+      colWidths[col] = math.max(colWidths[col] or 0, #value)
+      col = col + 1
+    end
+  end
+
+  -- Align the columns and rebuild the lines
+  local prettified = {}
+  for _, line in ipairs(lines) do
+    local col = 1
+    local newLine = {}
+    for value in line:gmatch("[^,]+") do
+      table.insert(newLine, value .. string.rep(" ", colWidths[col] - #value))
+      col = col + 1
+    end
+    table.insert(prettified, table.concat(newLine, ", "))
+  end
+
+  return prettified
+end
+
+local function get_current_buffer_content(buf)
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  return lines
+end
+
+local function prettify_csv()
+  local buf = vim.api.nvim_get_current_buf()
+  local prettified = processCSV(get_current_buffer_content(buf))
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, prettified)
+end
+
 ---@type EasyCommand.Command[]
 local M = {
+  {
+    name = "CsvPrettify",
+    callback = prettify_csv,
+  },
   {
     -- TODO: Trim selected; dot repeatable
     name = "TrimLine",
@@ -79,12 +120,15 @@ local M = {
       local sys = require("easy-commands.impl.util.base.sys")
       local editor = require("easy-commands.impl.util.editor")
 
-      vim.ui.input({ prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' }, function(pattern)
-        local absPath = editor.get_buf_abs_path()
-        local stdout, _, stderr = sys.run_os_cmd({ "jq", pattern, absPath }, ".")
-        local result = stdout or stderr
-        editor.splitAndWrite(result, { vertical = true })
-      end)
+      vim.ui.input(
+        { prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' },
+        function(pattern)
+          local absPath = editor.get_buf_abs_path()
+          local stdout, _, stderr = sys.run_os_cmd({ "jq", pattern, absPath }, ".")
+          local result = stdout or stderr
+          editor.splitAndWrite(result, { vertical = true })
+        end
+      )
     end,
     description = "use `jq` to query current json file",
   },
