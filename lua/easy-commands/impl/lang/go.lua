@@ -1,5 +1,4 @@
 local M = {}
-local util = require("easy-commands.impl.util")
 local strings = require("easy-commands.impl.util.base.strings")
 
 M.GoToTestFile = function()
