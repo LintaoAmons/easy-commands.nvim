@@ -1,4 +1,3 @@
----@meta
 local M = {}
 
 ---@class EasyCommand.Command
@@ -8,6 +7,8 @@ local M = {}
 ---@field dependencies? string[]
 ---@field allow_visual_mode? boolean
 ---@field errorInfo? string
+
+---@type EasyCommand.Command
 M.Command = {}
 
 ---@param t table

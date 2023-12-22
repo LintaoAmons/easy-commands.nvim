@@ -4,18 +4,21 @@ local default_config = {
 		prefix = "```bash",
 		postfix = "```",
 	},
-	["RunSelectedAndOutputWithPrePostFix"] = {
-		prefix = "```bash",
-		postfix = "```",
-	},
-	["AskChatGPT"] = {
-		keyFilePath = vim.env.HOME .. "/chatGPTkey",
-	},
 	---@type EasyCommand.Command[]
 	myCommands = { {
 		name = "EasyCommand",
 		callback = 'lua vim.print("easy command user command")',
 	} },
+	aliases = {
+		{
+			from = "GitListCommits",
+			to = "GitLog",
+		},
+	},
+	-- TODO: commandSpecificConfig
+	commandSpecificConfig = {
+		["CommandName"] = {},
+	},
 }
 
 local Config = {}
@@ -36,7 +39,7 @@ local function formErrorMsg(cmd)
 			msg = msg .. "    - " .. d .. "\n"
 		end
 	end
-	msg = msg .. "Run: InspectCommand " .. cmd.name .. " to find the path of implemented and investgate more\n"
+	msg = msg .. "Run [InspectCommand " .. cmd.name .. "] to find the path of implemented and investgate more\n"
 	msg = msg .. "Or raise a issue in https://github.com/LintaoAmons/easy-commands.nvim/issues"
 	if cmd.errorInfo then
 		msg = msg + "Here more info you can check: \n" .. "    " .. "cmd.errorInfo"
@@ -126,6 +129,13 @@ local function registerUserCommands(commandNames)
 	end
 end
 
+---@param aliases {from: "string", to: "string"}[]
+local function registerAliases(aliases)
+	for _, alias in ipairs(aliases) do
+		vim.api.nvim_create_user_command(alias.to, alias.from, {})
+	end
+end
+
 ---@param user_config? table
 Config.setup = function(user_config)
 	Config.config = vim.tbl_deep_extend("force", default_config, user_config or {})
@@ -136,10 +146,11 @@ Config.setup = function(user_config)
 		Config.getConfig().disabledCommands
 	)
 
-	-- registerUserCommands(inuse_commands)
 	registerUserCommands(inuse_commands)
 
 	registerUserCustomCommand()
+
+	registerAliases(Config.config.aliases)
 end
 
 Config.getConfig = function()

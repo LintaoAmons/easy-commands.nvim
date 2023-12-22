@@ -3,153 +3,183 @@
 -- Some may have third party dependencies
 
 local commands = {
-	git = { -- TODO: README
-		"Git",
-		"GitDiff",
-		"GitStatus",
-		"GitCommit",
-		"GitStash",
-		"GitStashPop",
-		"GitPush",
-		"GitListCommits",
-		"GitListCommitsOfCurrentFile",
-		"GitListCommitsOfSelectedLines",
-		"GitNextHunk",
-		"GitPrevHunk",
-		"GitResetHunk",
-		"GitListBranches",
-		"GitBlameLine",
-		"GitResetBuffer",
-		"GitLazygit",
-		"GitPeek", -- TODO:
-	},
-	refactor = {
-		"ExtractFunction",
-		"ExtractVariable",
-		"InlineVariable",
-		"Rename",
+  git = { -- TODO: README
+    "Git",
+    "GitDiff",
+    "GitStatus",
+    "GitCommit",
+    "GitStash",
+    "GitStashPop",
+    "GitStashHistory",
+    "GitPush",
+    "GitListCommits",
+    "GitListCommitsOfCurrentFile",
+    "GitListCommitsOfSelectedLines",
+    "GitNextHunk",
+    "GitPrevHunk",
+    "GitResetHunk",
+    "GitListBranches",
+    "GitBlameLine",
+    "GitResetBuffer",
+    "GitLazygit",
+  },
+  debug = {
+    "ToggleDebugUI",
+    "DebugStartOrContinue",
+    "DebugToggleBreakpoint",
+    "DebugStepOver",
+    "DebugStepInto",
+    "DebugStop",
+    "DebugWidget",
+    "DebugLastTest",
+    "DebugTest",
+  },
+  refactor = {
+    "ExtractFunction",
+    "ExtractVariable",
+    "InlineVariable",
+    "Rename",
 
-		"ToNextCase",
-		"ToCamelCase",
-		"ToConstantCase",
-		"ToKebabCase",
-		"ToSnakeCase",
-	},
-	explorer = {
-		"ToggleExplorer",
-		"ExplorerLocateCurrentFile",
-	},
-	navigation = {
-		-- "ToggleLf",
-		"SwitchProject",
-		"LspFinder",
-		"ToggleOutline",
-		"GoToDefinition",
-		"GoToTestFile",
+    "ToNextCase",
+    "ToCamelCase",
+    "ToConstantCase",
+    "ToKebabCase",
+    "ToSnakeCase",
+  },
+  explorer = {
+    "ToggleExplorer",
+    "ExplorerLocateCurrentFile",
+    "OpenInFinder",
+    "OpenBySystemDefaultApp",
+  },
+  navigation = {
+    "LspFinder",
+    "ToggleOutline",
+    "GoToDefinition",
+    "GoToDefinitionSmart",
+    "GoToDefinitionModeSwitch",
+    "GoToDefinitionInSplit",
+    "GoToTestFile",
+    "GoToFunctionName",
 
-		"OpenChangedFiles",
-		"OpenRecentFiles",
-		"OpenRecentFilesInAllPlaces",
-		"LeapJump",
-		"MaximiseBuffer",
+    "OpenChangedFiles",
+    "OpenRecentFiles",
+    "OpenRecentFilesInAllPlaces",
+    "FindFileInDir",
+    "GrepInDir",
 
-		"TabNext",
-		"TabPrev",
-		"TabClose",
-		"TabNew",
+    "MaximiseWindow",
+    "MaximiseWindowAsPopup",
 
-		"BufferNext",
-		"BufferPrev",
+    "TabNext",
+    "TabPrev",
+    "TabClose",
+    "TabNew",
 
-		"SplitVertically",
-		"Split",
-		"MaximiseBufferAndCloseOthers",
-		"IncreaseSplitWidth",
-		"DecreaseSplitWidth",
+    "BufferNext",
+    "BufferPrev",
 
-		"Mark",
-		"MarkList",
-		"MarkNext",
-		"MarkPrev",
+    "ToggleTwoSplitMode",
+    "SplitVertically",
+    "Split",
+    "IncreaseSplitWidth",
+    "DecreaseSplitWidth",
 
-		"FoldAll",
-		"UnFoldAll",
+    "Mark",
+    "MarkList",
+    "MarkNext",
+    "MarkPrev",
 
-		"PeekDefinition",
-		"PeekTypeDefinition",
-		"PeekGitChange",
-	},
-	test = {
-		"TestRunNearest",
-		"TestRunCurrentFile",
-		"TestRunLast",
-		"TestToggleOutputPanel",
-		"TestDebugNearest",
-		"GoToTestFile",
-	},
-	finder = { -- HACK: include finder, search and replace
-		"FindFiles",
-		"FindCommands",
-		"FindKeymappins",
-		"FindInProject", -- TODO: If in visual mode, find with selected text
-		"SearchInProject",
-		"SearchOrReplace",
-		"FzfLuaBuiltin",
-	},
-	run = {
-		"RunCurrentBuffer",
-		"RunLiveToggle",
-		"RunShellCurrentLine",
-		-- "RunCurrentLineAndOutputWithPrePostFix",
-		-- "RunSelectedAndOutput",
-		-- "RunSelectedAndOutputWithPrePostFix",
-		-- "RunSelectedAndReplace",
+    "FoldAll",
+    "UnFoldAll",
 
-		-- "QueryCsv",
-	},
-	editor = {
-		"ShowLineDiagnostics",
-		"CommentLine", -- TODO:
-		"CommentSelectedLines", -- TODO:
-		"InspectCommand",
+    "PeekDefinition",
+    "PeekTypeDefinition",
+    "PeekGitChange",
+  },
+  test = {
+    "TestRunNearest",
+    "TestRunCurrentFile",
+    "TestRunLast",
+    "TestToggleOutputPanel",
+    "GoToTestFile",
+    "TestPlugin",
+  },
+  finder = { -- HACK: include finder, search and replace
+    "FindFiles",
+    "FindCommands",
+    "FindKeymappins",
+    "FindInProject", -- TODO: If in visual mode, find with selected text
+    "SearchInProject",
+    "SearchOrReplace",
+    "SearchOrReplaceInCurrentFile",
+    "FzfLuaBuiltin",
+  },
+  run = {
+    "Hurl",
+    "HurlSelected",
+    "RunCurrentBuffer",
+    "RunLiveToggle",
+    "RunShellCurrentLine",
+    "TriggerLastRun", -- TODO: trigger last run or debug command.
+    "JqQuery",
+    "DistinctLines",
+    "TrimLine",
+    "CsvPrettify",
+    -- "RunCurrentLineAndOutputWithPrePostFix",
+    -- "RunSelectedAndOutput",
+    -- "RunSelectedAndOutputWithPrePostFix",
+    -- "RunSelectedAndReplace",
 
-		"Wrap",
-		"UnWrap",
-	},
-	other = {
-		"QuitNvim",
-		"DiffWithClipboard",
-		"FormatCode",
-		"NoHighlight",
-		"CloseWindowOrBuffer",
-		"CopyBufAbsPath", -- TODO: README
-		"CopyBufAbsDirPath",
-		"CopyProjectDir",
-		"CopyBufRelativePath",
-		"CopyBufRelativeDirPath",
-		"CopyFilename",
-		"CopyCdCommand",
-		"CopyCurrentLine",
-		"SortLines",
-		"DeleteCurrentFile",
-	},
-	helper = {
-		"PrintSelected", -- TODO:
-	},
-	nvim = {
-		"SourceCurrentBuffer",
-	},
-	ai = {
-		"AskChatGPT",
-		"AskChatGPTWithSelection",
-	},
+    -- "QueryCsv",
+  },
+  editor = {
+    "ShowLineDiagnostics",
+    "CommentLine", -- TODO:
+    "CommentSelectedLines", -- TODO:
+    "CodeAction",
+    "ToggleAutoSave",
+
+    "Wrap",
+    "UnWrap",
+  },
+  other = {
+    "QuitNvim",
+    "DiffWithClipboard",
+    "FormatCode",
+    "NoHighlight",
+    "CloseWindowOrBuffer",
+    "CopyBufAbsPath", -- TODO: README
+    "CopyBufAbsDirPath",
+    "CopyProjectDir",
+    "CopyBufRelativePath",
+    "CopyBufRelativeDirPath",
+    "CopyFilename",
+    "CopyCdCommand",
+    "CopyCurrentLine",
+    "SortLines",
+    "DeleteCurrentFile",
+  },
+  helper = {
+    "PrintSelected", -- TODO: use https://github.com/andrewferrier/debugprint.nvim
+    "MarkdownCodeBlock",
+  },
+  nvim = {
+    "SourceCurrentBuffer",
+    "CheckKeymapDefinitions",
+    "InspectCommand",
+  },
+  ai = {
+    "AskGpt4",
+    "AskChatGPTWithSelection",
+  },
 }
 
 local result = {}
 for _, command_group in pairs(commands) do
-	for _, command in ipairs(command_group) do
-		table.insert(result, command)
-	end
+  for _, command in ipairs(command_group) do
+    table.insert(result, command)
+  end
 end
 
 return result

@@ -1,8 +1,10 @@
-## A collection of pre-defined commands which are readable and easy to search and use
+## A collection of intuitive, easily searchable,and ready-to-use commands.
+
+- Don't need to bind everything to a shortcut, just search the command if you need
+- Same command, same behaivour for deffirent language but the implementation details are hinding from the end user
+- Your can still easily find the actual implementation by search the command names in this repo
 
 ## Why this plugin?
-
-Make neovim easier to new commer~
 
 Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obsidian`'s `Open Commands`.
 
@@ -44,14 +46,25 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 ```
 
 - Detailed config
+  - disabledCommands: You can disable the commands you don't want
+  - aliases: You can have a alias to a specific command
+  - myCommands: @type EasyCommand.Command[]
+    - You can add your own commands
+    - You can overwrite the current implementation
+    - You can use the utils provided by the plugin to build your own command
+    - Welcome to share your awesome commands back to the plugin
 
-````lua
+```lua
 {
   "LintaoAmons/easy-commands.nvim",
   event = "VeryLazy",
   config = function()
     require("easy-commands").setup({
       disabledCommands = { "CopyFilename" }, -- You can disable the commands you don't want
+
+      aliases = { -- You can have a alias to a specific command
+        { from = "GitListCommits", to = "GitLog"},
+      },
 
       -- It always welcome to send me back your good commands and usecases
       ---@type EasyCommand.Command[]
@@ -83,13 +96,15 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
     })
   end,
 }
-````
+```
 
 ## Commands
 
 Run `InspectCommand` to check all the commands that provided by easy-commands, and find the path of definition which you can further check
 
 Or you can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
+
+- [CommandUsecases](./CommandUsecase.md)
 
 ## Keybindings
 
@@ -100,10 +115,13 @@ Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/laz
 ## Contribution & TODOs
 
 > There's a lot of TODOs inside the project. It would be great if you can help to remove some of them!
+> You can also share your usecase and make some GIFs and contribute to the doc
 
+- [ ] get code snippets by a command(read the definition, then generate similar definition with one more fields named sourceCode: 23-11-03_09-55-25.gp4.md)
+- [x] Command alias
 - [ ] Record command execution times, let user find out the most uesd command so they can think about have a keybinding of those.
 - [ ] Command execution log, allow user to find out the command history and copy from the stdout and stderr
 - [ ] Command, keymap wizard. vim.ui.select command, vim.ui.input shortcut key, write into json file and trigger reload. Load when setup config.
 - [x] Add types to commands and config
 - [x] ADd Dependencies warning when call command failed
-- [ ] Find way to add description and show description when user search command. (Telescope picker?)
+- [x] Find way to add description and show description when user search command. (Telescope picker?)

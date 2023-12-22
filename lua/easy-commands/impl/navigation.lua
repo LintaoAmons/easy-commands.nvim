@@ -1,3 +1,11 @@
+local function goToDefinitionInSplit()
+  local buffer = require("easy-commands.impl.util.editor").window
+  buffer.maximiseWindow()
+  buffer.splitWindow("virtical")
+  vim.api.nvim_command("Lspsaga goto_definition")
+  -- vim.api.nvim_command("zz") TODO: how to write "zz" by lua function
+end
+
 ---@type EasyCommand.Command[]
 local M = {
   -- {
@@ -5,6 +13,45 @@ local M = {
   -- 	callback = "Telescope projects",
   -- 	dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   -- },
+  {
+    name = "GotoFunctionName",
+    callback = "AerialPrev",
+    dependencies = { "https://github.com/stevearc/aerial.nvim" },
+  },
+  {
+    name = "GoToDefinitionInSplit",
+    callback = goToDefinitionInSplit,
+    description = "enhances code navigation and exploration in Neovim by focusing on a specific symbol and opening its definition in a right split.",
+  },
+  {
+    name = "GoToDefinitionSmart",
+    callback = function()
+      local mode = vim.g.easy_command_dt_mode or "current_window"
+      if mode == "current_window" then
+        local windowCount = require("easy-commands.impl.util.editor").tab.countWindows()
+
+        if windowCount == 1 then
+          vim.api.nvim_command("GoToDefinition")
+        else
+          goToDefinitionInSplit()
+        end
+      else
+        vim.api.nvim_command("GoToDefinition")
+      end
+    end,
+    description = "Switch the GoToDefinition commands' behaviour (in current buf | in split)",
+  },
+  {
+    name = "GoToDefinitionModeSwitch",
+    callback = function()
+      local mode = vim.g.easy_command_dt_mode or "current_window"
+      if mode == "current_window" then
+        vim.g.easy_command_dt_mode = "split"
+      else
+        vim.g.easy_command_dt_mode = "current_window"
+      end
+    end,
+  },
 
   {
     name = "OpenChangedFiles",
@@ -15,19 +62,36 @@ local M = {
   {
     name = "OpenRecentFiles",
     callback = "lua require('telescope').extensions.recent_files.pick()",
-    dependencies = { "https://github.com/smartpde/telescope-recent-files" },
+    dependencies = {
+      "https://github.com/nvim-telescope/telescope.nvim",
+      "https://github.com/smartpde/telescope-recent-files",
+    },
   },
 
   {
     name = "OpenRecentFilesInAllPlaces",
     callback = "lua require('telescope').extensions.recent_files.pick({only_cwd = false})",
-    dependencies = { "https://github.com/smartpde/telescope-recent-files" },
+    dependencies = {
+      "https://github.com/nvim-telescope/telescope.nvim",
+      "https://github.com/smartpde/telescope-recent-files",
+    },
+  },
+
+  {
+    name = "FindFileInDir",
+    callback = "Telescope dir find_files",
+    description = "find files in directory",
+  },
+  {
+    name = "GrepInDir",
+    callback = "Telescope dir live_grep",
+    description = "find content in directory",
   },
 
   {
     name = "ToggleOutline",
-    callback = "Lspsaga outline",
-    dependencies = { "https://github.com/nvimdev/lspsaga.nvim" },
+    callback = "AerialNavToggle",
+    dependencies = { "https://github.com/stevearc/aerial.nvim" },
   },
 
   {
@@ -43,30 +107,38 @@ local M = {
   },
 
   {
-    name = "MaximiseBuffer",
+    name = "MaximiseWindow",
+    callback = require("easy-commands.impl.util.editor").close_all_other_windows,
+  },
+  {
+    name = "MaximiseWindowAsPopup",
     callback = function()
-      -- Get the current buffer number
-      local current_bufnr = vim.api.nvim_get_current_buf()
+      local api = vim.api
 
-      -- Create a new tab and switch to it
-      vim.api.nvim_command("tabnew")
+      -- Get the current buffer
+      local current_buf = api.nvim_get_current_buf()
 
-      -- Get the new tab's buffer number
-      local new_bufnr = vim.api.nvim_get_current_buf()
+      -- Get the editor's dimensions
+      local win_width = api.nvim_get_option("columns")
+      local win_height = api.nvim_get_option("lines")
 
-      -- Copy the contents of the current buffer to the new buffer
-      vim.api.nvim_buf_set_lines(new_bufnr, 0, -1, false, vim.api.nvim_buf_get_lines(current_bufnr, 0, -1, false))
+      -- Define the floating window options
+      local opts = {
+        style = "minimal",
+        relative = "editor",
+        height = win_height - 6,
+        width = win_width - 10,
+        row = 2,
+        col = 3,
+        border = "rounded",
+      }
 
-      -- Set the file type of the new buffer to match the current buffer
-      vim.api.nvim_buf_set_option(new_bufnr, "filetype", vim.api.nvim_buf_get_option(current_bufnr, "filetype"))
+      -- Create the floating window with the current buffer
+      api.nvim_open_win(current_buf, true, opts)
 
-      -- Set the modified flag of the new buffer to match the current buffer
-      vim.api.nvim_buf_set_option(new_bufnr, "modified", vim.api.nvim_buf_get_option(current_bufnr, "modified"))
-
-      -- Switch back to the original buffer in the new tab
-      vim.api.nvim_set_current_buf(current_bufnr)
+      -- Set the buffer's modifiable option to true
+      api.nvim_buf_set_option(current_buf, "modifiable", true)
     end,
-    description = "maxise current buffer by open it in a new tab"
   },
 
   {
@@ -102,8 +174,12 @@ local M = {
   },
 
   {
+    name = "ToggleTwoSplitMode",
+    callback = require("easy-commands.impl.navigation.split_vertical").toggle_two_split_mode,
+  },
+  {
     name = "SplitVertically",
-    callback = "vsplit",
+    callback = require("easy-commands.impl.navigation.split_vertical").easy_command_split,
   },
   {
     name = "Split",
