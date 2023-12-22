@@ -159,6 +159,7 @@ local commands = {
     "CopyCurrentLine",
     "SortLines",
     "DeleteCurrentFile",
+    "TempKeyBinding",
   },
   helper = {
     "PrintSelected", -- TODO: use https://github.com/andrewferrier/debugprint.nvim

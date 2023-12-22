@@ -1,5 +1,5 @@
-local util = require("easy-commands.impl.util")
 local editor = require("easy-commands.impl.util.editor")
+local util = require("easy-commands.impl.util")
 ---@type EasyCommand.Command[]
 local M = {
   {
@@ -133,6 +133,12 @@ local M = {
   {
     name = "SortLines",
     callback = "sort",
+  },
+
+  {
+    name = "TempKeyBinding",
+    callback = require("easy-commands.impl.other.tmp_keybinding").temp_keybinding,
+    description = "Create temporary keybinding",
   },
 }
 
