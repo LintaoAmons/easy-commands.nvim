@@ -278,4 +278,21 @@ function M.splitAndWrite(content, opts)
 	vim.cmd("setlocal nomodified")
 end
 
+
+function M.close_all_other_windows()
+	-- Get the current window ID
+	local current_win = vim.api.nvim_get_current_win()
+
+	-- Get the list of all window IDs
+	local windows = vim.api.nvim_list_wins()
+
+	-- Close all windows except the current one
+	for _, win in ipairs(windows) do
+		if win ~= current_win then
+			vim.api.nvim_win_close(win, false)
+		end
+	end
+end
+
+
 return M

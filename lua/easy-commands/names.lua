@@ -69,6 +69,7 @@ local commands = {
     "GrepInDir",
 
 		"MaximiseWindow",
+		"MaximiseWindowAsPopup",
 
 		"TabNext",
 		"TabPrev",
