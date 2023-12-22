@@ -8,4 +8,8 @@ M.DebugTest = function()
   require("jdtls").test_class()
 end
 
+M.TestRunNearest = function()
+  require("jdtls").test_nearest_method()
+end
+
 return M
