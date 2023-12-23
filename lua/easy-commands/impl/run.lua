@@ -106,7 +106,7 @@ local M = {
       local sys = require("easy-commands.impl.util.base.sys")
       local editor = require("easy-commands.impl.util.editor")
       local stringUtil = require("easy-commands.impl.util.base.strings")
-      local currentLine = editor.getCurrentLine()
+      local currentLine = editor.get_current_line()
       local stdout, _, stderr = sys.run_os_cmd(stringUtil.splitCmdString(currentLine), ".")
       local result = stdout or stderr
       editor.putLines(result, "l", true, true)

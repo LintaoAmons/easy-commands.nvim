@@ -4,7 +4,7 @@ local M = {
   {
     name = "TestRunNearest",
     callback = function()
-      langUtil.CallLanguageSpecificFunc("TestRunNearest")
+      langUtil.call_language_specific_func("TestRunNearest")
     end,
     dependencies = { "https://github.com/nvim-neotest/neotest" },
   },
@@ -30,14 +30,16 @@ local M = {
   {
     name = "GoToTestFile",
     callback = function()
-      langUtil.CallLanguageSpecificFunc("GoToTestFile")
+      langUtil.call_language_specific_func("GoToTestFile")
     end,
   },
   {
     name = "TestPlugin",
     callback = function()
-      print(require("easy-commands.impl.util.editor").tab.countWindows())
+      require("some-not-existing-stuff")
+      -- print(require("easy-commands.impl.util.editor").tab.countWindows())
     end,
+    dependencies = { "https://github.com/nvim-neotest/neotest" },
   },
 }
 
