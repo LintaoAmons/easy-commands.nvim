@@ -4,7 +4,7 @@ local M = {
   {
     name = "TestRunNearest",
     callback = function()
-      langUtil.CallLanguageSpecificFunc("TestRunNearest")
+      langUtil.call_language_specific_func("TestRunNearest")
     end,
     dependencies = { "https://github.com/nvim-neotest/neotest" },
   },
@@ -30,7 +30,7 @@ local M = {
   {
     name = "GoToTestFile",
     callback = function()
-      langUtil.CallLanguageSpecificFunc("GoToTestFile")
+      langUtil.call_language_specific_func("GoToTestFile")
     end,
   },
   {
