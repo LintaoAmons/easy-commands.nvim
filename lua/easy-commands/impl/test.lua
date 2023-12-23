@@ -36,8 +36,10 @@ local M = {
   {
     name = "TestPlugin",
     callback = function()
-      print(require("easy-commands.impl.util.editor").tab.countWindows())
+      require("some-not-existing-stuff")
+      -- print(require("easy-commands.impl.util.editor").tab.countWindows())
     end,
+    dependencies = { "https://github.com/nvim-neotest/neotest" },
   },
 }
 
