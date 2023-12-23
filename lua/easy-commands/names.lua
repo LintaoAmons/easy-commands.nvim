@@ -39,12 +39,6 @@ local commands = {
     "ExtractVariable",
     "InlineVariable",
     "Rename",
-
-    "ToNextCase",
-    "ToCamelCase",
-    "ToConstantCase",
-    "ToKebabCase",
-    "ToSnakeCase",
   },
   explorer = {
     "ToggleExplorer",
