@@ -13,7 +13,7 @@ M.GoToTestFile = function()
 	end
 
 	if vim.fn.filereadable(jump_to_file) == 0 then
-		require("easy-commands.impl.util.base.fs").createFile(jump_to_file)
+		require("easy-commands.impl.util.base.fs").create_file(jump_to_file)
 	end
 
 	vim.cmd("e " .. jump_to_file)
