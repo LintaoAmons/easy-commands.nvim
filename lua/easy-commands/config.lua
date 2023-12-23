@@ -37,7 +37,7 @@ end
 local function formErrorMsg(cmd, err)
   local msg = "Something went wrong when calling [" .. cmd.name .. "]\n"
   if cmd.dependencies then
-    msg = msg .. "\nPlease check dependencies firstly" .. "\n"
+    msg = msg .. "\nPlease check dependencies firstly(required by this command)" .. "\n"
     for _, d in ipairs(cmd.dependencies) do
       msg = msg .. "    - " .. d .. "\n"
     end
