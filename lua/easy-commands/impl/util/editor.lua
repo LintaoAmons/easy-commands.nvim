@@ -121,11 +121,6 @@ local function get_current_line()
   return vim.api.nvim_get_current_line()
 end
 
-local function get_buf_name()
-  local bufnr = vim.api.nvim_get_current_buf()
-  return vim.api.nvim_buf_get_name(bufnr)
-end
-
 local function is_homedir(path)
   local home_dir = vim.loop.os_homedir()
   return path == home_dir
@@ -175,34 +170,19 @@ local function close_all_other_windows(ignore_patterns)
   end
 end
 
-local M = {
-  selections = {
-    getCursorPosition = getCursorPosition,
-    getVisualSelectionStartPosition = getVisualSelectionStartPosition,
-    getVisualSelectionEndPosition = getVisualSelectionEndPosition,
-    getVisualLines = get_visual_lines,
-  },
-  tab = {
-    countWindows = countWindows,
-  },
-  window = {
-    close_all_other_windows = close_all_other_windows,
-    splitWindow = splitWindow,
-  },
-  buf = {
-    get_buf_name = get_buf_name,
-  },
-  replaceSelectedTextWithClipboard = replaceSelectedTextWithClipboard,
-  getSelectedText = getSelectedText,
-  get_current_line = get_current_line,
-}
+---@return string
+local function get_buf_name()
+  local bufnr = vim.api.nvim_get_current_buf()
+  return vim.api.nvim_buf_get_name(bufnr)
+end
 
-M.get_buf_filetype = function()
+local get_buf_filetype = function()
   return vim.bo.ft
 end
+
 --- Get current buffer size
 ---@return {width: number, height: number}
-function M.get_buf_size()
+local function get_buf_size()
   local cbuf = vim.api.nvim_get_current_buf()
   local bufinfo = vim.tbl_filter(function(buf)
     return buf.bufnr == cbuf
@@ -213,33 +193,21 @@ function M.get_buf_size()
   return { width = bufinfo.width, height = bufinfo.height }
 end
 
-function M.get_buf_filename()
+local function get_buf_filename()
   return vim.fn.expand("%:t")
 end
 
-function M.get_buf_abs_path()
+local function get_buf_abs_path()
   return vim.fn.expand("%:p")
 end
 
 ---@return string
-function M.get_buf_abs_dir_path()
+local function get_buf_abs_dir_path()
   return vim.fn.expand("%:p:h")
 end
 
-function M.get_buf_relative_path()
-  local buf_path = M.get_buf_abs_path()
-  local project_path = M.find_project_path() or ""
-  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
-end
-
-function M.get_buf_relative_dir_path()
-  local buf_path = M.get_buf_abs_path()
-  local project_path = M.find_project_path() or ""
-  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
-end
-
 ---@return string|nil
-function M.find_project_path()
+local function find_project_path()
   for i = 1, 30, 1 do
     local dir = vim.fn.expand("%:p" .. string.rep(":h", i))
     if contains_marker_file(dir) then
@@ -250,6 +218,18 @@ function M.find_project_path()
     end
   end
   return print("excide the max depth")
+end
+
+local function get_buf_relative_path()
+  local buf_path = get_buf_abs_path()
+  local project_path = find_project_path() or ""
+  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
+end
+
+local function get_buf_relative_dir_path()
+  local buf_path = get_buf_abs_path()
+  local project_path = find_project_path() or ""
+  return string.sub(buf_path, string.len(project_path) + 2, string.len(buf_path))
 end
 
 -- Puts text at cursor, in any mode.
@@ -273,7 +253,7 @@ end
 --- @param type string
 --- @param after boolean
 --- @param follow boolean
-function M.putLines(lines, type, after, follow)
+local function put_lines(lines, type, after, follow)
   vim.api.nvim_put(lines, type, after, follow)
 end
 
@@ -281,7 +261,7 @@ end
 --- and write the content into the buffer
 ---@param content string[]
 ---@param opts {vertical: boolean}
-function M.splitAndWrite(content, opts)
+local function split_and_write(content, opts)
   if opts.vertical then
     vim.cmd("vnew")
   else
@@ -295,10 +275,46 @@ function M.splitAndWrite(content, opts)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
 
   -- Write the content into the buffer
-  M.putLines(content, "", true, true)
+  put_lines(content, "", true, true)
 
   -- Set the buffer as unmodified
   vim.cmd("setlocal nomodified")
 end
+
+local M = {
+  selections = {
+    getCursorPosition = getCursorPosition,
+    getVisualSelectionStartPosition = getVisualSelectionStartPosition,
+    getVisualSelectionEndPosition = getVisualSelectionEndPosition,
+    getVisualLines = get_visual_lines,
+  },
+  tab = {
+    countWindows = countWindows,
+  },
+  window = {
+    close_all_other_windows = close_all_other_windows,
+    splitWindow = splitWindow,
+  },
+  buf = {
+    read = {
+      get_buf_name = get_buf_name,
+      get_buf_filetype = get_buf_filetype,
+      get_buf_size = get_buf_size,
+      get_buf_filename = get_buf_filename,
+      get_buf_abs_path = get_buf_abs_path,
+      get_buf_abs_dir_path = get_buf_abs_dir_path,
+      get_buf_relative_path = get_buf_relative_path,
+      get_buf_relative_dir_path = get_buf_relative_dir_path,
+    },
+    write = {
+      put_lines = put_lines,
+    },
+  },
+  split_and_write = split_and_write,
+  find_project_path = find_project_path,
+  replaceSelectedTextWithClipboard = replaceSelectedTextWithClipboard,
+  getSelectedText = getSelectedText,
+  get_current_line = get_current_line,
+}
 
 return M
