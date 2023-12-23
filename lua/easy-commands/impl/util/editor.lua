@@ -105,10 +105,6 @@ local countWindows = function()
   return #windows
 end
 
-local maximiseWindow = function()
-  vim.api.nvim_exec2("wincmd o", { output = false })
-end
-
 ---@alias SplitMode "virtical"  | "horizontal"
 ---@param splitMode SplitMode
 local splitWindow = function(splitMode)
@@ -146,17 +142,35 @@ local function contains_marker_file(path)
   return false
 end
 
-local function close_all_other_windows()
+---@param ignore_patterns string[]
+local function close_all_other_windows(ignore_patterns)
   -- Get the current window ID
   local current_win = vim.api.nvim_get_current_win()
 
   -- Get the list of all window IDs
   local windows = vim.api.nvim_list_wins()
 
-  -- Close all windows except the current one
+  -- Function to check if the buffer name matches any pattern in the list
+  local function should_ignore(buf_name)
+    for _, pattern in ipairs(ignore_patterns) do
+      if string.find(buf_name, pattern) then
+        return true
+      end
+    end
+    return false
+  end
+
+  -- Close all windows except the current one and those matching ignore patterns
   for _, win in ipairs(windows) do
     if win ~= current_win then
-      vim.api.nvim_win_close(win, false)
+      -- Get the buffer ID for the window
+      local buf = vim.api.nvim_win_get_buf(win)
+      -- Get the name of the buffer
+      local buf_name = vim.api.nvim_buf_get_name(buf)
+      -- Check if the buffer's name should be ignored
+      if not should_ignore(buf_name) then
+        vim.api.nvim_win_close(win, false)
+      end
     end
   end
 end
@@ -172,12 +186,11 @@ local M = {
     countWindows = countWindows,
   },
   window = {
-    maximiseWindow = maximiseWindow,
+    close_all_other_windows = close_all_other_windows,
     splitWindow = splitWindow,
   },
   buf = {
     get_buf_name = get_buf_name,
-    close_all_other_windows = close_all_other_windows,
   },
   replaceSelectedTextWithClipboard = replaceSelectedTextWithClipboard,
   getSelectedText = getSelectedText,

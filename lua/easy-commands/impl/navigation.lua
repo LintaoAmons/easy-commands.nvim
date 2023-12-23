@@ -108,7 +108,12 @@ local M = {
 
   {
     name = "MaximiseWindow",
-    callback = require("easy-commands.impl.util.editor").close_all_other_windows,
+    callback = function()
+      require("easy-commands.impl.util.editor").window.close_all_other_windows({
+        "filesystem", -- neo-tree
+        "Trouble",
+      })
+    end,
   },
   {
     name = "MaximiseWindowAsPopup",

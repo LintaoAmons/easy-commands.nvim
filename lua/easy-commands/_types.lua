@@ -8,9 +8,6 @@ local M = {}
 ---@field allow_visual_mode? boolean
 ---@field errorInfo? string
 
----@type EasyCommand.Command
-M.Command = {}
-
 ---@param t table
 ---@return boolean
 function M.isCommand(t)
