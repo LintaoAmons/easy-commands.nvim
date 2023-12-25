@@ -15,7 +15,10 @@ end
 
 function M.easy_command_split()
   if vim.g.eacy_command_two_split_mode == true then
-    require("easy-commands.impl.util.editor").close_all_other_windows()
+    require("easy-commands.impl.util.editor").window.close_all_other_windows({
+      "filesystem",
+      "Trouble",
+    })
   end
   vim.cmd("rightbelow vsplit")
 end
