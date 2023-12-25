@@ -6,8 +6,8 @@ M.GoToTestFile = function()
 	local current_file = vim.fn.expand("%:p")
 
 	local jump_to_file
-	if strings.EndsWithSuffix(current_file, test_suffix) then
-		jump_to_file = strings.ReplacePattern(current_file, test_suffix, ".go")
+	if strings.ends_with_suffix(current_file, test_suffix) then
+		jump_to_file = strings.replace_pattern(current_file, test_suffix, ".go")
 	else
 		jump_to_file = vim.fn.expand("%:p:r") .. test_suffix
 	end
