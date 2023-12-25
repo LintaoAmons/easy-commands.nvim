@@ -47,7 +47,7 @@ local M = {
 	{
 		name = "DebugTest",
 		callback = function()
-			require("easy-commands.impl.util.lang").CallLanguageSpecificFunc("DebugTest")
+			require("easy-commands.impl.util.lang").call_language_specific_func("DebugTest")
 		end,
 		dependencies = {
 			"https://github.com/leoluz/nvim-dap-go",
@@ -56,7 +56,7 @@ local M = {
   {
     name = "DebugLastTest",
 		callback = function()
-			require("easy-commands.impl.util.lang").CallLanguageSpecificFunc("DebugLastTest")
+			require("easy-commands.impl.util.lang").call_language_specific_func("DebugLastTest")
 		end,
 		dependencies = {
 			"https://github.com/leoluz/nvim-dap-go",
