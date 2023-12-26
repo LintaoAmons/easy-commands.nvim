@@ -71,7 +71,7 @@ local M = {
       local bufferAbsPath = editor.get_buf_abs_path()
       local stdout, _, stderr = sys.run_os_cmd({ "hurl", "--verbose", bufferAbsPath }, ".")
       local result = stdout or stderr
-      editor.splitAndWrite(result, { vertical = true })
+      editor.split_and_write(result, { vertical = true })
     end,
     description = "use `hurl` to run current buffer and output to splitted window",
   },
@@ -84,7 +84,7 @@ local M = {
       local tmpFile = write_to_temp_file(content)
       local stdout, _, stderr = sys.run_os_cmd({ "hurl", "--verbose", tmpFile }, ".")
       local result = stdout or stderr
-      editor.splitAndWrite(result, { vertical = true })
+      editor.split_and_write(result, { vertical = true })
     end,
     description = "use `hurl` to run current buffer and output to splitted window",
     dependencies = { "https://hurl.dev/" },
@@ -126,7 +126,7 @@ local M = {
           local absPath = editor.get_buf_abs_path()
           local stdout, _, stderr = sys.run_os_cmd({ "jq", pattern, absPath }, ".")
           local result = stdout or stderr
-          editor.splitAndWrite(result, { vertical = true })
+          editor.split_and_write(result, { vertical = true })
         end
       )
     end,

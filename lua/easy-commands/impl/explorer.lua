@@ -10,7 +10,7 @@ local M = {
 		name = "OpenInFinder",
 		description = "Open the directory of current file in finder",
 		callback = function()
-			local dirpath = require("easy-commands.impl.util.editor").get_buf_abs_dir_path()
+			local dirpath = require("easy-commands.impl.util.editor").buf.read.get_buf_abs_dir_path()
 			vim.cmd("!open " .. dirpath)
 		end,
 	},
@@ -18,7 +18,7 @@ local M = {
 		name = "OpenBySystemDefaultApp",
 		description = "Open the current file by system default app",
 		callback = function()
-			local abspath = require("easy-commands.impl.util.editor").get_buf_abs_path()
+			local abspath = require("easy-commands.impl.util.editor").buf.read.get_buf_abs_path()
 			vim.cmd("!open " .. abspath)
 		end,
 	},

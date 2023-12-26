@@ -82,7 +82,7 @@ local M = {
   {
     name = "CopyBufRelativePath",
     callback = function()
-      local buf_relative_path = editor.get_buf_relative_path()
+      local buf_relative_path = editor.buf.read.get_buf_relative_path()
       util.CopyToSystemClipboard(buf_relative_path)
     end,
   },
@@ -90,14 +90,14 @@ local M = {
   {
     name = "CopyBufRelativeDirPath",
     callback = function()
-      util.CopyToSystemClipboard(editor.get_buf_relative_dir_path())
+      util.CopyToSystemClipboard(editor.buf.read.get_buf_relative_dir_path())
     end,
   },
 
   {
     name = "CopyCdCommand",
     callback = function()
-      local cmd = "cd " .. editor.get_buf_abs_dir_path()
+      local cmd = "cd " .. editor.buf.read.get_buf_abs_dir_path()
       require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
     end,
   },
@@ -105,7 +105,7 @@ local M = {
   {
     name = "CopyFilename",
     callback = function()
-      util.CopyToSystemClipboard(editor.get_buf_filename())
+      util.CopyToSystemClipboard(editor.buf.read.get_buf_filename())
     end,
   },
 
@@ -120,7 +120,7 @@ local M = {
   {
     name = "DeleteCurrentFile",
     callback = function()
-      local filepath = editor.get_buf_abs_path()
+      local filepath = editor.buf.read.get_buf_abs_path()
       local confirm = vim.fn.input("Delete file: " .. filepath .. "? (y/n): ")
       local bufnr = vim.fn.bufnr("%")
       vim.api.nvim_buf_delete(bufnr, { force = true })
