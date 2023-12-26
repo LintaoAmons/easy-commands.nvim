@@ -23,7 +23,7 @@ local M = {
     name = "PrintSelected",
     callback = function()
       local lang = require("easy-commands.impl.util.lang")
-      lang.CallLanguageSpecificFunc("PrintSelected")
+      lang.call_language_specific_func("PrintSelected")
     end,
   },
   {
