@@ -68,7 +68,7 @@ local M = {
     callback = function()
       local sys = require("easy-commands.impl.util.base.sys")
       local editor = require("easy-commands.impl.util.editor")
-      local bufferAbsPath = editor.get_buf_abs_path()
+      local bufferAbsPath = editor.buf.read.get_buf_abs_path()
       local stdout, _, stderr = sys.run_os_cmd({ "hurl", "--verbose", bufferAbsPath }, ".")
       local result = stdout or stderr
       editor.split_and_write(result, { vertical = true })
@@ -123,7 +123,7 @@ local M = {
       vim.ui.input(
         { prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' },
         function(pattern)
-          local absPath = editor.get_buf_abs_path()
+          local absPath = editor.buf.read.get_buf_abs_path()
           local stdout, _, stderr = sys.run_os_cmd({ "jq", pattern, absPath }, ".")
           local result = stdout or stderr
           editor.split_and_write(result, { vertical = true })
