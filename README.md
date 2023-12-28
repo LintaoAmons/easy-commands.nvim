@@ -45,14 +45,15 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 }
 ```
 
-- Detailed config
-  - disabledCommands: You can disable the commands you don't want
-  - aliases: You can have a alias to a specific command
-  - myCommands: @type EasyCommand.Command[]
-    - You can add your own commands
-    - You can overwrite the current implementation
-    - You can use the utils provided by the plugin to build your own command
-    - Welcome to share your awesome commands back to the plugin
+### Detailed config
+
+- disabledCommands: You can disable the commands you don't want
+- aliases: You can have a alias to a specific command
+- myCommands: `@type EasyCommand.Command[]`
+  - You can add your own commands
+  - You can overwrite the current implementation
+  - You can use the utils provided by the plugin to build your own command
+  - Welcome to share your awesome commands back to the plugin
 
 ```lua
 {
@@ -83,14 +84,22 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
         },
         -- You can use the utils provided by the plugin to build your own command
         {
-          name = "CopyCdCommand",
+          name = "JqQuery",
           callback = function()
+            local sys = require("easy-commands.impl.util.base.sys")
             local editor = require("easy-commands.impl.util.editor")
-            local cmd = "cd " .. editor.get_buf_abs_dir_path()
-            vim.print(cmd)
-            require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
+
+            vim.ui.input(
+              { prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' },
+              function(pattern)
+                local absPath = editor.buf.read.get_buf_abs_path()
+                local stdout, _, stderr = sys.run_os_cmd({ "jq", pattern, absPath }, ".")
+                local result = stdout or stderr
+                editor.split_and_write(result, { vertical = true })
+              end
+            )
           end,
-          description = "Copy the buffer abs path to system clipboard",
+          description = "use `jq` to query current json file",
         },
       },
     })
