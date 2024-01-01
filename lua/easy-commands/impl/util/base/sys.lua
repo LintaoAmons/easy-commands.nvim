@@ -5,7 +5,7 @@ local Job = require("plenary.job")
 ---@return table
 ---@return unknown
 ---@return table
-local run_os_cmd = function(cmd, cwd)
+local run_sync = function(cmd, cwd)
   if type(cmd) ~= "table" then
     print("cmd has to be a table")
     return {}, nil, {}
@@ -80,8 +80,8 @@ end
 
 ---@class Sys
 local Sys = {
-  run_os_cmd = run_os_cmd,
   CopyToSystemClipboard = CopyToSystemClipboard,
+  run_sync = run_sync,
   run_async = run_async,
 }
 

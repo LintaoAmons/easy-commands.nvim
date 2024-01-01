@@ -49,7 +49,7 @@ local M = {
     callback = function()
       vim.ui.input({ prompt = "Commit msg: " }, function(msg)
         local sys = require("easy-commands.impl.util.base.sys")
-        sys.run_os_cmd({ "git", "commit", "-m", msg }, ".")
+        sys.run_sync({ "git", "commit", "-m", msg }, ".")
       end)
     end,
     description = "Commit current staged changes with commit msg",
