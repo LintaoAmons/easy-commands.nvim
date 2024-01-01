@@ -12,12 +12,19 @@ local M = {
   },
 
   {
-    name =  "GitDiffCurrentFileWithBranch",
-    callback = function ()
-      local branch_name = "branch_name"
-      local filename = require("easy-commands.impl.util.editor").buf.read.get_buf_relative_path()
-      local cmd = "DiffviewOpen " .. branch_name .. " -- " .. filename
-      vim.cmd(cmd)
+    name = "GitDiffCurrentFileWithBranch",
+    callback = function()
+      local sys = require("easy-commands.impl.util.base.sys")
+      local branches, _, _ =
+        sys.run_sync({ "git", "branch", "--list", "--format=%(refname:short)" }, ".")
+
+      vim.ui.select(branches, {
+        prompt = "Select a branch:",
+        kind = "branch",
+      }, function(branch_name)
+        local filename = require("easy-commands.impl.util.editor").buf.read.get_buf_relative_path()
+        vim.cmd("DiffviewOpen " .. branch_name .. " -- " .. filename)
+      end)
     end,
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
