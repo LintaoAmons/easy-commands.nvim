@@ -43,4 +43,8 @@ local M = {
   },
 }
 
+-- NOTES: 
+--- run test by terminal
+--- node jest: `npm test -- -t "should correctly parse a simple layout" --watchAll=false`
+
 return M

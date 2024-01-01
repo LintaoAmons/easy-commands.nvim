@@ -15,9 +15,12 @@ local commands = {
     "GitListCommits",
     "GitListCommitsOfCurrentFile",
     "GitListCommitsOfSelectedLines",
+
     "GitNextHunk",
     "GitPrevHunk",
     "GitResetHunk",
+    "GitAddHunk",
+
     "GitListBranches",
     "GitBlameLine",
     "GitResetBuffer",

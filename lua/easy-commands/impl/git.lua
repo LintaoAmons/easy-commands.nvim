@@ -67,6 +67,14 @@ local M = {
     callback = "lua require 'gitsigns'.reset_hunk()",
     dependencies = { "https://github.com/lewis6991/gitsigns.nvim" },
   },
+
+  {
+    name = "GitAddHunk",
+    callback = "Gitsigns stage_hunk",
+    dependencies = {
+      "https://github.com/lewis6991/gitsigns.nvim",
+    },
+  },
   {
     name = "GitListBranches",
     callback = "Telescope git_branches",
