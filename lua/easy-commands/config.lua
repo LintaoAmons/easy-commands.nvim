@@ -13,10 +13,6 @@ local default_config = {
   },
   aliases = {
     {
-      from = "GitListCommits",
-      to = "GitLog",
-    },
-    {
       from = "GitAddHunk",
       to = "GitStageHunk",
     },

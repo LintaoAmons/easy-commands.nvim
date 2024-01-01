@@ -30,6 +30,12 @@ local M = {
   },
 
   {
+    name = "GitDiffCommits",
+    callback = "DiffviewFileHistory",
+    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
+  },
+
+  {
     name = "GitStatus",
     callback = "Telescope git_status",
     dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
@@ -61,11 +67,13 @@ local M = {
     end,
     description = "Commit current staged changes with commit msg",
   },
+
   {
-    name = "GitListCommits",
-    callback = "DiffviewFileHistory",
-    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
+    name = "GitLog",
+    callback = "Flog --all",
+    dependencies = { "https://github.com/rbong/vim-flog" },
   },
+
   {
     name = "GitListCommitsOfCurrentFile",
     callback = "DiffviewFileHistory %",
