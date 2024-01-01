@@ -70,7 +70,7 @@ local M = {
 
   {
     name = "GitLog",
-    callback = "Flog --all",
+    callback = "Flog -all",
     dependencies = { "https://github.com/rbong/vim-flog" },
   },
 
