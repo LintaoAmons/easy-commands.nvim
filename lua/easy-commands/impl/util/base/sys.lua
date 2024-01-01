@@ -1,5 +1,3 @@
----@class Sys
-local Sys = {}
 local Job = require("plenary.job")
 
 ---@param cmd string[]
@@ -7,9 +5,9 @@ local Job = require("plenary.job")
 ---@return table
 ---@return unknown
 ---@return table
-Sys.run_os_cmd = function(cmd, cwd)
+local run_sync = function(cmd, cwd)
   if type(cmd) ~= "table" then
-    print('cmd has to be a table')
+    print("cmd has to be a table")
     return {}, nil, {}
   end
   local command = table.remove(cmd, 1)
@@ -20,23 +18,23 @@ Sys.run_os_cmd = function(cmd, cwd)
     cwd = cwd,
     on_stderr = function(_, data)
       table.insert(stderr, data)
-    end
+    end,
   }):sync()
   return stdout, ret, stderr
 end
 
 ---@param content string
-Sys.CopyToSystemClipboard = function(content)
-  local copy_cmd = 'pbcopy'
+local CopyToSystemClipboard = function(content)
+  local copy_cmd = "pbcopy"
   -- Copy the absolute path to the clipboard
-  if vim.fn.has('mac') or vim.fn.has('macunix') then
-    copy_cmd = 'pbcopy'
-  elseif vim.fn.has('win32') or vim.fn.has('win64') then
-    copy_cmd = 'clip'
-  elseif vim.fn.has('unix') then
-    copy_cmd = 'xclip -selection clipboard'
+  if vim.fn.has("mac") or vim.fn.has("macunix") then
+    copy_cmd = "pbcopy"
+  elseif vim.fn.has("win32") or vim.fn.has("win64") then
+    copy_cmd = "clip"
+  elseif vim.fn.has("unix") then
+    copy_cmd = "xclip -selection clipboard"
   else
-    print('Unsupported operating system')
+    print("Unsupported operating system")
     return
   end
 
@@ -51,7 +49,7 @@ end
 ---@param buf_nr number buffer number
 ---@param opts runOpts options
 ---@return number returns the job id
-Sys.run = function(cmd, buf_nr, opts)
+local run_async = function(cmd, buf_nr, opts)
   -- print the prompt header
   local header = {}
   if opts and opts.header then
@@ -79,5 +77,12 @@ Sys.run = function(cmd, buf_nr, opts)
     end,
   })
 end
+
+---@class Sys
+local Sys = {
+  CopyToSystemClipboard = CopyToSystemClipboard,
+  run_sync = run_sync,
+  run_async = run_async,
+}
 
 return Sys

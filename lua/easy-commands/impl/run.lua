@@ -69,7 +69,7 @@ local M = {
       local sys = require("easy-commands.impl.util.base.sys")
       local editor = require("easy-commands.impl.util.editor")
       local bufferAbsPath = editor.buf.read.get_buf_abs_path()
-      local stdout, _, stderr = sys.run_os_cmd({ "hurl", "--verbose", bufferAbsPath }, ".")
+      local stdout, _, stderr = sys.run_sync({ "hurl", "--verbose", bufferAbsPath }, ".")
       local result = stdout or stderr
       editor.split_and_write(result, { vertical = true })
     end,
@@ -82,7 +82,7 @@ local M = {
       local editor = require("easy-commands.impl.util.editor")
       local content = editor.getSelectedText()
       local tmpFile = write_to_temp_file(content)
-      local stdout, _, stderr = sys.run_os_cmd({ "hurl", "--verbose", tmpFile }, ".")
+      local stdout, _, stderr = sys.run_sync({ "hurl", "--verbose", tmpFile }, ".")
       local result = stdout or stderr
       editor.split_and_write(result, { vertical = true })
     end,
@@ -107,7 +107,7 @@ local M = {
       local editor = require("easy-commands.impl.util.editor")
       local stringUtil = require("easy-commands.impl.util.base.strings")
       local currentLine = editor.get_current_line()
-      local stdout, _, stderr = sys.run_os_cmd(stringUtil.splitCmdString(currentLine), ".")
+      local stdout, _, stderr = sys.run_sync(stringUtil.splitCmdString(currentLine), ".")
       local result = stdout or stderr
       editor.putLines(result, "l", true, true)
       pcall(sys.CopyToSystemClipboard, stringUtil.join(result, "\n"))
@@ -124,7 +124,7 @@ local M = {
         { prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' },
         function(pattern)
           local absPath = editor.buf.read.get_buf_abs_path()
-          local stdout, _, stderr = sys.run_os_cmd({ "jq", pattern, absPath }, ".")
+          local stdout, _, stderr = sys.run_sync({ "jq", pattern, absPath }, ".")
           local result = stdout or stderr
           editor.split_and_write(result, { vertical = true })
         end

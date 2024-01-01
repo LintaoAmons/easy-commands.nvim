@@ -16,6 +16,10 @@ local default_config = {
       from = "GitListCommits",
       to = "GitLog",
     },
+    {
+      from = "GitAddHunk",
+      to = "GitStageHunk",
+    },
   },
   -- TODO: commandSpecificConfig
   commandSpecificConfig = {

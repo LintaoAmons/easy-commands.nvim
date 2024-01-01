@@ -10,6 +10,25 @@ local M = {
     callback = "DiffviewOpen",
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
+
+  {
+    name = "GitDiffCurrentFileWithBranch",
+    callback = function()
+      local sys = require("easy-commands.impl.util.base.sys")
+      local branches, _, _ =
+        sys.run_sync({ "git", "branch", "--list", "--format=%(refname:short)" }, ".")
+
+      vim.ui.select(branches, {
+        prompt = "Select a branch:",
+        kind = "branch",
+      }, function(branch_name)
+        local filename = require("easy-commands.impl.util.editor").buf.read.get_buf_relative_path()
+        vim.cmd("DiffviewOpen " .. branch_name .. " -- " .. filename)
+      end)
+    end,
+    dependencies = { "https://github.com/sindrets/diffview.nvim" },
+  },
+
   {
     name = "GitStatus",
     callback = "Telescope git_status",
@@ -37,7 +56,7 @@ local M = {
     callback = function()
       vim.ui.input({ prompt = "Commit msg: " }, function(msg)
         local sys = require("easy-commands.impl.util.base.sys")
-        sys.run_os_cmd({ "git", "commit", "-m", msg }, ".")
+        sys.run_sync({ "git", "commit", "-m", msg }, ".")
       end)
     end,
     description = "Commit current staged changes with commit msg",
@@ -66,6 +85,14 @@ local M = {
     name = "GitResetHunk",
     callback = "lua require 'gitsigns'.reset_hunk()",
     dependencies = { "https://github.com/lewis6991/gitsigns.nvim" },
+  },
+
+  {
+    name = "GitAddHunk",
+    callback = "Gitsigns stage_hunk",
+    dependencies = {
+      "https://github.com/lewis6991/gitsigns.nvim",
+    },
   },
   {
     name = "GitListBranches",

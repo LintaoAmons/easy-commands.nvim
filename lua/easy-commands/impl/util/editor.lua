@@ -127,7 +127,7 @@ local function is_homedir(path)
 end
 
 local function contains_marker_file(path)
-  local marker_files = { ".git", ".gitignore" } -- list of marker files
+  local marker_files = vim.g.easy_command_project_root_dir_marker_files or { ".git", ".gitignore" } -- list of marker files
   for _, file in ipairs(marker_files) do
     local full_path = path .. "/" .. file
     if vim.fn.filereadable(full_path) == 1 or vim.fn.isdirectory(full_path) == 1 then

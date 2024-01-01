@@ -93,7 +93,7 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
               { prompt = 'Query pattern, e.g. `.[] | .["@message"].message`' },
               function(pattern)
                 local absPath = editor.buf.read.get_buf_abs_path()
-                local stdout, _, stderr = sys.run_os_cmd({ "jq", pattern, absPath }, ".")
+                local stdout, _, stderr = sys.run_sync({ "jq", pattern, absPath }, ".")
                 local result = stdout or stderr
                 editor.split_and_write(result, { vertical = true })
               end
