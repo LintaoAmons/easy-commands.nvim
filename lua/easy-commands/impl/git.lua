@@ -10,6 +10,18 @@ local M = {
     callback = "DiffviewOpen",
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
+
+  {
+    name =  "GitDiffCurrentFileWithBranch",
+    callback = function ()
+      local branch_name = "branch_name"
+      local filename = require("easy-commands.impl.util.editor").buf.read.get_buf_relative_path()
+      local cmd = "DiffviewOpen " .. branch_name .. " -- " .. filename
+      vim.cmd(cmd)
+    end,
+    dependencies = { "https://github.com/sindrets/diffview.nvim" },
+  },
+
   {
     name = "GitStatus",
     callback = "Telescope git_status",
