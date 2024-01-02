@@ -40,10 +40,12 @@ local M = {
     callback = "Telescope git_status",
     dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
+
   {
     name = "GitStash",
-    callback = "!git stash",
+    callback = require("easy-commands.impl.git.git").stash,
   },
+
   {
     name = "GitStashPop",
     callback = "!git stash pop",
