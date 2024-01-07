@@ -5,9 +5,11 @@
 local commands = {
   git = { -- TODO: README
     "Git",
+
     "GitDiff",
     "GitDiffCurrentFileWithBranch",
-    "GitDiffCommits",
+    "GitDiffCommitsOfCurrentBranch",
+
     "GitLog",
     "GitStatus",
     "GitCommit",

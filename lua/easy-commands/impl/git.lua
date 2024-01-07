@@ -30,9 +30,9 @@ local M = {
   },
 
   {
-    name = "GitDiffCommits",
+    name = "GitDiffCommitsOfCurrentBranch",
     callback = "DiffviewFileHistory",
-    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
+    dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
 
   {
