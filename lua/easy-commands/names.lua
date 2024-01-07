@@ -5,18 +5,19 @@
 local commands = {
   git = { -- TODO: README
     "Git",
-
-    "GitDiff",
-    "GitDiffCurrentFileWithBranch",
-    "GitDiffCommitsOfCurrentBranch",
-
+    "GitCheckout",
     "GitLog",
     "GitStatus",
     "GitCommit",
     "GitStash",
     "GitStashPop",
-    "GitStashHistory",
     "GitPush",
+
+    "GitDiff",
+    "GitDiffCurrentFileWithBranch",
+    "GitDiffCommitsOfCurrentBranch",
+    "GitDiffStashHistory",
+
     "GitListCommitsOfCurrentFile",
     "GitListCommitsOfSelectedLines",
 
@@ -25,10 +26,8 @@ local commands = {
     "GitResetHunk",
     "GitAddHunk",
 
-    "GitListBranches",
     "GitBlameLine",
     "GitResetBuffer",
-    "GitLazygit",
   },
   debug = {
     "ToggleDebugUI",

@@ -51,13 +51,18 @@ local M = {
     callback = "!git stash pop",
   },
   {
-    name = "GitStashHistory",
+    name = "GitDiffStashHistory",
     callback = "DiffviewFileHistory -g --range=stash",
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
   {
     name = "GitPush",
     callback = "!git push",
+  },
+  {
+    name = "GitCheckout",
+    callback = "Telescope git_branches",
+    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
   {
     name = "GitCommit",
@@ -103,11 +108,6 @@ local M = {
     dependencies = {
       "https://github.com/lewis6991/gitsigns.nvim",
     },
-  },
-  {
-    name = "GitListBranches",
-    callback = "Telescope git_branches",
-    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
   {
     name = "GitBlameLine",
