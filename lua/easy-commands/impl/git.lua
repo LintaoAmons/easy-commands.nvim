@@ -30,26 +30,39 @@ local M = {
   },
 
   {
+    name = "GitDiffCommitsOfCurrentBranch",
+    callback = "DiffviewFileHistory",
+    dependencies = { "https://github.com/sindrets/diffview.nvim" },
+  },
+
+  {
     name = "GitStatus",
     callback = "Telescope git_status",
     dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
+
   {
     name = "GitStash",
-    callback = "!git stash",
+    callback = require("easy-commands.impl.git.git").stash,
   },
+
   {
     name = "GitStashPop",
     callback = "!git stash pop",
   },
   {
-    name = "GitStashHistory",
+    name = "GitDiffStashHistory",
     callback = "DiffviewFileHistory -g --range=stash",
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
   {
     name = "GitPush",
     callback = "!git push",
+  },
+  {
+    name = "GitCheckout",
+    callback = "Telescope git_branches",
+    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
   {
     name = "GitCommit",
@@ -61,11 +74,13 @@ local M = {
     end,
     description = "Commit current staged changes with commit msg",
   },
+
   {
-    name = "GitListCommits",
-    callback = "DiffviewFileHistory",
-    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
+    name = "GitLog",
+    callback = "Flog -all",
+    dependencies = { "https://github.com/rbong/vim-flog" },
   },
+
   {
     name = "GitListCommitsOfCurrentFile",
     callback = "DiffviewFileHistory %",
@@ -93,11 +108,6 @@ local M = {
     dependencies = {
       "https://github.com/lewis6991/gitsigns.nvim",
     },
-  },
-  {
-    name = "GitListBranches",
-    callback = "Telescope git_branches",
-    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
   {
     name = "GitBlameLine",
