@@ -10,7 +10,7 @@ local M = {
 			local editor = require("easy-commands.impl.util.editor")
 			local string = require("easy-commands.impl.util.base.strings")
 			local result = vim.api.nvim_exec2("verbose map", { output = true })
-			local content = string.splitIntoLines(result.output)
+			local content = string.split_into_lines(result.output)
 			editor.split_and_write(content, { vertical = true })
 		end,
 		description = "Show all the keymaps and show the location of definition\n"
@@ -34,7 +34,7 @@ local M = {
 				local editor = require("easy-commands.impl.util.editor")
 				local string = require("easy-commands.impl.util.base.strings")
 				local result = vim.api.nvim_exec2("verb command " .. cmdName, { output = true })
-				local content = string.splitIntoLines(result.output)
+				local content = string.split_into_lines(result.output)
 				editor.split_and_write(content, { vertical = true })
 			end)
 		end,

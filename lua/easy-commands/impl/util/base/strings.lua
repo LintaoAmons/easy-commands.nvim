@@ -15,7 +15,7 @@ local function EndsWithSuffix(str, suffix)
   return str:sub(-len) == suffix
 end
 
-local function splitIntoLines(i)
+local function split_into_lines(i)
   local lines = {}
   for line in i:gmatch("([^\n]*)\n?") do
     if line ~= "" then
@@ -74,7 +74,7 @@ local M = {
   trim = trim,
   contains = contains,
   ends_with_suffix = EndsWithSuffix,
-  split_into_lines = splitIntoLines,
+  split_into_lines = split_into_lines,
   join = join,
   split_cmd_string = splitCmdString,
 }
