@@ -31,6 +31,12 @@ Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obs
 
 </details>
 
+## New Commands Added: SendSelectedToTerminalAndRun
+> Find more usecase: [CommandUsecases](./CommandUsecase.md)
+
+![SendSelectedToTerminalAndRun](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/19593532-5a7c-4416-971f-53b73b421a7c)
+
+
 ## Install & Config
 
 using your favorate plugin manager, for example [lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -112,8 +118,6 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 Run `InspectCommand` to check all the commands that provided by easy-commands, and find the path of definition which you can further check
 
 Or you can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
-
-- [CommandUsecases](./CommandUsecase.md)
 
 ## Keybindings
 
