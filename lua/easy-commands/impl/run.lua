@@ -140,14 +140,14 @@ local M = {
     end,
   },
   {
-    name = "SentLineToTerminalAndRun",
+    name = "SendLineToTerminalAndRun",
     allow_visual_mode = true,
     callback = function()
       require("easy-commands.impl.run.run").sent_lint_to_terminal_and_run()
     end,
   },
   {
-    name = "SentToTerminalAndRun",
+    name = "SendToTerminalAndRun",
     allow_visual_mode = true,
     callback = function()
       require("easy-commands.impl.run.run").sent_to_terminal_and_run()
