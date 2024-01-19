@@ -1,4 +1,4 @@
-local sent_selected_to_terminal_and_run = function()
+local send_selected_to_terminal_and_run = function()
   local editor = require("easy-commands.impl.util.editor")
   local terminal = editor.buf.read.get_first_terminal()
   local selected = editor.getSelectedText()
@@ -15,7 +15,7 @@ local function sent_to_terminal_and_run()
   end)
 end
 
-local function sent_lint_to_terminal_and_run()
+local function send_line_to_terminal_and_run()
   local editor = require("easy-commands.impl.util.editor")
   local line = editor.get_current_line()
   local terminal = editor.buf.read.get_first_terminal()
@@ -23,7 +23,7 @@ local function sent_lint_to_terminal_and_run()
 end
 
 return {
-  sent_selected_to_terminal_and_run = sent_selected_to_terminal_and_run,
+  send_selected_to_terminal_and_run = send_selected_to_terminal_and_run,
   sent_to_terminal_and_run = sent_to_terminal_and_run,
-  sent_lint_to_terminal_and_run = sent_lint_to_terminal_and_run,
+  send_line_to_terminal_and_run = send_line_to_terminal_and_run,
 }
