@@ -128,6 +128,9 @@ local commands = {
     "DistinctLines",
     "TrimLine",
     "CsvPrettify",
+
+    "SentToTerminalAndRun",
+    "SendLineToTerminalAndRun",
     "SendSelectedToTerminalAndRun",
     -- "RunCurrentLineAndOutputWithPrePostFix",
     -- "RunSelectedAndOutput",
