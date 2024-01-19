@@ -281,6 +281,32 @@ local function split_and_write(content, opts)
   vim.cmd("setlocal nomodified")
 end
 
+---@param terminal_chan number
+---@param term_cmd_text string
+local send_to_terminal = function(terminal_chan, term_cmd_text)
+  vim.api.nvim_chan_send(terminal_chan, term_cmd_text .. "\n")
+end
+
+--- Get the channel of the first terminal
+--- channel structure can be find at
+--- https://neovim.io/doc/user/api.html#nvim_get_chan_info()
+---@return any?
+local function get_first_terminal()
+  local terminal_chans = {}
+  for _, chan in pairs(vim.api.nvim_list_chans()) do
+    if chan["mode"] == "terminal" and chan["pty"] ~= "" then
+      table.insert(terminal_chans, chan)
+    end
+  end
+  table.sort(terminal_chans, function(left, right)
+    return left["buffer"] < right["buffer"]
+  end)
+  if #terminal_chans == 0 then
+    return nil
+  end
+  return terminal_chans[1]
+end
+
 local M = {
   selections = {
     getCursorPosition = getCursorPosition,
@@ -305,14 +331,17 @@ local M = {
       get_buf_abs_dir_path = get_buf_abs_dir_path,
       get_buf_relative_path = get_buf_relative_path,
       get_buf_relative_dir_path = get_buf_relative_dir_path,
+      get_first_terminal = get_first_terminal,
     },
     write = {
       put_lines = put_lines,
+      send_to_terminal = send_to_terminal,
     },
   },
   split_and_write = split_and_write,
   find_project_path = find_project_path,
   replaceSelectedTextWithClipboard = replaceSelectedTextWithClipboard,
+  -- TODO: refactor into selections group
   getSelectedText = getSelectedText,
   get_current_line = get_current_line,
 }

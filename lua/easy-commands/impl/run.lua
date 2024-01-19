@@ -132,6 +132,13 @@ local M = {
     end,
     description = "use `jq` to query current json file",
   },
+  {
+    name = "SendSelectedToTerminalAndRun",
+    allow_visual_mode = true,
+    callback = function()
+      require("easy-commands.impl.run.run").terminal_send_cmd()
+    end,
+  },
   -- {
   -- 	name = "QueryCsv",
   -- 	callback = function()
