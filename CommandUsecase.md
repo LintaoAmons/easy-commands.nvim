@@ -1,3 +1,10 @@
+> Run `InspectCommand` to check all the commands that provided by easy-commands, and find the path of definition which you can further check
+>
+> Or you can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
+>
+> Help needed to add more GIF to showcase the usage, welcome your PR!
+
+
 ## Git
 
 ### GitDiffCurrentFileWithBranch
