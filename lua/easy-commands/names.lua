@@ -4,7 +4,6 @@
 
 local commands = {
   git = { -- TODO: README
-    "Git",
     "GitCheckout",
     "GitLog",
     "GitStatus",
@@ -14,12 +13,15 @@ local commands = {
     "GitPush",
 
     "GitDiff",
+    "GitDiffBranches",
+    "GitDiffCommits",
+    "GitDiffCurrentFileHistory",
     "GitDiffCurrentFileWithBranch",
-    "GitDiffCommitsOfCurrentBranch",
+    "GitDiffCurrentBranchHistory",
     "GitDiffStashHistory",
 
     "GitListCommitsOfCurrentFile",
-    "GitListCommitsOfSelectedLines",
+    "GitListCommitsOfSelectedLines", -- TODO: impl
 
     "GitNextHunk",
     "GitPrevHunk",

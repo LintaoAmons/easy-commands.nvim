@@ -25,6 +25,9 @@ local function split_into_lines(i)
   return lines
 end
 
+---@param stringList string[]
+---@param delimiter string
+---@return string
 local function join(stringList, delimiter)
   local str = ""
   for i, s in ipairs(stringList) do
@@ -69,9 +72,23 @@ local function splitCmdString(cmd)
   return t
 end
 
+---split the string by delimiter
+---@param inputStr string
+---@param delimiter string
+---@return string[]
+local function split(inputStr, delimiter)
+  local t = {}
+  local pattern = "([^" .. delimiter .. "]+)"
+  for str in string.gmatch(inputStr, pattern) do
+    table.insert(t, str)
+  end
+  return t
+end
+
 local M = {
   replace_pattern = ReplacePattern,
   trim = trim,
+  split = split,
   contains = contains,
   ends_with_suffix = EndsWithSuffix,
   split_into_lines = split_into_lines,

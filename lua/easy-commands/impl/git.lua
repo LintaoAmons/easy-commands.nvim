@@ -1,38 +1,45 @@
 ---@type EasyCommand.Command[]
 local M = {
   {
-    name = "Git",
-    callback = "Neogit",
-    dependencies = { "https://github.com/NeogitOrg/neogit" },
-  },
-  {
     name = "GitDiff",
     callback = "DiffviewOpen",
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
 
   {
-    name = "GitDiffCurrentFileWithBranch",
-    callback = function()
-      local sys = require("easy-commands.impl.util.base.sys")
-      local branches, _, _ =
-        sys.run_sync({ "git", "branch", "--list", "--format=%(refname:short)" }, ".")
-
-      vim.ui.select(branches, {
-        prompt = "Select a branch:",
-        kind = "branch",
-      }, function(branch_name)
-        local filename = require("easy-commands.impl.util.editor").buf.read.get_buf_relative_path()
-        vim.cmd("DiffviewOpen " .. branch_name .. " -- " .. filename)
-      end)
-    end,
+    name = "GitDiffBranches",
+    callback = require("easy-commands.impl.git.git-diff").diff_branches,
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
   },
 
   {
-    name = "GitDiffCommitsOfCurrentBranch",
+    name = "GitDiffCommits",
+    callback = require("easy-commands.impl.git.git-diff").diff_commits,
+    dependencies = { "https://github.com/sindrets/diffview.nvim" },
+  },
+
+  {
+    name = "GitDiffCurrentFileWithBranch",
+    callback = require("easy-commands.impl.git.git-diff").diff_current_file_with_branch,
+    dependencies = { "https://github.com/sindrets/diffview.nvim" },
+  },
+
+  {
+    name = "GitDiffCurrentBranchHistory",
     callback = "DiffviewFileHistory",
     dependencies = { "https://github.com/sindrets/diffview.nvim" },
+  },
+
+  {
+    name = "GitDiffStashHistory",
+    callback = "DiffviewFileHistory -g --range=stash",
+    dependencies = { "https://github.com/sindrets/diffview.nvim" },
+  },
+
+  {
+    name = "GitDiffCurrentFileHistory",
+    callback = "DiffviewFileHistory %",
+    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
 
   {
@@ -51,27 +58,19 @@ local M = {
     callback = "!git stash pop",
   },
   {
-    name = "GitDiffStashHistory",
-    callback = "DiffviewFileHistory -g --range=stash",
-    dependencies = { "https://github.com/sindrets/diffview.nvim" },
-  },
-  {
     name = "GitPush",
     callback = "!git push",
   },
+
   {
     name = "GitCheckout",
     callback = "Telescope git_branches",
     dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   },
+
   {
     name = "GitCommit",
-    callback = function()
-      vim.ui.input({ prompt = "Commit msg: " }, function(msg)
-        local sys = require("easy-commands.impl.util.base.sys")
-        sys.run_sync({ "git", "commit", "-m", msg }, ".")
-      end)
-    end,
+    callback = require("easy-commands.impl.git.git").commit,
     description = "Commit current staged changes with commit msg",
   },
 
@@ -81,11 +80,6 @@ local M = {
     dependencies = { "https://github.com/rbong/vim-flog" },
   },
 
-  {
-    name = "GitListCommitsOfCurrentFile",
-    callback = "DiffviewFileHistory %",
-    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
-  },
   {
     name = "GitNextHunk",
     callback = "lua require 'gitsigns'.next_hunk({navigation_message = false})",
@@ -105,9 +99,7 @@ local M = {
   {
     name = "GitAddHunk",
     callback = "Gitsigns stage_hunk",
-    dependencies = {
-      "https://github.com/lewis6991/gitsigns.nvim",
-    },
+    dependencies = { "https://github.com/lewis6991/gitsigns.nvim" },
   },
   {
     name = "GitBlameLine",

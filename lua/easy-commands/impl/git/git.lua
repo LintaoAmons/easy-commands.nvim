@@ -1,3 +1,9 @@
+local commit = function()
+  vim.ui.input({ prompt = "Commit msg: " }, function(msg)
+    local sys = require("easy-commands.impl.util.base.sys")
+    sys.run_sync({ "git", "commit", "-m", msg }, ".")
+  end)
+end
 ---Stash with comments
 local stash = function()
   local sys = require("easy-commands.impl.util.base.sys")
@@ -8,7 +14,8 @@ local stash = function()
 end
 
 local Git = {
-  stash = stash
+  stash = stash,
+  commit = commit,
 }
 
 return Git

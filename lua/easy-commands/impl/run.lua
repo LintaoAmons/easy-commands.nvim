@@ -136,7 +136,14 @@ local M = {
     name = "SendSelectedToTerminalAndRun",
     allow_visual_mode = true,
     callback = function()
-      require("easy-commands.impl.run.run").terminal_send_cmd()
+      require("easy-commands.impl.run.run").sent_selected_to_terminal_and_run()
+    end,
+  },
+  {
+    name = "SentToTerminalAndRun",
+    allow_visual_mode = true,
+    callback = function()
+      require("easy-commands.impl.run.run").sent_to_terminal_and_run()
     end,
   },
   -- {
