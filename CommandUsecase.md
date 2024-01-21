@@ -16,3 +16,9 @@
 ### SendSelectedToTerminalAndRun
 
 ![SendSelectedToTerminalAndRun](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/19593532-5a7c-4416-971f-53b73b421a7c)
+
+## Navigation
+
+### MaximiseWindowAsPopup
+
+![MaximiseWindowAsPopup](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/cfa29beb-8353-4c50-989b-906951f74007)
