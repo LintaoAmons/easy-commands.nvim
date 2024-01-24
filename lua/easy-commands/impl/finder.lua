@@ -1,3 +1,33 @@
+local function find_commands()
+  -- TODO: recent commands
+  -- local recent_commands = vim.g.easy_command_recent_commands or {}
+  local commands = vim.api.nvim_get_commands({})
+
+  local commandList = {}
+  local maxLength = 0
+  for name, value in pairs(commands) do
+    if #name > maxLength then
+      maxLength = #name
+    end
+    -- if vim.tbl_contains(commandList, value)
+    table.insert(commandList, value)
+  end
+
+  vim.ui.select(commandList, {
+    prompt = "Commands",
+    format_item = function(command)
+      local name = string.format("%-" .. maxLength .. "s", command.name)
+      return name .. " | " .. command.definition
+    end,
+    telescope = require("telescope.themes"),
+  }, function(command)
+    if not command then
+      return
+    end
+    vim.api.nvim_exec2(command.name, {})
+  end)
+end
+
 ---@type EasyCommand.Command[]
 local M = {
   {
@@ -8,8 +38,7 @@ local M = {
   },
   {
     name = "FindCommands",
-    callback = "Telescope commands",
-    dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
+    callback = find_commands,
   },
   {
     name = "FindKeymappins",
