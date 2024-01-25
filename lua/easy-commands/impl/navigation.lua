@@ -1,8 +1,8 @@
 local function goToDefinitionInSplit()
   local buffer = require("easy-commands.impl.util.editor").window
-  buffer.maximiseWindow()
+  buffer.close_all_other_windows()
   buffer.splitWindow("virtical")
-  vim.api.nvim_command("Lspsaga goto_definition")
+  vim.api.nvim_exec2("Lspsaga goto_definition")
   -- vim.api.nvim_command("zz") TODO: how to write "zz" by lua function
 end
 

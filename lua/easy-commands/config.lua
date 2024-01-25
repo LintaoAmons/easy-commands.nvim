@@ -1,9 +1,5 @@
 local default_config = {
   disabledCommands = {},
-  ["RunCurrentLineAndOutputWithPrePostFix"] = {
-    prefix = "```bash",
-    postfix = "```",
-  },
   ---@type EasyCommand.Command[]
   myCommands = {
     {
@@ -16,10 +12,6 @@ local default_config = {
       from = "GitAddHunk",
       to = "GitStageHunk",
     },
-  },
-  -- TODO: commandSpecificConfig
-  commandSpecificConfig = {
-    ["CommandName"] = {},
   },
 }
 
@@ -99,6 +91,7 @@ local function registerUserCommand(implementation, commandName)
     vim.api.nvim_create_user_command(
       commandName,
       safeCallWithErrMsg(implementation),
+      -- TODO: default range to true
       { range = true, desc = implementation.description }
     )
     return

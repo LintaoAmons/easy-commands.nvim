@@ -137,7 +137,7 @@ local function contains_marker_file(path)
   return false
 end
 
----@param ignore_patterns string[]
+---@param ignore_patterns string[]|nil
 local function close_all_other_windows(ignore_patterns)
   -- Get the current window ID
   local current_win = vim.api.nvim_get_current_win()
@@ -147,7 +147,12 @@ local function close_all_other_windows(ignore_patterns)
 
   -- Function to check if the buffer name matches any pattern in the list
   local function should_ignore(buf_name)
-    for _, pattern in ipairs(ignore_patterns) do
+    for _, pattern in
+      ipairs(ignore_patterns or {
+        "filesystem", -- neo-tree
+        "Trouble",
+      })
+    do
       if string.find(buf_name, pattern) then
         return true
       end
