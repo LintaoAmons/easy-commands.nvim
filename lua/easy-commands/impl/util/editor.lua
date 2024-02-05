@@ -330,6 +330,7 @@ end
 local function new_popup_window(popup_content)
   local popup_buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(popup_buf, 0, -1, false, popup_content)
+  vim.api.nvim_buf_set_option(popup_buf, 'filetype', "sh")
   local width = vim.fn.strdisplaywidth(table.concat(popup_content, "\n"))
   local height = #popup_content
 
