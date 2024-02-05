@@ -29,6 +29,9 @@ end
 
 local function run_shell_at_current_buffer_dir()
   vim.ui.input({ prompt = "Enter your command" }, function(cmd)
+    if not cmd or cmd == "" then
+      return
+    end
     local alias = vim.g.easy_command_cmd_alias
       or {
         ["gaa"] = "git add .",
@@ -39,7 +42,7 @@ local function run_shell_at_current_buffer_dir()
     local dir = editor.buf.read.get_buf_abs_dir_path()
     local output = vim.fn.system("cd " .. dir .. " && " .. (alias[cmd] or cmd))
     local created = editor.window.new_popup_window(strings.split_into_lines(output))
-    vim.keymap.set("n", "q", function()
+    vim.keymap.set({ "v", "n" }, "q", function()
       vim.api.nvim_win_close(created.win, true)
     end, {
       noremap = true,
@@ -47,7 +50,7 @@ local function run_shell_at_current_buffer_dir()
       nowait = true,
       buffer = created.buf,
     })
-    vim.keymap.set("n", "<CR>", function()
+    vim.keymap.set({ "v", "n" }, "<CR>", function()
       vim.api.nvim_win_close(created.win, true)
     end, {
       noremap = true,

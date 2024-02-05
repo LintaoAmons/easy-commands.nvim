@@ -132,7 +132,9 @@ local commands = {
 
     "SendToTerminalAndRun",
     "SendLineToTerminalAndRun",
+
     "SendSelectedToTerminalAndRun",
+
     -- "RunCurrentLineAndOutputWithPrePostFix",
     "RunSelectedAndOutput",
     -- "RunSelectedAndOutputWithPrePostFix",
