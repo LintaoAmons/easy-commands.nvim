@@ -140,8 +140,6 @@ local commands = {
   },
   editor = {
     "ShowLineDiagnostics",
-    "CommentLine", -- TODO:
-    "CommentSelectedLines", -- TODO:
     "CodeAction",
     "ToggleAutoSave",
 

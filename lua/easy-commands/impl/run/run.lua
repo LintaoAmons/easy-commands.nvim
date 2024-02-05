@@ -8,7 +8,7 @@ end
 local send_selected_to_terminal_and_run = function()
   local terminal = editor.buf.read.get_first_terminal()
   local selected = editor.getSelectedText()
-  editor.buf.write.send_to_terminal(terminal.id, selected)
+  editor.buf.write.send_to_terminal_buf(terminal.id, selected)
 end
 
 local function sent_to_terminal_and_run()
@@ -16,21 +16,28 @@ local function sent_to_terminal_and_run()
     prompt = "Enter your command",
   }, function(cmd)
     local terminal = editor.buf.read.get_first_terminal()
-    editor.buf.write.send_to_terminal(terminal.id, cmd)
+    editor.buf.write.send_to_terminal_buf(terminal.id, cmd)
   end)
 end
 
 local function send_line_to_terminal_and_run()
   local line = editor.get_current_line()
   local terminal = editor.buf.read.get_first_terminal()
-  editor.buf.write.send_to_terminal(terminal.id, line)
+  editor.buf.write.send_to_terminal_buf(terminal.id, line)
   vim.notify("line sended to terminal " .. terminal.id)
 end
 
 local function run_shell_at_current_buffer_dir()
   vim.ui.input({ prompt = "Enter your command" }, function(cmd)
+    local alias = vim.g.easy_command_cmd_alias
+      or {
+        ["gaa"] = "git add .",
+        ["grhh"] = "git reset --hard HEAD",
+        ["gst"] = "git status",
+      }
+
     local dir = editor.buf.read.get_buf_abs_dir_path()
-    local output = vim.fn.system("cd " .. dir .. " && " .. cmd)
+    local output = vim.fn.system("cd " .. dir .. " && " .. (alias[cmd] or cmd))
     local created = editor.window.new_popup_window(strings.split_into_lines(output))
     vim.keymap.set("n", "q", function()
       vim.api.nvim_win_close(created.win, true)
