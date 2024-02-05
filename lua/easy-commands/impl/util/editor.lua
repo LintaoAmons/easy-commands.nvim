@@ -288,7 +288,7 @@ end
 
 ---@param terminal_chan number
 ---@param term_cmd_text string
-local send_to_terminal = function(terminal_chan, term_cmd_text)
+local send_to_terminal_buf = function(terminal_chan, term_cmd_text)
   vim.api.nvim_chan_send(terminal_chan, term_cmd_text .. "\n")
 end
 
@@ -312,6 +312,44 @@ local function get_first_terminal()
   return terminal_chans[1]
 end
 
+--- Check if the channel's buffer visible
+--- You can get the buffer number by `vim.api.nvim_list_chans()`
+---@param channel_buffer_number number
+---@return boolean
+local function is_visible(channel_buffer_number)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_buf(win) == channel_buffer_number then
+      return true
+    end
+  end
+  return false
+end
+
+---@param popup_content string[]
+---@return {buf: integer, win: integer}
+local function new_popup_window(popup_content)
+  local popup_buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_lines(popup_buf, 0, -1, false, popup_content)
+  local width = vim.fn.strdisplaywidth(table.concat(popup_content, "\n"))
+  local height = #popup_content
+
+  local opts = {
+    relative = "cursor",
+    row = 0,
+    col = 0,
+    width = width + 4,
+    height = height + 2,
+    style = "minimal",
+    border = "single",
+  }
+
+  local win = vim.api.nvim_open_win(popup_buf, true, opts)
+  return {
+    buf = popup_buf,
+    win = win,
+  }
+end
+
 local M = {
   selections = {
     getCursorPosition = getCursorPosition,
@@ -325,6 +363,7 @@ local M = {
   window = {
     close_all_other_windows = close_all_other_windows,
     splitWindow = splitWindow,
+    new_popup_window = new_popup_window,
   },
   buf = {
     read = {
@@ -337,10 +376,13 @@ local M = {
       get_buf_relative_path = get_buf_relative_path,
       get_buf_relative_dir_path = get_buf_relative_dir_path,
       get_first_terminal = get_first_terminal,
+      -- TODO:  get_current_line = get_current_line,
+      get_selected = getSelectedText,
+      is_visible = is_visible,
     },
     write = {
       put_lines = put_lines,
-      send_to_terminal = send_to_terminal,
+      send_to_terminal_buf = send_to_terminal_buf,
     },
   },
   split_and_write = split_and_write,

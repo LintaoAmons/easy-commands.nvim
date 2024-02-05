@@ -29,7 +29,7 @@ end
 -- TODO: deprecated
 -- Use the function in sys
 ---@param content string
-function M.CopyToSystemClipboard(content)
+function M.copy_to_system_clipboard(content)
 	local copy_cmd = "pbcopy"
 	-- Copy the absolute path to the clipboard
 	if vim.fn.has("mac") or vim.fn.has("macunix") then

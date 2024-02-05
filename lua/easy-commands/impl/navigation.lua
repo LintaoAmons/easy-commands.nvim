@@ -2,7 +2,7 @@ local function goToDefinitionInSplit()
   local buffer = require("easy-commands.impl.util.editor").window
   buffer.close_all_other_windows()
   buffer.splitWindow("virtical")
-  vim.api.nvim_exec2("Lspsaga goto_definition")
+  vim.api.nvim_exec2("Lspsaga goto_definition", {})
   -- vim.api.nvim_command("zz") TODO: how to write "zz" by lua function
 end
 
@@ -14,7 +14,7 @@ local M = {
   -- 	dependencies = { "https://github.com/nvim-telescope/telescope.nvim" },
   -- },
   {
-    name = "GotoFunctionName",
+    name = "GoToFunctionName",
     callback = "AerialPrev",
     dependencies = { "https://github.com/stevearc/aerial.nvim" },
   },

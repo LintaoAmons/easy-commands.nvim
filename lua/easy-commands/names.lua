@@ -123,6 +123,7 @@ local commands = {
     "RunCurrentBuffer",
     "RunLiveToggle",
     "RunShellCurrentLine",
+    "RunShellAtBufDir",
     "TriggerLastRun", -- TODO: trigger last run or debug command.
     "JqQuery",
     "DistinctLines",
@@ -133,11 +134,9 @@ local commands = {
     "SendLineToTerminalAndRun",
     "SendSelectedToTerminalAndRun",
     -- "RunCurrentLineAndOutputWithPrePostFix",
-    -- "RunSelectedAndOutput",
+    "RunSelectedAndOutput",
     -- "RunSelectedAndOutputWithPrePostFix",
     -- "RunSelectedAndReplace",
-
-    -- "QueryCsv",
   },
   editor = {
     "ShowLineDiagnostics",

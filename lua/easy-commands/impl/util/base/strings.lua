@@ -15,6 +15,8 @@ local function EndsWithSuffix(str, suffix)
   return str:sub(-len) == suffix
 end
 
+---@param i string
+---@return string[]
 local function split_into_lines(i)
   local lines = {}
   for line in i:gmatch("([^\n]*)\n?") do

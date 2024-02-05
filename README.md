@@ -118,8 +118,6 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 
 Run `InspectCommand` to check all the commands that provided by easy-commands, and find the path of definition which you can further check
 
-Or you can find all the commands it provided at https://github.com/LintaoAmons/easy-commands.nvim/blob/main/lua/easy-commands/names.lua
-
 ## Keybindings
 
 This plugin didn't provide any default keybindings, you can just add keybindings in any way you like.
@@ -135,4 +133,10 @@ You are very welcome to ask anything or raise issues about this project in Discu
 You can find some todos in [Issues](https://github.com/LintaoAmons/easy-commands.nvim/issues) if you want to contribute
 
 
+## FIND MORE UESR FRIENDLY PLUGINS MADE BY ME
 
+- [scratch.nvim](https://github.com/LintaoAmons/scratch.nvim)
+- [easy-commands.nvim](https://github.com/LintaoAmons/easy-commands.nvim)
+- [cd-project.nvim](https://github.com/LintaoAmons/cd-project.nvim)
+- [bookmarks.nvim](https://github.com/LintaoAmons/bookmarks.nvim)
+- [plugin-template.nvim](https://github.com/LintaoAmons/plugin-template.nvim)

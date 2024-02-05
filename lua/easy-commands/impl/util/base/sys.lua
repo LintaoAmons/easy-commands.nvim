@@ -24,7 +24,7 @@ local run_sync = function(cmd, cwd)
 end
 
 ---@param content string
-local CopyToSystemClipboard = function(content)
+local copy_to_system_clipboard = function(content)
   local copy_cmd = "pbcopy"
   -- Copy the absolute path to the clipboard
   if vim.fn.has("mac") or vim.fn.has("macunix") then
@@ -80,7 +80,7 @@ end
 
 ---@class Sys
 local Sys = {
-  CopyToSystemClipboard = CopyToSystemClipboard,
+  copy_to_system_clipboard = copy_to_system_clipboard,
   run_sync = run_sync,
   run_async = run_async,
 }

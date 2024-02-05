@@ -100,6 +100,7 @@ local M = {
     callback = "SnipLive",
     dependencies = { "https://github.com/michaelb/sniprun" },
   },
+
   {
     name = "RunShellCurrentLine",
     callback = function()
@@ -107,13 +108,36 @@ local M = {
       local editor = require("easy-commands.impl.util.editor")
       local stringUtil = require("easy-commands.impl.util.base.strings")
       local currentLine = editor.get_current_line()
-      local stdout, _, stderr = sys.run_sync(stringUtil.splitCmdString(currentLine), ".")
-      local result = stdout or stderr
-      editor.putLines(result, "l", true, true)
-      pcall(sys.CopyToSystemClipboard, stringUtil.join(result, "\n"))
+      local stdout = vim.fn.system(currentLine)
+      local result = stringUtil.split_into_lines(stdout)
+      editor.buf.write.put_lines(result, "l", true, true)
+      pcall(sys.copy_to_system_clipboard, stringUtil.join(result, "\n"))
     end,
     description = "Run current line as a cmd in bash and put the stdout in the following lines",
   },
+
+  {
+    name = "RunShellAtBufDir",
+    callback = require("easy-commands.impl.run.run").run_shell_at_current_buffer_dir,
+    description = "Run a one time command at buffer's location",
+  },
+
+  {
+    name = "RunSelectedAndOutput",
+    callback = function()
+      local sys = require("easy-commands.impl.util.base.sys")
+      local editor = require("easy-commands.impl.util.editor")
+      local stringUtil = require("easy-commands.impl.util.base.strings")
+      local selected = editor.buf.read.get_selected()
+      local stdout, _, stderr = sys.run_sync(stringUtil.split_cmd_string(selected), ".")
+      local result = stdout or stderr
+      editor.buf.write.put_lines(result, "l", true, true)
+      pcall(sys.copy_to_system_clipboard, stringUtil.join(result, "\n"))
+    end,
+    allow_visual_mode = true,
+    description = "Run current line as a cmd in bash and put the stdout in the following lines",
+  },
+
   {
     name = "JqQuery",
     callback = function()

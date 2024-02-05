@@ -57,7 +57,7 @@ local M = {
     name = "CopyBufAbsPath",
     callback = function()
       local buffer_path = vim.fn.expand("%:p")
-      util.CopyToSystemClipboard(buffer_path)
+      util.copy_to_system_clipboard(buffer_path)
     end,
   },
 
@@ -65,7 +65,7 @@ local M = {
     name = "CopyBufAbsDirPath",
     callback = function()
       local buffer_dir_path = vim.fn.expand("%:p:h")
-      util.CopyToSystemClipboard(buffer_dir_path)
+      util.copy_to_system_clipboard(buffer_dir_path)
     end,
   },
 
@@ -74,7 +74,7 @@ local M = {
     callback = function()
       local project_path = editor.find_project_path()
       if project_path then
-        util.CopyToSystemClipboard(project_path)
+        util.copy_to_system_clipboard(project_path)
       end
     end,
   },
@@ -83,14 +83,14 @@ local M = {
     name = "CopyBufRelativePath",
     callback = function()
       local buf_relative_path = editor.buf.read.get_buf_relative_path()
-      util.CopyToSystemClipboard(buf_relative_path)
+      util.copy_to_system_clipboard(buf_relative_path)
     end,
   },
 
   {
     name = "CopyBufRelativeDirPath",
     callback = function()
-      util.CopyToSystemClipboard(editor.buf.read.get_buf_relative_dir_path())
+      util.copy_to_system_clipboard(editor.buf.read.get_buf_relative_dir_path())
     end,
   },
 
@@ -98,14 +98,14 @@ local M = {
     name = "CopyCdCommand",
     callback = function()
       local cmd = "cd " .. editor.buf.read.get_buf_abs_dir_path()
-      require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
+      require("easy-commands.impl.util.base.sys").copy_to_system_clipboard(cmd)
     end,
   },
 
   {
     name = "CopyFilename",
     callback = function()
-      util.CopyToSystemClipboard(editor.buf.read.get_buf_filename())
+      util.copy_to_system_clipboard(editor.buf.read.get_buf_filename())
     end,
   },
 
