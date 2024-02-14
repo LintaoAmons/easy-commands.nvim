@@ -116,7 +116,8 @@ using your favorate plugin manager, for example [lazy.nvim](https://github.com/f
 
 ## Commands
 
-Run `InspectCommand` to check all the commands that provided by easy-commands, and find the path of definition which you can further check
+- Run `InspectCommand` to check all the commands that provided by easy-commands.
+- Run `FindCommands`(Provided by easy-commands) or `Telescope commands` to find the commands you need.
 
 ## Keybindings
 
