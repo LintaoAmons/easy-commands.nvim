@@ -31,10 +31,9 @@ Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obs
 
 </details>
 
-## New Commands Added: SendSelectedToTerminalAndRun
+## New Commands Added: MarkdownCodeBlock
 > Find more usecase: [CommandUsecases](./CommandUsecase.md)
 
-![SendSelectedToTerminalAndRun](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/19593532-5a7c-4416-971f-53b73b421a7c)
 
 
 ## Install & Config
