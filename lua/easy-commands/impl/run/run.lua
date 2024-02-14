@@ -38,6 +38,7 @@ local function run_shell_at_current_buffer_dir()
         ["grhh"] = "git reset --hard HEAD",
         ["gst"] = "git status",
         ["gp"] = "git push",
+        ["gup"] = "git pull",
       }
 
     local dir = editor.buf.read.get_buf_abs_dir_path()

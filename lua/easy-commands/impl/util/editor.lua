@@ -22,6 +22,40 @@ local function exit_current_mode()
   vim.api.nvim_feedkeys(esc, "x", false)
 end
 
+---@return Position[]
+local function get_selected_positions()
+  -- this will exit visual mode
+  -- use 'gv' to reselect the text
+  local _, csrow, cscol, cerow, cecol
+  local mode = vim.fn.mode()
+  if mode == "v" or mode == "V" or mode == "" then
+    -- if we are in visual mode use the live position
+    _, csrow, cscol, _ = unpack(vim.fn.getpos("."))
+    _, cerow, cecol, _ = unpack(vim.fn.getpos("v"))
+    if mode == "V" then
+      -- visual line doesn't provide columns
+      cscol, cecol = 0, 999
+    end
+    exit_current_mode()
+  else
+    -- otherwise, use the last known visual position
+    _, csrow, cscol, _ = unpack(vim.fn.getpos("'<"))
+    _, cerow, cecol, _ = unpack(vim.fn.getpos("'>"))
+  end
+  -- swap vars if needed
+  if cerow < csrow then
+    csrow, cerow = cerow, csrow
+  end
+  if cecol < cscol then
+    cscol, cecol = cecol, cscol
+  end
+
+  return {
+    { row = csrow, col = cscol },
+    { row = cerow, col = cecol },
+  }
+end
+
 -- Copy from https://github.com/ibhagwan/fzf-lua
 local function getSelectedText()
   -- this will exit visual mode
@@ -330,7 +364,7 @@ end
 local function new_popup_window(popup_content)
   local popup_buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(popup_buf, 0, -1, false, popup_content)
-  vim.api.nvim_buf_set_option(popup_buf, 'filetype', "sh")
+  vim.api.nvim_buf_set_option(popup_buf, "filetype", "sh")
   local width = vim.fn.strdisplaywidth(table.concat(popup_content, "\n"))
   local height = #popup_content
 
@@ -357,6 +391,8 @@ local M = {
     getVisualSelectionStartPosition = getVisualSelectionStartPosition,
     getVisualSelectionEndPosition = getVisualSelectionEndPosition,
     getVisualLines = get_visual_lines,
+    get_selected = getSelectedText,
+    get_positions = get_selected_positions,
   },
   tab = {
     countWindows = countWindows,

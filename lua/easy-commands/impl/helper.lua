@@ -1,20 +1,31 @@
--- Function to insert a line above and below the current line
-function CodeBlock()
-  -- Get the current buffer and cursor position
+local editor = require("easy-commands.impl.util.editor")
+
+function code_block()
+  local positions = editor.selections.get_positions()
+  local start_position = positions[1]
+  local end_position = positions[2]
+
   local buf = vim.api.nvim_get_current_buf()
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local line_num = cursor[1]
+  local win = vim.api.nvim_get_current_win()
 
-  -- Lines to be inserted
-  local new_lines_above = { "```" } -- Insert an empty line above
-  local new_lines_below = { "```" } -- Insert an empty line below
+  local marker = { "```" }
 
-  -- Insert a line above the current line
-  vim.api.nvim_buf_set_lines(buf, line_num - 1, line_num - 1, false, new_lines_above)
-  -- Adjust line number for insertion below, since we added a line above
-  line_num = line_num + 1
-  -- Insert a line below the current line
-  vim.api.nvim_buf_set_lines(buf, line_num, line_num, false, new_lines_below)
+  vim.api.nvim_buf_set_lines(
+    buf,
+    start_position.row - 1,
+    start_position.row - 1,
+    false,
+    marker
+  )
+  vim.api.nvim_buf_set_lines(
+    buf,
+    end_position.row + 1,
+    end_position.row + 1,
+    false,
+    marker
+  )
+  vim.api.nvim_win_set_cursor(win, { start_position.row, 0 })
+  vim.api.nvim_input("A")
 end
 
 ---@type EasyCommand.Command[]
@@ -28,7 +39,8 @@ local M = {
   },
   {
     name = "MarkdownCodeBlock",
-    callback = CodeBlock,
+    callback = code_block,
+    allow_visual_mode = true,
   },
 }
 
