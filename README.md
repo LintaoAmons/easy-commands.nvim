@@ -34,7 +34,7 @@ Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obs
 ## New Commands Added: MarkdownCodeBlock
 > Find more usecase: [CommandUsecases](./CommandUsecase.md)
 
-
+![show](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/3d2a341d-d901-4a1a-8359-466882273ebb)
 
 ## Install & Config
 
