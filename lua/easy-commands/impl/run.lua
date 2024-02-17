@@ -177,24 +177,6 @@ local M = {
       require("easy-commands.impl.run.run").sent_to_terminal_and_run()
     end,
   },
-  -- {
-  -- 	name = "QueryCsv",
-  -- 	callback = function()
-  -- 		local filename = GetFilename()
-  -- 		local sql = editor.getCurrentLine()
-  -- 		sql = util.ReplacePattern(sql, "from fj", "from `" .. filename .. "`")
-  -- 		sql = util.ReplacePattern(sql, "from jf", "from `" .. filename .. "`")
-  -- 		local cmd = "csvq '" .. sql .. "'"
-  -- 		local result = util.Call_sys_cmd(cmd) or ""
-  -- 		local output_lines = vim.split(result, "\n")
-  -- 		for i = #output_lines, 1, -1 do
-  -- 			if output_lines[i] == "" then
-  -- 				table.remove(output_lines, i)
-  -- 			end
-  -- 		end
-  -- 		editor.PutLines(output_lines, "l", true, true)
-  -- 	end,
-  -- },
 }
 
 return M

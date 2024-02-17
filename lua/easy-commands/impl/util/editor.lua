@@ -348,7 +348,7 @@ end
 
 --- Check if the channel's buffer visible
 --- You can get the buffer number by `vim.api.nvim_list_chans()`
----@param channel_buffer_number number
+---@param channel_buffer_number number this is the chan buffer number not chan id
 ---@return boolean
 local function is_visible(channel_buffer_number)
   for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -357,6 +357,23 @@ local function is_visible(channel_buffer_number)
     end
   end
   return false
+end
+
+---@return any?
+local function get_first_visible_terminal()
+  local terminal_chans = {}
+  for _, chan in pairs(vim.api.nvim_list_chans()) do
+    if chan["mode"] == "terminal" and chan["pty"] ~= "" and is_visible(chan.buffer) then
+      table.insert(terminal_chans, chan)
+    end
+  end
+  table.sort(terminal_chans, function(left, right)
+    return left["buffer"] < right["buffer"]
+  end)
+  if #terminal_chans == 0 then
+    return nil
+  end
+  return terminal_chans[1]
 end
 
 ---@param popup_content string[]
@@ -412,7 +429,11 @@ local M = {
       get_buf_abs_dir_path = get_buf_abs_dir_path,
       get_buf_relative_path = get_buf_relative_path,
       get_buf_relative_dir_path = get_buf_relative_dir_path,
+
+      -- TODO: move to editor top level
       get_first_terminal = get_first_terminal,
+      get_first_visible_terminal = get_first_visible_terminal,
+
       -- TODO:  get_current_line = get_current_line,
       get_selected = getSelectedText,
       is_visible = is_visible,
