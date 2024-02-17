@@ -430,10 +430,6 @@ local M = {
       get_buf_relative_path = get_buf_relative_path,
       get_buf_relative_dir_path = get_buf_relative_dir_path,
 
-      -- TODO: move to editor top level
-      get_first_terminal = get_first_terminal,
-      get_first_visible_terminal = get_first_visible_terminal,
-
       -- TODO:  get_current_line = get_current_line,
       get_selected = getSelectedText,
       is_visible = is_visible,
@@ -443,6 +439,8 @@ local M = {
       send_to_terminal_buf = send_to_terminal_buf,
     },
   },
+  get_first_terminal = get_first_terminal,
+  get_first_visible_terminal = get_first_visible_terminal,
   split_and_write = split_and_write,
   find_project_path = find_project_path,
   replaceSelectedTextWithClipboard = replaceSelectedTextWithClipboard,
