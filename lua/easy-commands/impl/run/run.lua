@@ -1,4 +1,5 @@
 local editor = require("easy-commands.impl.util.editor")
+local log = require("easy-commands.impl.util.log")
 local strings = require("easy-commands.impl.util.base.strings")
 
 local function first_terminal_bring_up_front()
@@ -7,6 +8,9 @@ end
 
 local send_selected_to_terminal_and_run = function()
   local terminal = editor.get_first_visible_terminal()
+  if not terminal then
+    log.error("No visible terminal found")
+  end
   local selected = editor.getSelectedText()
   editor.buf.write.send_to_terminal_buf(terminal.id, selected)
 end
@@ -16,6 +20,9 @@ local function sent_to_terminal_and_run()
     prompt = "Enter your command",
   }, function(cmd)
     local terminal = editor.get_first_visible_terminal()
+    if not terminal then
+      log.error("No visible terminal found")
+    end
     editor.buf.write.send_to_terminal_buf(terminal.id, cmd)
   end)
 end
@@ -23,6 +30,9 @@ end
 local function send_line_to_terminal_and_run()
   local line = editor.buf.read.get_current_line()
   local terminal = editor.get_first_visible_terminal()
+  if not terminal then
+    log.error("No visible terminal found")
+  end
   editor.buf.write.send_to_terminal_buf(terminal.id, line)
   vim.notify("line sended to terminal " .. terminal.id)
 end
