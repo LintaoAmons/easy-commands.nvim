@@ -9,7 +9,7 @@ end
 local send_selected_to_terminal_and_run = function()
   local terminal = editor.get_first_visible_terminal()
   if not terminal then
-    log.error("No visible terminal found")
+    return log.error("No visible terminal found")
   end
   local selected = editor.getSelectedText()
   editor.buf.write.send_to_terminal_buf(terminal.id, selected)
@@ -21,7 +21,7 @@ local function sent_to_terminal_and_run()
   }, function(cmd)
     local terminal = editor.get_first_visible_terminal()
     if not terminal then
-      log.error("No visible terminal found")
+      return log.error("No visible terminal found")
     end
     editor.buf.write.send_to_terminal_buf(terminal.id, cmd)
   end)
@@ -31,7 +31,7 @@ local function send_line_to_terminal_and_run()
   local line = editor.buf.read.get_current_line()
   local terminal = editor.get_first_visible_terminal()
   if not terminal then
-    log.error("No visible terminal found")
+    return log.error("No visible terminal found")
   end
   editor.buf.write.send_to_terminal_buf(terminal.id, line)
   vim.notify("line sended to terminal " .. terminal.id)
