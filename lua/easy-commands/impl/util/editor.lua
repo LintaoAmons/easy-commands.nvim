@@ -2,13 +2,13 @@
 
 ---comment
 ---@return Position
-local getCursorPosition = function()
+local get_cursor_position = function()
   local _, row, col, _ = unpack(vim.fn.getpos("."))
   return { row, col }
 end
 
 ---@return {row: number, col: number}
-local getVisualSelectionStartPosition = function()
+local get_visual_selection_start_position = function()
   local _, row, col, _ = unpack(vim.fn.getpos("'<"))
   return { row, col }
 end
@@ -95,7 +95,7 @@ local function getSelectedText()
 end
 
 ---@return {row: number, col: number}
-local getVisualSelectionEndPosition = function()
+local get_visual_selection_end_position = function()
   local _, row, col, _ = unpack(vim.fn.getpos("'>"))
   return { row, col }
 end
@@ -151,6 +151,7 @@ local splitWindow = function(splitMode)
   end
 end
 
+---@return string
 local function get_current_line()
   return vim.api.nvim_get_current_line()
 end
@@ -405,11 +406,11 @@ end
 local M = {
   selections = {
     getCursorPosition = getCursorPosition,
-    getVisualSelectionStartPosition = getVisualSelectionStartPosition,
-    getVisualSelectionEndPosition = getVisualSelectionEndPosition,
+    get_positions = get_selected_positions,
+    get_visual_selection_start_position = get_visual_selection_start_position,
+    get_visual_selection_end_position = get_visual_selection_end_position,
     getVisualLines = get_visual_lines,
     get_selected = getSelectedText,
-    get_positions = get_selected_positions,
   },
   tab = {
     countWindows = countWindows,
@@ -429,8 +430,8 @@ local M = {
       get_buf_abs_dir_path = get_buf_abs_dir_path,
       get_buf_relative_path = get_buf_relative_path,
       get_buf_relative_dir_path = get_buf_relative_dir_path,
-
-      -- TODO:  get_current_line = get_current_line,
+      get_cursor_position = get_cursor_position,
+      get_current_line = get_current_line,
       get_selected = getSelectedText,
       is_visible = is_visible,
     },

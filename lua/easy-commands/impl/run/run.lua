@@ -21,7 +21,7 @@ local function sent_to_terminal_and_run()
 end
 
 local function send_line_to_terminal_and_run()
-  local line = editor.get_current_line()
+  local line = editor.buf.read.get_current_line()
   local terminal = editor.get_first_visible_terminal()
   editor.buf.write.send_to_terminal_buf(terminal.id, line)
   vim.notify("line sended to terminal " .. terminal.id)

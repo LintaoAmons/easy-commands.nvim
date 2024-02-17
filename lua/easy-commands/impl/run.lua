@@ -107,7 +107,7 @@ local M = {
       local sys = require("easy-commands.impl.util.base.sys")
       local editor = require("easy-commands.impl.util.editor")
       local stringUtil = require("easy-commands.impl.util.base.strings")
-      local currentLine = editor.get_current_line()
+      local currentLine = editor.buf.read.get_current_line()
       local stdout = vim.fn.system(currentLine)
       local result = stringUtil.split_into_lines(stdout)
       editor.buf.write.put_lines(result, "l", true, true)
