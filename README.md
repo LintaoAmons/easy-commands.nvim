@@ -124,16 +124,15 @@ This plugin didn't provide any default keybindings, you can just add keybindings
 
 Here's a ref of my way: https://github.com/LintaoAmons/CoolStuffes/blob/main/lazyvim/.config/nvim/lua/config/keymaps.lua
 
-## Contribution & TODOs
+## CONTRIBUTING
 
 You are very welcome to create a PR to share your personal useful command back
 
-You are very welcome to ask anything or raise issues about this project in Discussions or Issues
+Don't hesitate to ask me anything about the codebase if you want to contribute.
 
-You can find some todos in [Issues](https://github.com/LintaoAmons/easy-commands.nvim/issues) if you want to contribute
+You can contact with me by drop me an email or [telegram](https://t.me/+ssgpiHyY9580ZWFl)
 
-
-## FIND MORE UESR FRIENDLY PLUGINS MADE BY ME
+## FIND MORE USER FRIENDLY PLUGINS MADE BY ME
 
 - [scratch.nvim](https://github.com/LintaoAmons/scratch.nvim)
 - [easy-commands.nvim](https://github.com/LintaoAmons/easy-commands.nvim)
