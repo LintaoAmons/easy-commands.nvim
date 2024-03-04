@@ -49,7 +49,7 @@ local function run_shell_at_current_buffer_dir()
         ["gst"] = "git status",
         ["gp"] = "git push",
         ["gup"] = "git pull",
-        ["gam"] = "git add . | git commit -m 'update'",
+        ["gam"] = "git add . && git commit -m 'update'",
       }
 
     local dir = editor.buf.read.get_buf_abs_dir_path()
