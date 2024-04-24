@@ -31,10 +31,12 @@ Something like `IDEA`'s `Find Actions` or `Vscode`'s `Show All Commands` or `Obs
 
 </details>
 
-## New Commands Added: MarkdownCodeBlock
+## New Commands Added: TerminalCdToBufferDir
 > Find more usecase: [CommandUsecases](./CommandUsecase.md)
 
-![show](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/3d2a341d-d901-4a1a-8359-466882273ebb)
+Change visible terminal's working directory to the buffer's directory
+
+![show](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/f3426215-726a-4620-b49b-d14641b4cb93)
 
 ## Install & Config
 
