@@ -1,3 +1,5 @@
+local editor = require("easy-commands.impl.util.editor")
+
 -- TODO: refactor this function
 local function write_to_temp_file(content)
   local tempfile = os.tmpname()
@@ -175,6 +177,14 @@ local M = {
     allow_visual_mode = true,
     callback = function()
       require("easy-commands.impl.run.run").sent_to_terminal_and_run()
+    end,
+  },
+  {
+    name = "TerminalCdToBufferDir",
+    callback = function()
+      require("easy-commands.impl.run.run").sent_to_terminal_and_run(
+        "cd " .. '"' .. editor.buf.read.get_buf_abs_dir_path() .. '"'
+      )
     end,
   },
 }

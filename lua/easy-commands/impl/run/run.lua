@@ -15,16 +15,23 @@ local send_selected_to_terminal_and_run = function()
   editor.buf.write.send_to_terminal_buf(terminal.id, selected)
 end
 
-local function sent_to_terminal_and_run()
-  vim.ui.input({
-    prompt = "Enter your command",
-  }, function(cmd)
-    local terminal = editor.get_first_visible_terminal()
-    if not terminal then
-      return log.error("No visible terminal found")
-    end
+---comment
+---@param cmd string | nil
+local function sent_to_terminal_and_run(cmd)
+  local terminal = editor.get_first_visible_terminal()
+  if not terminal then
+    return log.error("No visible terminal found")
+  end
+
+  if cmd then
     editor.buf.write.send_to_terminal_buf(terminal.id, cmd)
-  end)
+  else
+    vim.ui.input({
+      prompt = "Enter your command",
+    }, function(input)
+      editor.buf.write.send_to_terminal_buf(terminal.id, input)
+    end)
+  end
 end
 
 local function send_line_to_terminal_and_run()

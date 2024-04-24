@@ -106,6 +106,7 @@ local commands = {
     "TestToggleOutputPanel",
     "GoToTestFile",
     "TestPlugin",
+    "TerminalCdToBufferDir",
   },
   finder = { -- HACK: include finder, search and replace
     "FindFiles",
