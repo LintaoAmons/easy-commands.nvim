@@ -17,6 +17,10 @@
 
 ![SendSelectedToTerminalAndRun](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/19593532-5a7c-4416-971f-53b73b421a7c)
 
+### TerminalCdToBufferDir
+
+![show](https://github.com/LintaoAmons/easy-commands.nvim/assets/95092244/f3426215-726a-4620-b49b-d14641b4cb93)
+
 ## Navigation
 
 ### MaximiseWindowAsPopup
