@@ -1,3 +1,6 @@
+# This plugin is archived. I will move it features into my lua config directly.
+# You can check my lua config at https://github.com/LintaoAmons/CoolStuffes/tree/main/nvim/.config/nvim
+
 ## A collection of intuitive, easily searchable,and ready-to-use commands.
 
 - Don't need to bind everything to a shortcut, just search the command if you need
